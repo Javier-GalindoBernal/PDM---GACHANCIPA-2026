@@ -1,10 +1,12 @@
-# Tablero de seguimiento al Plan de Desarrollo Municipal · Gachancipá 2024-2027
+# Portal de seguimiento al Plan de Desarrollo Municipal · Gachancipá 2024-2027
 
-Tablero de control de alto nivel (metodología DNP) de la Alcaldía Municipal de Gachancipá, Cundinamarca.
+Portal de seguimiento de la Alcaldía Municipal de Gachancipá, Cundinamarca (metodología DNP).
 
-- **Ver el tablero:** https://javier-galindobernal.github.io/PDM---GACHANCIPA-2026/
-- **Corte:** 30 de septiembre de 2026 · 219 metas · 9 secretarías.
-- **Modo día / noche** con el botón del encabezado.
-- **Descargas:** informe de seguimiento de cada secretaría y informes generales del Plan por año, en Word y PDF (carpeta `informes/`).
+- **Ver el portal:** https://javier-galindobernal.github.io/PDM---GACHANCIPA-2026/
+- **Corte:** 30 de septiembre de 2026 · 219 metas · 9 secretarías · 10 ejes estratégicos.
+- **Páginas:** resumen ejecutivo, avance por eje, secretarías, explorador de metas, logros, alertas, metas compartidas y calidad de dato, informes y metodología.
+- **Modo día / noche** y menú lateral.
+- **Descargas:** informe de cada secretaría y generales del Plan por año, en Word y PDF (carpeta `informes/`).
+- `tablero.html`: versión de una sola página del tablero.
 
 Elaborado por el profesional Javier Galindo Bernal — Administrador Público, Especialista en Big Data y Analítica de Datos. Secretaría de Planeación y Servicios Públicos de Gachancipá, Cundinamarca · 2026.
