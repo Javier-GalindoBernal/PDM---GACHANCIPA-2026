@@ -1,0 +1,224 @@
+{
+ "corte": "2026-09-30",
+ "vigencia": 2026,
+ "generado": "2026-11-16T14:04:35",
+ "secretarias": [
+  {
+   "carpeta": "secretaria-desarrollo-agropecuario",
+   "nombre": "Secretaría de Desarrollo Agropecuario, Económico y Ambiente",
+   "corto": "Desarrollo Agropecuario",
+   "indicador": 95.7,
+   "metas": 35,
+   "archivos": {
+    "docx": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Desarrollo_Agropecuario_2026.docx",
+     "kb": 110,
+     "huella": "8abb6e1f"
+    },
+    "pdf": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Desarrollo_Agropecuario_2026.pdf",
+     "kb": 294,
+     "huella": "ef08707c"
+    }
+   }
+  },
+  {
+   "carpeta": "secretaria-desarrollo-institucional",
+   "nombre": "Secretaría de Desarrollo Institucional",
+   "corto": "Desarrollo Institucional",
+   "indicador": 50.0,
+   "metas": 2,
+   "archivos": {
+    "docx": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Desarrollo_Institucional_2026.docx",
+     "kb": 14,
+     "huella": "09fa4d4e"
+    },
+    "pdf": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Desarrollo_Institucional_2026.pdf",
+     "kb": 117,
+     "huella": "572208ec"
+    }
+   }
+  },
+  {
+   "carpeta": "secretaria-desarrollo-social",
+   "nombre": "Secretaría de Desarrollo Social",
+   "corto": "Desarrollo Social",
+   "indicador": 95.9,
+   "metas": 42,
+   "archivos": {
+    "docx": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Desarrollo_Social_2026.docx",
+     "kb": 110,
+     "huella": "e5317965"
+    },
+    "pdf": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Desarrollo_Social_2026.pdf",
+     "kb": 310,
+     "huella": "974689fe"
+    }
+   }
+  },
+  {
+   "carpeta": "secretaria-educacion",
+   "nombre": "Secretaría de Educación, Cultura, Recreación y Deporte",
+   "corto": "Educación y Cultura",
+   "indicador": 85.6,
+   "metas": 49,
+   "archivos": {
+    "docx": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Educacion_y_Cultura_2026.docx",
+     "kb": 122,
+     "huella": "88c3a1f9"
+    },
+    "pdf": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Educacion_y_Cultura_2026.pdf",
+     "kb": 343,
+     "huella": "5c09e22d"
+    }
+   }
+  },
+  {
+   "carpeta": "secretaria-general",
+   "nombre": "Secretaría General",
+   "corto": "Secretaría General",
+   "indicador": 70.2,
+   "metas": 8,
+   "archivos": {
+    "docx": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Secretaria_General_2026.docx",
+     "kb": 74,
+     "huella": "39bea70f"
+    },
+    "pdf": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Secretaria_General_2026.pdf",
+     "kb": 196,
+     "huella": "b0c0a28b"
+    }
+   }
+  },
+  {
+   "carpeta": "secretaria-gobierno",
+   "nombre": "Secretaría de Gobierno",
+   "corto": "Gobierno",
+   "indicador": 84.6,
+   "metas": 32,
+   "archivos": {
+    "docx": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Gobierno_2026.docx",
+     "kb": 92,
+     "huella": "42635095"
+    },
+    "pdf": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Gobierno_2026.pdf",
+     "kb": 273,
+     "huella": "33a0975a"
+    }
+   }
+  },
+  {
+   "carpeta": "secretaria-hacienda",
+   "nombre": "Secretaría de Hacienda",
+   "corto": "Hacienda",
+   "indicador": 60.0,
+   "metas": 2,
+   "archivos": {
+    "docx": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Hacienda_2026.docx",
+     "kb": 14,
+     "huella": "b62d679d"
+    },
+    "pdf": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Hacienda_2026.pdf",
+     "kb": 118,
+     "huella": "0b8c00c2"
+    }
+   }
+  },
+  {
+   "carpeta": "secretaria-obras-publicas",
+   "nombre": "Secretaría de Obras Públicas",
+   "corto": "Obras Públicas",
+   "indicador": 80.0,
+   "metas": 16,
+   "archivos": {
+    "docx": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Obras_Publicas_2026.docx",
+     "kb": 81,
+     "huella": "e8bccf34"
+    },
+    "pdf": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Obras_Publicas_2026.pdf",
+     "kb": 227,
+     "huella": "3b17574f"
+    }
+   }
+  },
+  {
+   "carpeta": "secretaria-planeacion-servicios-publicos",
+   "nombre": "Secretaría de Planeación y Servicios Públicos",
+   "corto": "Planeación y Servicios Públicos",
+   "indicador": 79.2,
+   "metas": 33,
+   "archivos": {
+    "docx": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Planeacion_y_Servicios_Publicos_2026.docx",
+     "kb": 105,
+     "huella": "78ad49ac"
+    },
+    "pdf": {
+     "ruta": "informes/secretarias/Informe_Seguimiento_Planeacion_y_Servicios_Publicos_2026.pdf",
+     "kb": 284,
+     "huella": "accd72f2"
+    }
+   }
+  }
+ ],
+ "general": [
+  {
+   "anio": 2026,
+   "estado": "disponible",
+   "informes": [
+    {
+     "titulo": "Informe de Gestión 2026",
+     "descripcion": "Informe general del Plan por ejes estratégicos.",
+     "archivos": {
+      "docx": {
+       "ruta": "informes/general/Informe_de_Gestion_2026.docx",
+       "kb": 1895,
+       "huella": "8cc5f3ba"
+      },
+      "pdf": {
+       "ruta": "informes/general/Informe_de_Gestion_2026.pdf",
+       "kb": 1130,
+       "huella": "555c6149"
+      }
+     }
+    },
+    {
+     "titulo": "Informe consolidado del Plan (corte 2026-09-30)",
+     "descripcion": "Las 9 secretarías, 2025 y 2026 al corte.",
+     "archivos": {
+      "docx": {
+       "ruta": "informes/general/Informe_Consolidado_General_PDM_corte_2026-09-30.docx",
+       "kb": 248,
+       "huella": "c6368334"
+      },
+      "pdf": {
+       "ruta": "informes/general/Informe_Consolidado_General_PDM_corte_2026-09-30.pdf",
+       "kb": 965,
+       "huella": "19e10acb"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "anio": 2025,
+   "estado": "pendiente",
+   "informes": [],
+   "nota": "El informe general de cierre 2025 aún no se ha generado."
+  }
+ ]
+}
