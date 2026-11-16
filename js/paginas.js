@@ -84,35 +84,153 @@
     return '<a class="btn min' + (tipo === "pdf" ? " sec" : "") + '" href="' + h(a.ruta) + '" ' + (tipo === "docx" ? "download " : 'target="_blank" rel="noopener" ') + 'aria-label="Descargar ' + etq + " (" + U.n(a.kb) + ' KB)">' + ICON("down") + etq + " · " + U.n(a.kb) + " KB</a>";
   }
 
+  /* ============== filtros globales (solo durante la sesión de la pestaña; no se conservan al volver otro día) ============== */
+  var FK = "pdm_filtros", F = { sec: "", eje: "", est: "" };
+  try { var g0 = JSON.parse(sessionStorage.getItem(FK) || "{}"); if (g0.sec && secBy[g0.sec]) F.sec = g0.sec; if (g0.eje && ejeBy[+g0.eje]) F.eje = String(+g0.eje); if (g0.est && U.SEM[g0.est]) F.est = g0.est; } catch (e) { }
+  function guardarF() { try { sessionStorage.setItem(FK, JSON.stringify(F)); } catch (e) { } }
+  function hay() { return !!(F.sec || F.eje || F.est); }
+  function filtradasG() { return D.metas.filter(function (m) { return (!F.sec || m.car === F.sec) && (!F.eje || String(m.eje) === F.eje) && (!F.est || m.s === F.est); }); }
+  /* enlace al explorador con los filtros vigentes, sobreescribiendo los indicados */
+  function hrefEx(over) {
+    var f = { sec: F.sec, eje: F.eje, est: F.est }, p = [], k;
+    for (k in over) f[k] = over[k];
+    ["sec", "eje", "est"].forEach(function (c) { if (f[c]) p.push(c + "=" + encodeURIComponent(f[c])); });
+    return "#/metas" + (p.length ? "?" + p.join("&") : "");
+  }
+  var ejeCorto = function (e) { var n = e.nombre.replace(/^Gachancipá\s+(con\s+)?/i, ""); return e.id + ". " + n.charAt(0).toUpperCase() + n.slice(1); };
+  function cuenta(rows) { var c = { cumplida: 0, en_avance: 0, rezagada: 0, no_programada: 0 }; rows.forEach(function (m) { c[m.s]++; }); return c; }
+  function trunc(t, n) { t = String(t); return t.length > n ? t.slice(0, n - 1).replace(/\s+\S*$/, "") + "…" : t; }
+  var fbAbierto = null;
+  window.Filtros = {
+    barra: function () {
+      var M = filtradasG(), act = [];
+      if (F.sec) act.push(["sec", "Secretaría", secCorto(F.sec)]);
+      if (F.eje) act.push(["eje", "Eje", F.eje + ". " + ejeBy[+F.eje].nombre]);
+      if (F.est) act.push(["est", "Estado", U.SEM[F.est].et]);
+      var mqm = window.matchMedia && matchMedia("(max-width:720px)").matches;
+      var abierto = fbAbierto === null ? !mqm : fbAbierto;
+      return '<section class="fbar card" aria-label="Filtros globales"><details id="fb-d"' + (abierto ? " open" : "") + '><summary><span class="row">' + ICON("filter") + "Filtros" + (act.length ? ' <span class="tag">' + act.length + " activo" + (act.length > 1 ? "s" : "") + "</span>" : "") + '</span></summary><div class="fb-ctl">' +
+        '<div class="fld"><label for="g-sec">Secretaría</label>' + selSec("g-sec", F.sec, true) + "</div>" +
+        '<div class="fld"><label for="g-eje">Eje estratégico</label><select id="g-eje"><option value="">Todos los ejes</option>' + D.ejes.map(function (e) { return '<option value="' + e.id + '"' + (String(e.id) === F.eje ? " selected" : "") + ">" + e.id + ". " + h(e.nombre) + "</option>"; }).join("") + "</select></div>" +
+        '<div class="fld"><label for="g-est">Estado</label><select id="g-est"><option value="">Todos los estados</option>' + U.SEMORD.map(function (k) { return '<option value="' + k + '"' + (k === F.est ? " selected" : "") + ">" + U.SEM[k].et + "</option>"; }).join("") + "</select></div>" +
+        "</div></details>" +
+        (act.length ? '<p class="fb-aviso" role="status"><strong>Vista filtrada:</strong> los conteos de metas no son el total del Plan, y el indicador institucional no cambia con el filtro. <button class="btn sec min" type="button" id="vf-total">Ver el total</button></p>' : "") +
+        '<div class="fb-act"><ul class="fchips" aria-label="Filtros activos">' + act.map(function (a) { return '<li><button class="fchip" type="button" data-k="' + a[0] + '" aria-label="Quitar el filtro ' + h(a[1] + ": " + a[2]) + '"><span>' + h(a[1]) + ": <b>" + h(a[2]) + "</b></span>" + ICON("x") + "</button></li>"; }).join("") + '</ul><span class="mini" id="fb-n">' + (act.length ? M.length + " de " + D.metas.length + " metas coinciden" : "Sin filtros: se muestran las " + D.metas.length + " metas") + '</span><button class="btn sec min fb-clear" type="button" id="g-clear"' + (act.length ? "" : " disabled") + ">" + ICON("x") + "Limpiar</button></div></section>";
+    },
+    ligar: function (root, cambio) {
+      var d = root.querySelector("#fb-d");
+      if (d) d.addEventListener("toggle", function () { fbAbierto = d.open; });
+      [["g-sec", "sec"], ["g-eje", "eje"], ["g-est", "est"]].forEach(function (p) {
+        root.querySelector("#" + p[0]).addEventListener("change", function () { F[p[1]] = this.value; guardarF(); cambio(p[0]); });
+      });
+      root.querySelector("#g-clear").addEventListener("click", function () { F.sec = F.eje = F.est = ""; guardarF(); cambio("g-sec"); });
+      var vt = root.querySelector("#vf-total"); if (vt) vt.addEventListener("click", function () { F.sec = F.eje = F.est = ""; guardarF(); cambio("g-sec"); });
+      var vb = root.querySelector("#vf-limpiar"); if (vb) vb.addEventListener("click", function () { F.sec = F.eje = F.est = ""; guardarF(); cambio("g-sec"); });
+      root.querySelectorAll(".fchip").forEach(function (b) { b.addEventListener("click", function () { F[b.dataset.k] = ""; guardarF(); cambio("g-" + b.dataset.k); }); });
+    },
+    texto: function () { return filtradasG().length + " de " + D.metas.length + " metas coinciden con los filtros."; },
+    /* API para el agente virtual: leer, aplicar y limpiar filtros sin duplicar la lógica */
+    estado: function () { return { sec: F.sec, eje: F.eje, est: F.est }; },
+    limpiar: function () { F.sec = F.eje = F.est = ""; guardarF(); },
+    aplicar: function (o) {
+      o = o || {};
+      F.sec = o.sec && secBy[o.sec] ? o.sec : "";
+      F.eje = o.eje && ejeBy[+o.eje] ? String(+o.eje) : "";
+      F.est = o.est && U.SEM[o.est] ? o.est : "";
+      guardarF();
+    }
+  };
+  function vacioFiltros() {
+    return '<section class="card vacio"><svg class="ic big" aria-hidden="true"><use href="#i-search"/></svg><h2>Ninguna meta coincide con estos filtros</h2><p>La combinación de secretaría, eje y estado no tiene metas. Pruebe quitar uno de los filtros.</p><p><button class="btn" type="button" id="vf-limpiar">Limpiar filtros</button></p></section>';
+  }
+
+  /* ======================= componentes del tablero ======================= */
+  function kpi2(o) {
+    return '<a class="card kpi2 ' + (o.k || "") + '" href="' + h(o.href) + '"><span class="kh"><span class="kic">' + ICON(o.ic) + '</span><span class="l">' + o.l + '</span></span><span class="v num">' + o.v + "</span>" +
+      (o.n ? '<span class="n">' + o.n + "</span>" : "") + (o.sp ? '<span class="sp">' + o.sp + "</span>" : "") + "</a>";
+  }
+  function rank(items) {
+    return '<ol class="rank">' + items.map(function (it, i) {
+      return '<li><a href="' + h(it.href) + '" data-tip="' + h(it.label + ": " + U.p(it.value)) + '"><span class="pos">' + (i + 1) + '</span><span class="nm">' + h(it.label) + '</span><span class="bar" aria-hidden="true"><i style="width:' + Math.min(Math.max(it.value, 0), 100) + '%"></i></span><span class="vl num">' + U.p(it.value) + "</span></a></li>";
+    }).join("") + "</ol>";
+  }
+  function listaMetas(rows, vacio) {
+    if (!rows.length) return '<p class="vacio mini">' + vacio + "</p>";
+    return '<ul class="mlist">' + rows.map(function (m) {
+      return '<li><a href="' + hrefMeta(m) + '"><span class="cd s-' + m.s + '">' + h(m.cod) + '</span><span class="tx">' + h(trunc(m.m, 118)) + "<small>" + h(secCorto(m.car)) + " · Eje " + m.eje + '</small></span><span class="vl num">' + (m.s === "no_programada" ? "—" : U.p(m.ind)) + "</span></a></li>";
+    }).join("") + "</ul>";
+  }
+  /* filas del mapa de calor: def = [{label, href: fn(k) -> enlace, filtro: fn(m)}] */
+  function heatRows(defs, M) {
+    return defs.map(function (d) {
+      var sub = M.filter(d.filtro), c = cuenta(sub);
+      return { label: d.label, cells: U.SEMORD.map(function (k) { return { v: c[k], href: d.href(k) }; }) };
+    });
+  }
+  function banner(t, extra) {
+    return '<section class="banner"><div><p class="eyebrow">Corte ' + h(CORTE.texto) + " · " + h(CORTE.trimestre) + " de " + CORTE.vigencia + "</p><h2>" + t + "</h2></div><p class=\"b-tx\">" + extra + "</p></section>";
+  }
+
   /* ============================ RESUMEN ============================ */
-  P.resumen = function () {
+  function oficial() {
     var I = D.inst;
-    var h1 = '<section class="card hero"><div><div class="big num">' + U.p(I.ind) + '</div><div class="lbl">Indicador institucional</div></div>' +
-      '<div class="hero-in"><h2>Seguimiento al Plan de Desarrollo Municipal de Gachancipá</h2><p>Corte al ' + h(CORTE.texto) + " · " + I.metas + " metas de " + I.n_sec + " secretarías, organizadas en " + D.ejes.length + " ejes estratégicos. El indicador institucional es la media simple de los indicadores de las " + I.n_sec + " secretarías: cada secretaría pesa igual, sin importar su número de metas.</p></div></section>";
-    var k = '<div class="grid g4 mt">' +
-      kpi(U.p(I.a2025), "Avance de la vigencia " + CORTE.anterior, "Plan Indicativo, vigencia cerrada") +
-      kpi(U.p(I.a2026), "Avance de " + CORTE.vigencia + " al corte", h(CORTE.trimestre) + " · " + h(CORTE.texto)) +
-      kpi(I.sem.cumplida, "Metas cumplidas", "de " + I.metas + " registros de meta", "k-cum") +
-      kpi(I.sem.rezagada, "Metas rezagadas", "para acompañar con las secretarías", "k-rez") + "</div>";
-    var dn = '<div class="grid g2 mt"><section class="card"><h2>Estado de las metas</h2><p class="sub">Semáforo oficial al corte.</p><div class="donut-wrap"><div style="width:200px">' +
-      Charts.donut({ sem: I.sem, aria: "Anillo del semáforo: " + U.SEMORD.map(function (s) { return U.SEM[s].et + " " + I.sem[s]; }).join(", ") }) + "</div><div><table class='legtab'><caption class='sr'>Convenciones del semáforo</caption><tbody>" +
-      U.SEMORD.map(function (s) { return '<tr><th scope="row" style="font-weight:600;text-align:left"><span class="chip s-' + s + '">' + U.SEM[s].et + '</span></th><td class="num"><b>' + I.sem[s] + "</b></td><td class='mini'>" + U.SEM[s].regla + "</td></tr>"; }).join("") + "</tbody></table></div></div></section>" +
-      '<section class="card"><h2>Indicador por eje estratégico</h2><p class="sub">Haga clic en un eje para ver su detalle.</p>' +
-      Charts.hbar({ aria: "Indicador por eje estratégico", items: D.ejes.map(function (e) { return { label: e.id + ". " + e.nombre, value: e.ind, href: "#/ejes/" + e.id }; }) }) + "</section></div>";
-    var sc = '<section class="card mt"><h2>Indicador por secretaría</h2><p class="sub">Media de los indicadores de las metas programadas al corte de cada secretaría.</p>' +
-      Charts.hbar({ aria: "Indicador por secretaría", items: D.secretarias.map(function (s) { return { label: s.corto, value: s.ind, href: "#/secretarias/" + s.carpeta }; }) }) + "</section>";
-    var nt = '<p class="nota mt"><b>Cómo leer las cifras.</b> El indicador compara lo ejecutado con lo programado hasta el corte. Las metas que no tienen programación hasta el corte no penalizan el resultado y se muestran como «No programada». El indicador institucional es la media simple de los indicadores de las nueve secretarías; el de una secretaría y el de un eje son la media de sus metas programadas al corte. Por eso un eje (media por meta) puede superar al indicador institucional, en el que Desarrollo Institucional y Hacienda, con pocas metas, pesan lo mismo que las demás. Las diferencias de dato se verifican con cada secretaría.</p>';
+    if (F.sec && F.eje) return null;
+    if (F.sec) { var s = secBy[F.sec]; return { ind: s.ind, a25: s.a2025, a26: s.a2026, t: s.corto, n: "Indicador oficial de la secretaría" }; }
+    if (F.eje) { var e = ejeBy[+F.eje]; return { ind: e.ind, a25: e.a2025, a26: e.a2026, t: "eje " + e.id, n: "Indicador oficial del eje" }; }
+    return { ind: I.ind, a25: I.a2025, a26: I.a2026, t: "institucional", n: "Media simple de las " + I.n_sec + " secretarías" };
+  }
+  P.resumen = function () {
+    var I = D.inst, M = filtradasG(), C = cuenta(M), tot = M.length, hi = F.eje ? F.eje - 1 : undefined;
+    var ban = banner("Centro de mando del Plan de Desarrollo Municipal", I.metas + " metas · " + I.n_sec + " secretarías · " + D.ejes.length + " ejes estratégicos. Las metas no programadas al corte no penalizan el indicador.");
+    var base = { title: "Resumen ejecutivo", crumbs: [["Inicio", null]], filtros: true };
+    if (!tot) { base.html = ban + vacioFiltros(); return base; }
+    var of = oficial(), etq = of ? of.t : "";
+    var sparkE = function (vals, nom) { return U.spark(vals, { max: 100, hi: hi, aria: nom + " por eje estratégico (referencia oficial)" }); };
+    var k1 = kpi2({ href: "#/ejes", ic: "trend", k: "k-main", l: "Indicador " + (of ? etq : "del filtro"), v: of ? U.p(of.ind) : "—", n: of ? of.n + ". Compara lo ejecutado con lo programado al corte." : "Sin indicador oficial para la combinación de secretaría y eje; se muestran los conteos de metas.", sp: sparkE(D.ejes.map(function (e) { return e.ind; }), "Indicador") });
+    var k2 = kpi2({ href: "#/ejes", ic: "layers", l: "Avance de la vigencia " + CORTE.anterior, v: of ? U.p(of.a25) : "—", n: "Plan Indicativo, vigencia cerrada", sp: sparkE(D.ejes.map(function (e) { return e.a2025; }), "Avance " + CORTE.anterior) });
+    var k3 = kpi2({ href: "#/ejes", ic: "check", l: "Avance " + CORTE.vigencia + " al corte", v: of ? U.p(of.a26) : "—", n: h(CORTE.trimestre) + " · " + h(CORTE.texto), sp: sparkE(D.ejes.map(function (e) { return e.a2026; }), "Avance " + CORTE.vigencia + " al corte") });
+    var ST = { cumplida: ["check", "k-cum", "al 100 % o más"], en_avance: ["trend", "k-ava", "entre 20 % y 99 %"], rezagada: ["alert", "k-rez", "para acompañar con las secretarías"], no_programada: ["pause", "k-np", "sin programación al corte; no penalizan"] };
+    var ks = U.SEMORD.map(function (k) {
+      return kpi2({ href: hrefEx({ est: k }), ic: ST[k][0], k: ST[k][1], l: { cumplida: "Metas cumplidas", en_avance: "Metas en avance", rezagada: "Metas rezagadas", no_programada: "Metas no programadas" }[k], v: C[k], n: "de " + tot + " registros · " + ST[k][2], sp: U.spark(porEje(M, k), { aria: "Metas " + U.SEM[k].et.toLowerCase() + " por eje estratégico" }) });
+    }).join("");
+    var kp = '<div class="kpis mt" role="group" aria-label="Indicadores clave del corte">' + k1 + k2 + k3 + ks + "</div>";
+
+    var hrefs = {}; U.SEMORD.forEach(function (k) { hrefs[k] = hrefEx({ est: k }); });
+    var dn = '<section class="card"><div class="sec-h"><div><h2>Semáforo de metas</h2><p class="sub">Haga clic en un sector para ver esas metas.</p></div></div><div class="donut-wrap"><div style="width:200px">' +
+      Charts.donut({ sem: C, hrefs: hrefs, aria: "Anillo del semáforo: " + U.SEMORD.map(function (s) { return U.SEM[s].et + " " + C[s]; }).join(", ") }) + "</div><div><table class='legtab'><caption class='sr'>Convenciones del semáforo</caption><tbody>" +
+      U.SEMORD.map(function (s) { return '<tr><th scope="row" style="font-weight:600;text-align:left"><a class="chip s-' + s + '" href="' + h(hrefs[s]) + '">' + U.SEM[s].et + '</a></th><td class="num"><b>' + C[s] + "</b></td><td class='mini'>" + U.SEM[s].regla + "</td></tr>"; }).join("") + "</tbody></table></div></div></section>";
+    var secs = D.secretarias.filter(function (s) { return M.some(function (m) { return m.car === s.carpeta; }); }).sort(function (a, b) { return b.ind - a.ind; });
+    var rk = '<section class="card"><div class="sec-h"><div><h2>Ranking de secretarías</h2><p class="sub">Por indicador al corte. Cada secretaría responde por metas distintas.</p></div><a class="lnk" href="#/secretarias">Ver todas</a></div>' +
+      rank(secs.map(function (s) { return { label: s.corto, value: s.ind, href: "#/secretarias/" + s.carpeta }; })) + "</section>";
+
+    var ejs = D.ejes.filter(function (e) { return M.some(function (m) { return m.eje === e.id; }); });
+    var hm = '<section class="card"><div class="sec-h"><div><h2>Mapa de calor: ejes por estado</h2><p class="sub">Número de metas. Clic en una celda para verlas.</p></div></div>' +
+      Charts.heat({ cab: "Eje estratégico", aria: "Mapa de calor de metas por eje estratégico y estado", rows: heatRows(ejs.map(function (e) { return { label: ejeCorto(e), filtro: function (m) { return m.eje === e.id; }, href: function (k) { return hrefEx({ eje: String(e.id), est: k }); } }; }), M) }) + "</section>";
+    var gb = '<section class="card"><div class="sec-h"><div><h2>Avance por eje: ' + CORTE.anterior + " y " + CORTE.vigencia + '</h2><p class="sub">Vigencia anterior frente a la actual al corte.</p></div></div><div class="leg"><span><i class="dot-25"></i>' + CORTE.anterior + '</span><span><i class="dot-26"></i>' + CORTE.vigencia + " al corte</span></div>" +
+      Charts.gbar({ la: String(CORTE.anterior), lb: CORTE.vigencia + " al corte", aria: "Avance por eje, vigencias " + CORTE.anterior + " y " + CORTE.vigencia, items: ejs.map(function (e) { return { label: ejeCorto(e), a: e.a2025, b: e.a2026, href: "#/ejes/" + e.id }; }) }) + "</section>";
+
+    var rez = M.filter(function (m) { return m.s === "rezagada"; }).sort(function (a, b) { return a.ind - b.ind; });
+    var certs = {}; D.cert.certificables.forEach(function (i) { certs[i] = 1; });
+    var cum = M.filter(function (m) { return m.s === "cumplida"; }).sort(function (a, b) { return (certs[b.id] ? 1 : 0) - (certs[a.id] ? 1 : 0) || natural(a.cod, b.cod); });
+    var at = '<section class="card"><div class="sec-h"><div><h2>Atención del corte</h2><p class="sub">Metas rezagadas para acompañar con las secretarías.</p></div>' + (rez.length ? '<a class="lnk" href="' + h(hrefEx({ est: "rezagada" })) + '">Ver las ' + rez.length + "</a>" : "") + "</div>" + listaMetas(rez.slice(0, 6), "Sin metas rezagadas con los filtros actuales.") + "</section>";
+    var lg = '<section class="card"><div class="sec-h"><div><h2>Logros del corte</h2><p class="sub">Metas con ejecución igual o superior a lo programado.</p></div>' + (cum.length ? '<a class="lnk" href="#/logros">Ver las ' + cum.length + "</a>" : "") + "</div>" + listaMetas(cum.slice(0, 6), "Sin metas cumplidas con los filtros actuales.") + "</section>";
+
+    var nt = '<p class="nota mt2"><b>Cómo leer las cifras.</b> El indicador compara lo ejecutado con lo programado hasta el corte. Las metas que no tienen programación hasta el corte no penalizan el resultado y se muestran como «No programada». El indicador institucional es la media simple de los indicadores de las nueve secretarías; el de una secretaría y el de un eje son la media de sus metas programadas al corte. Por eso un eje (media por meta) puede superar al indicador institucional, en el que Desarrollo Institucional y Hacienda, con pocas metas, pesan lo mismo que las demás. Con filtros activos, los conteos corresponden a las metas filtradas y el indicador solo se muestra cuando existe una cifra oficial (institucional, por secretaría o por eje). Las diferencias de dato se verifican con cada secretaría.</p>';
     var rapidos = [["ejes", "layers", "Avance por eje", "Los 10 ejes con sus metas y secretarías."], ["secretarias", "building", "Secretarías", "Comparativo y ficha de cada una."], ["metas", "table", "Explorador de metas", "Busque y filtre las " + I.metas + " metas."], ["alertas", "alert", "Alertas", "Metas por acompañar y cronograma."], ["informes", "file", "Informes", "Descargas en Word y PDF."], ["metodologia", "book", "Metodología", "Cómo se calcula cada cifra."]];
     var ql = '<div class="grid g3 mt">' + rapidos.map(function (r) {
       return '<a class="card lcard" href="#/' + r[0] + '"><div class="row">' + ICON(r[1]) + "<h3>" + r[2] + "</h3></div><p class='muted' style='margin:0'>" + r[3] + "</p></a>";
     }).join("") + "</div>";
-    return { title: "Resumen ejecutivo", crumbs: [["Inicio", null]], html: h1 + k + dn + sc + nt + ql };
+    base.html = ban + kp + '<div class="grid g2 mt">' + dn + rk + '</div><div class="grid g2 mt">' + hm + gb + '</div><div class="grid g2 mt">' + at + lg + "</div>" + nt + ql;
+    return base;
   };
+  function porEje(rows, k) { return D.ejes.map(function (e) { return rows.filter(function (m) { return m.eje === e.id && (!k || m.s === k); }).length; }); }
 
   /* ============================ EJES ============================ */
   P.ejes = function (ctx) {
     if (ctx.parts[1]) return ejeDetalle(+ctx.parts[1]);
-    var cards = D.ejes.map(function (e) {
+    var M = filtradasG(), E = D.ejes.filter(function (e) { return M.some(function (m) { return m.eje === e.id; }); });
+    if (!E.length) return { title: "Avance por eje estratégico", crumbs: [["Inicio", "#/resumen"], ["Avance por eje", null]], html: vacioFiltros(), filtros: true };
+    var cards = E.map(function (e) {
       return '<a class="card lcard" href="#/ejes/' + e.id + '" aria-label="Eje ' + e.id + ", " + h(e.nombre) + ", indicador " + U.p(e.ind) + '"><div class="row"><span class="eje-n">' + e.id + "</span><h3>" + h(e.nombre) + "</h3></div>" +
         '<div class="row sb2"><span class="ind num">' + U.p(e.ind) + '</span><span class="mini">' + e.metas + " metas · " + e.secretarias.length + " secretaría" + (e.secretarias.length > 1 ? "s" : "") + "</span></div>" +
         '<div class="prog" aria-hidden="true"><i style="width:' + Math.min(e.ind, 100) + '%"></i></div>' + stackBar(e.sem) +
@@ -121,11 +239,11 @@
     var html = '<p class="muted">Los diez ejes estratégicos del Plan. El indicador del eje es el promedio de los indicadores de sus metas programadas al corte.</p><div class="grid g-aut mt">' + cards + "</div>" +
       '<section class="card mt2"><h2>Avance 2025 y 2026 por eje</h2><p class="sub">Avance de la vigencia anterior frente al de la vigencia actual al corte.</p>' +
       '<div class="leg"><span><i class="dot-25"></i>' + CORTE.anterior + '</span><span><i class="dot-26"></i>' + CORTE.vigencia + " al corte</span></div>" +
-      Charts.gbar({ la: String(CORTE.anterior), lb: CORTE.vigencia + " al corte", aria: "Avance por eje, vigencias " + CORTE.anterior + " y " + CORTE.vigencia, items: D.ejes.map(function (e) { return { label: e.id + ". " + e.nombre, a: e.a2025, b: e.a2026, href: "#/ejes/" + e.id }; }) }) + "</section>" +
+      Charts.gbar({ la: String(CORTE.anterior), lb: CORTE.vigencia + " al corte", aria: "Avance por eje, vigencias " + CORTE.anterior + " y " + CORTE.vigencia, items: E.map(function (e) { return { label: ejeCorto(e), a: e.a2025, b: e.a2026, href: "#/ejes/" + e.id }; }) }) + "</section>" +
       '<section class="mt2"><div class="tw"><table><caption>Resumen por eje estratégico</caption><thead><tr><th scope="col">Eje</th><th scope="col" class="n">Metas</th><th scope="col" class="n">Indicador</th><th scope="col" class="n">2025</th><th scope="col" class="n">2026 al corte</th><th scope="col" class="n">Cumplidas</th><th scope="col" class="n">En avance</th><th scope="col" class="n">Rezagadas</th><th scope="col" class="n">No prog.</th></tr></thead><tbody>' +
-      D.ejes.map(function (e) { return '<tr><th scope="row"><a href="#/ejes/' + e.id + '">' + e.id + ". " + h(e.nombre) + '</a></th><td class="n">' + e.metas + '</td><td class="n">' + U.p(e.ind) + '</td><td class="n">' + U.p(e.a2025) + '</td><td class="n">' + U.p(e.a2026) + '</td><td class="n">' + e.sem.cumplida + '</td><td class="n">' + e.sem.en_avance + '</td><td class="n">' + e.sem.rezagada + '</td><td class="n">' + e.sem.no_programada + "</td></tr>"; }).join("") +
+      E.map(function (e) { return '<tr><th scope="row"><a href="#/ejes/' + e.id + '">' + e.id + ". " + h(e.nombre) + '</a></th><td class="n">' + e.metas + '</td><td class="n">' + U.p(e.ind) + '</td><td class="n">' + U.p(e.a2025) + '</td><td class="n">' + U.p(e.a2026) + '</td><td class="n">' + e.sem.cumplida + '</td><td class="n">' + e.sem.en_avance + '</td><td class="n">' + e.sem.rezagada + '</td><td class="n">' + e.sem.no_programada + "</td></tr>"; }).join("") +
       "</tbody></table></div></section>";
-    return { title: "Avance por eje estratégico", crumbs: [["Inicio", "#/resumen"], ["Avance por eje", null]], html: html };
+    return { title: "Avance por eje estratégico", crumbs: [["Inicio", "#/resumen"], ["Avance por eje", null]], html: html, filtros: true };
   };
   function ejeDetalle(id) {
     var e = ejeBy[id]; if (!e) return P.noEncontrada();
@@ -145,7 +263,8 @@
   /* ============================ SECRETARÍAS ============================ */
   P.secretarias = function (ctx) {
     if (ctx.parts[1]) return secDetalle(ctx.parts[1]);
-    var S = D.secretarias;
+    var M = filtradasG(), S = D.secretarias.filter(function (s) { return M.some(function (m) { return m.car === s.carpeta; }); });
+    if (!S.length) return { title: "Secretarías", crumbs: [["Inicio", "#/resumen"], ["Secretarías", null]], html: vacioFiltros(), filtros: true };
     var cards = S.map(function (s) {
       return '<a class="card lcard" href="#/secretarias/' + s.carpeta + '"><h3>' + h(s.corto) + '</h3><div class="row sb2"><span class="ind num">' + U.p(s.ind) + '</span><span class="mini">' + s.metas + " metas</span></div>" +
         '<div class="prog" aria-hidden="true"><i style="width:' + Math.min(s.ind, 100) + '%"></i></div>' + stackBar(s.sem) + '<div class="mini">' + s.sem.cumplida + " cumplidas · " + s.sem.en_avance + " en avance · " + s.sem.rezagada + " rezagadas · " + s.sem.no_programada + " no prog.</div></a>";
@@ -154,11 +273,11 @@
       '<div class="grid g2 mt"><section class="card"><h2>Indicador por secretaría</h2>' + Charts.hbar({ aria: "Indicador por secretaría", items: S.map(function (s) { return { label: s.corto, value: s.ind, href: "#/secretarias/" + s.carpeta }; }) }) + "</section>" +
       '<section class="card"><h2>Avance ' + CORTE.anterior + " y " + CORTE.vigencia + '</h2><div class="leg"><span><i class="dot-25"></i>' + CORTE.anterior + '</span><span><i class="dot-26"></i>' + CORTE.vigencia + " al corte</span></div>" +
       Charts.gbar({ la: String(CORTE.anterior), lb: CORTE.vigencia + " al corte", aria: "Avance por secretaría, vigencias " + CORTE.anterior + " y " + CORTE.vigencia, items: S.map(function (s) { return { label: s.corto, a: s.a2025, b: s.a2026, href: "#/secretarias/" + s.carpeta }; }) }) + "</section></div>" +
-      '<section class="card mt"><h2>Estado de las metas por secretaría</h2>' + leyenda(D.inst.sem) + Charts.stack({ aria: "Semáforo por secretaría", items: S.map(function (s) { return { label: s.corto, sem: s.sem, href: "#/secretarias/" + s.carpeta }; }) }) + "</section>" +
+      '<section class="card mt"><div class="sec-h"><div><h2>Mapa de calor: secretarías por estado</h2><p class="sub">Número de metas. Clic en una celda para verlas en el explorador.</p></div></div>' + Charts.heat({ cab: "Secretaría", aria: "Mapa de calor de metas por secretaría y estado", rows: heatRows(S.map(function (s) { return { label: s.corto, filtro: function (m) { return m.car === s.carpeta; }, href: function (k) { return hrefEx({ sec: s.carpeta, est: k }); } }; }), M) }) + "</section>" +
       '<div class="grid g-aut mt2">' + cards + "</div>" +
       '<section class="mt2"><div class="tw"><table><caption>Comparativo de secretarías</caption><thead><tr><th scope="col">Secretaría</th><th scope="col" class="n">Metas</th><th scope="col" class="n">2025</th><th scope="col" class="n">2026 al corte</th><th scope="col" class="n">Indicador</th><th scope="col" class="n">Cumpl.</th><th scope="col" class="n">En avance</th><th scope="col" class="n">Rezag.</th><th scope="col" class="n">No prog.</th></tr></thead><tbody>' +
       S.map(function (s) { return '<tr><th scope="row"><a href="#/secretarias/' + s.carpeta + '">' + h(s.nombre) + '</a></th><td class="n">' + s.metas + '</td><td class="n">' + U.p(s.a2025) + '</td><td class="n">' + U.p(s.a2026) + '</td><td class="n"><b>' + U.p(s.ind) + '</b></td><td class="n">' + s.sem.cumplida + '</td><td class="n">' + s.sem.en_avance + '</td><td class="n">' + s.sem.rezagada + '</td><td class="n">' + s.sem.no_programada + "</td></tr>"; }).join("") + "</tbody></table></div></section>";
-    return { title: "Secretarías", crumbs: [["Inicio", "#/resumen"], ["Secretarías", null]], html: html };
+    return { title: "Secretarías", crumbs: [["Inicio", "#/resumen"], ["Secretarías", null]], html: html, filtros: true };
   };
   function secDetalle(car) {
     var s = secBy[car]; if (!s) return P.noEncontrada();
@@ -212,7 +331,8 @@
   }
   P.metas = function (ctx) {
     var q = ctx.query;
-    EX = { q: q.q || "", sec: q.sec || "", eje: q.eje || "", est: q.est || "", vig: q.vig || "", sort: EX.sort || "cod", dir: EX.dir || 1, page: 1 };
+    if (q.sec !== undefined || q.eje !== undefined || q.est !== undefined) { F.sec = secBy[q.sec] ? q.sec : ""; F.eje = ejeBy[+q.eje] ? String(+q.eje) : ""; F.est = U.SEM[q.est] ? q.est : ""; guardarF(); }
+    EX = { q: q.q || "", sec: F.sec, eje: F.eje, est: F.est, vig: q.vig || "", sort: EX.sort || "cod", dir: EX.dir || 1, page: 1 };
     var html = '<p class="muted">Las ' + D.metas.length + " filas de meta (una por secretaría responsable). Busque por texto o código, filtre, ordene y exporte lo filtrado.</p>" +
       '<section class="card mt" aria-label="Filtros"><details class="fil" id="fil" open><summary>Filtrar y buscar</summary><form class="filtros" id="exf" onsubmit="return false">' +
       '<div class="fld"><label for="f-q">Buscar por texto o código</label><input id="f-q" type="search" value="' + h(EX.q) + '" placeholder="Ej.: 14, vivienda, Policía" autocomplete="off"></div>' +
@@ -249,7 +369,7 @@
         function plegar() { fil.open = !(mqm && mqm.matches); }
         plegar(); if (mqm && mqm.addEventListener) mqm.addEventListener("change", plegar);
         root.querySelector("#f-ord").addEventListener("change", function () { EX.sort = this.value; EX.dir = 1; EX.page = 1; pintar(); });
-        var t; function reaplicar() { EX.q = root.querySelector("#f-q").value; EX.sec = root.querySelector("#f-sec").value; EX.eje = root.querySelector("#f-eje").value; EX.est = root.querySelector("#f-est").value; EX.vig = root.querySelector("#f-vig").value; EX.page = 1; pintar(); }
+        var t; function reaplicar() { EX.q = root.querySelector("#f-q").value; EX.sec = root.querySelector("#f-sec").value; EX.eje = root.querySelector("#f-eje").value; EX.est = root.querySelector("#f-est").value; EX.vig = root.querySelector("#f-vig").value; EX.page = 1; F.sec = EX.sec; F.eje = EX.eje; F.est = EX.est; guardarF(); pintar(); }
         root.querySelector("#f-q").addEventListener("input", function () { clearTimeout(t); t = setTimeout(reaplicar, 180); });
         ["#f-sec", "#f-eje", "#f-est", "#f-vig"].forEach(function (id) { root.querySelector(id).addEventListener("change", reaplicar); });
         root.querySelector("#f-limpiar").addEventListener("click", function () { ["#f-q", "#f-sec", "#f-eje", "#f-est", "#f-vig"].forEach(function (id) { root.querySelector(id).value = ""; }); reaplicar(); });
@@ -294,42 +414,32 @@
 
   /* ============================ LOGROS ============================ */
   P.logros = function () {
-    var C = D.cert, cert = C.certificables.map(function (i) { return metaBy[i]; }), pend = C.pendientes.map(function (i) { return metaBy[i]; });
+    var ok = {}; filtradasG().forEach(function (m) { ok[m.id] = 1; });
+    var C = D.cert, cert = C.certificables.map(function (i) { return metaBy[i]; }).filter(function (m) { return ok[m.id]; }), pend = C.pendientes.map(function (i) { return metaBy[i]; }).filter(function (m) { return ok[m.id]; });
+    var ord = function (a) { return a.slice().sort(function (x, y) { return natural(x.cod, y.cod) || x.car.localeCompare(y.car); }); };
+    var uni = {}; pend.forEach(function (m) { uni[m.cod] = 1; });
     var html = '<p class="muted">Metas con ejecución igual o superior a lo programado al corte (indicador de 100 % o más).</p>' +
-      '<div class="grid g3 mt">' + kpi(D.inst.sem.cumplida, "Metas cumplidas al corte", "registros de meta al " + h(CORTE.texto), "k-cum") + kpi(cert.length, "Certificables", "sin programación posterior en " + CORTE.vigencia, "k-cum") + kpi(C.pend_unicas, "Al 100 % con programación posterior", pend.length + " registros; se certifican al cierre de la vigencia", "k-ava") + "</div>" +
-      '<p class="nota verde mt"><b>Certificables.</b> Cumplieron lo programado y no tienen programación en ' + h(CORTE.posteriores) + '; nada queda por ejecutar frente a lo programado en 2025-2026. <b>Con programación posterior.</b> Van al 100 % al corte y se certifican cuando concluya el período que aún está programado. Las metas compartidas se cuentan una vez por meta en el inventario de certificación.</p>' +
-      '<div class="row mt"><div class="fld" style="min-width:260px"><label for="lg-sec">Filtrar por secretaría</label>' + selSec("lg-sec", "", true) + "</div></div>" +
-      '<section class="mt"><h2>Certificables (<span id="n-cert">' + cert.length + '</span>)</h2><div id="t-cert"></div></section>' +
-      '<section class="mt2"><h2>Al 100 % con programación posterior (<span id="n-pend">' + pend.length + '</span> registros)</h2><div id="t-pend"></div></section>';
-    return {
-      title: "Logros y metas cumplidas", crumbs: [["Inicio", "#/resumen"], ["Logros y metas cumplidas", null]], html: html, init: function (root) {
-        function pintar() {
-          var sec = root.querySelector("#lg-sec").value;
-          var f = function (a) { return a.filter(function (m) { return !sec || m.car === sec; }).sort(function (a, b) { return natural(a.cod, b.cod) || a.car.localeCompare(b.car); }); };
-          var a = f(cert), b = f(pend);
-          root.querySelector("#n-cert").textContent = a.length; root.querySelector("#n-pend").textContent = b.length;
-          root.querySelector("#t-cert").innerHTML = tablaMetas(a, ["cod", "meta", "sec", "eje", "ind"], "Metas certificables");
-          root.querySelector("#t-pend").innerHTML = tablaMetas(b, ["cod", "meta", "sec", "eje", "ind", "pp"], "Metas al 100 por ciento con programación posterior");
-        }
-        root.querySelector("#lg-sec").addEventListener("change", pintar); pintar();
-      }
-    };
+      '<div class="grid g3 mt">' + kpi(cert.length + pend.length, "Metas cumplidas al corte", "registros de meta al " + h(CORTE.texto), "k-cum") + kpi(cert.length, "Certificables", "sin programación posterior en " + CORTE.vigencia, "k-cum") + kpi(Object.keys(uni).length, "Al 100 % con programación posterior", pend.length + " registros; se certifican al cierre de la vigencia", "k-ava") + "</div>" +
+      '<p class="nota verde mt"><b>Certificables.</b> Cumplieron lo programado y no tienen programación en ' + h(CORTE.posteriores) + '; nada queda por ejecutar frente a lo programado en 2025-2026. <b>Con programación posterior.</b> Van al 100 % al corte y se certifican cuando concluya el período que aún está programado. Las metas compartidas se cuentan una vez por meta en el inventario de certificación. Los filtros del encabezado aplican a estas listas.</p>' +
+      '<section class="mt2"><h2>Certificables (' + cert.length + ')</h2>' + tablaMetas(ord(cert), ["cod", "meta", "sec", "eje", "ind"], "Metas certificables") + '</section>' +
+      '<section class="mt2"><h2>Al 100 % con programación posterior (' + pend.length + ' registros)</h2>' + tablaMetas(ord(pend), ["cod", "meta", "sec", "eje", "ind", "pp"], "Metas al 100 por ciento con programación posterior") + '</section>';
+    return { title: "Logros y metas cumplidas", crumbs: [["Inicio", "#/resumen"], ["Logros y metas cumplidas", null]], html: html, filtros: true };
   };
 
   /* ============================ ALERTAS ============================ */
   P.alertas = function () {
-    var rez = D.metas.filter(function (m) { return m.s === "rezagada"; }).sort(function (a, b) { return a.ind - b.ind; });
-    var np = D.metas.filter(function (m) { return m.s === "no_programada"; }).sort(function (a, b) { return natural(a.cod, b.cod); });
+    var M = filtradasG(), rez = M.filter(function (m) { return m.s === "rezagada"; }).sort(function (a, b) { return a.ind - b.ind; });
+    var np = M.filter(function (m) { return m.s === "no_programada"; }).sort(function (a, b) { return natural(a.cod, b.cod); });
     var html = '<p class="muted">Metas que conviene acompañar con las secretarías y aclaraciones de cronograma. Esta página orienta la gestión; no califica a ninguna dependencia.</p>' +
-      '<div class="grid g3 mt">' + kpi(rez.length, "Metas rezagadas", "programadas al corte con avance menor al 20 %", "k-rez") + kpi(D.inst.sem.en_avance, "Metas en avance", "entre 20 % y 99 %", "k-ava") + kpi(np.length, "No programadas al corte", "sin programación al corte; no penalizan", "k-np") + "</div>" +
+      '<div class="grid g3 mt">' + kpi(rez.length, "Metas rezagadas", "programadas al corte con avance menor al 20 %", "k-rez") + kpi(cuenta(M).en_avance, "Metas en avance", "entre 20 % y 99 %", "k-ava") + kpi(np.length, "No programadas al corte", "sin programación al corte; no penalizan", "k-np") + "</div>" +
       '<section class="mt2"><h2>Metas rezagadas (' + rez.length + ')</h2><p class="muted">Con programación al corte y avance inferior al 20 %. Se recomienda revisar con cada secretaría los soportes de ejecución y la programación vigente.</p>' + tablaMetas(rez, ["cod", "meta", "sec", "eje", "pa", "ea", "ind"], "Metas rezagadas") + "</section>" +
       '<section class="mt2"><h2>Metas en avance con menor indicador</h2><div class="row"><div class="fld"><label for="al-um">Mostrar metas en avance con indicador menor a</label><select id="al-um"><option value="40">40 %</option><option value="50" selected>50 %</option><option value="60">60 %</option><option value="80">80 %</option></select></div><span class="muted" id="al-n" role="status" aria-live="polite"></span></div><div id="t-bajo" class="mt"></div></section>' +
       '<section class="mt2"><h2>No programadas al corte (' + np.length + ')</h2><p class="nota">Metas sin programación acumulada al corte (ni en ' + CORTE.anterior + ' ni en ' + CORTE.vigencia + ' hasta el ' + h(CORTE.trimestre) + ') y sin programación en ' + h(CORTE.posteriores) + ". No entran en el promedio ni penalizan, y no indican incumplimiento. Su programación, si la hay, corresponde a otras vigencias.</p><div class='mt'>" + tablaMetas(np, ["cod", "meta", "sec", "eje", "pp"], "Metas no programadas al corte") + "</div></section>";
     return {
-      title: "Alertas", crumbs: [["Inicio", "#/resumen"], ["Alertas", null]], html: html, init: function (root) {
+      title: "Alertas", crumbs: [["Inicio", "#/resumen"], ["Alertas", null]], html: html, filtros: true, init: function (root) {
         function pintar() {
           var u = +root.querySelector("#al-um").value;
-          var r = D.metas.filter(function (m) { return m.s === "en_avance" && m.ind < u; }).sort(function (a, b) { return a.ind - b.ind; });
+          var r = M.filter(function (m) { return m.s === "en_avance" && m.ind < u; }).sort(function (a, b) { return a.ind - b.ind; });
           root.querySelector("#al-n").textContent = r.length + " metas";
           root.querySelector("#t-bajo").innerHTML = tablaMetas(r, ["cod", "meta", "sec", "eje", "pa", "ea", "ind"], "Metas en avance con indicador menor a " + u + " por ciento");
         }
@@ -421,6 +531,13 @@
       '<p class="mini mt">Corte ' + h(CORTE.texto) + " · portal generado el " + h(CORTE.generado) + ".</p>" + (D.tablero ? '<p><a href="tablero.html">Tablero de control de una sola página</a></p>' : "") + "</section>" +
       '<section class="card mt"><h2>Créditos</h2><p>Elaborado por el profesional Javier Galindo Bernal — Administrador Público, Especialista en Big Data y Analítica de Datos. Secretaría de Planeación y Servicios Públicos de Gachancipá, Cundinamarca · 2026.</p><p class="mini">Identidad visual basada en el sistema GOV.CO. <a href="https://gachancipa-cundinamarca.gov.co/" target="_blank" rel="noopener noreferrer">Sede electrónica de la Alcaldía de Gachancipá<span class="sr"> (se abre en otra pestaña)</span></a>.</p></section>';
     return { title: "Metodología y fuentes", crumbs: [["Inicio", "#/resumen"], ["Metodología y fuentes", null]], html: html };
+  };
+
+  /* ============================ Ayuda y preguntas frecuentes ============================ */
+  P.ayuda = function () {
+    var N = window.Nemequi, a = N && N.ayuda ? N.ayuda() : null;
+    var html = a ? a.html : '<section class="card vacio"><h2>La ayuda no está disponible en este momento</h2><p>El asistente NEMEQUI no pudo cargarse. El tablero sigue funcionando con normalidad; la metodología está en <a href="#/metodologia">Metodología y fuentes</a>.</p></section>';
+    return { title: "Cómo usar el tablero", crumbs: [["Inicio", "#/resumen"], ["Ayuda y preguntas frecuentes", null]], html: html, init: a ? a.init : null };
   };
 
   /* ============================ 404 ============================ */

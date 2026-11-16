@@ -1,0 +1,5611 @@
+{
+ "version": 1,
+ "generado": "2026-11-16",
+ "nota": "Conocimiento de NEMEQUI. Sin cifras: el motor las calcula desde window.PDM. Marcadores {{ruta|fmt}}.",
+ "categorias": [
+  "comprender",
+  "funcionamiento",
+  "datos",
+  "metodologia",
+  "fuentes",
+  "navegacion",
+  "limites",
+  "conversacion"
+ ],
+ "entidades": {
+  "secretarias": {
+   "secretaria-gobierno": [
+    "secretaría de gobierno",
+    "gobierno",
+    "sec gobierno",
+    "secretaria gobierno"
+   ],
+   "secretaria-hacienda": [
+    "secretaría de hacienda",
+    "hacienda",
+    "sec hacienda",
+    "hacienda pública"
+   ],
+   "secretaria-educacion": [
+    "educación, cultura, recreación y deporte",
+    "educación cultura recreación y deporte",
+    "educación y cultura",
+    "secretaría de educación",
+    "educación",
+    "recreación",
+    "ecrd",
+    "sec educación"
+   ],
+   "secretaria-obras-publicas": [
+    "secretaría de obras públicas",
+    "obras públicas",
+    "obras publicas",
+    "obras",
+    "sop"
+   ],
+   "secretaria-planeacion-servicios-publicos": [
+    "planeación y servicios públicos",
+    "secretaría de planeación",
+    "planeación",
+    "servicios públicos",
+    "spsp",
+    "planeacion y sp"
+   ],
+   "secretaria-desarrollo-agropecuario": [
+    "desarrollo agropecuario, económico y ambiente",
+    "desarrollo agropecuario",
+    "desarrollo económico",
+    "agropecuario",
+    "sdae",
+    "secretaría agropecuaria"
+   ],
+   "secretaria-desarrollo-social": [
+    "secretaría de desarrollo social",
+    "desarrollo social",
+    "sds",
+    "secretaría social"
+   ],
+   "secretaria-desarrollo-institucional": [
+    "secretaría de desarrollo institucional",
+    "desarrollo institucional",
+    "sdi"
+   ],
+   "secretaria-general": [
+    "secretaría general",
+    "sec general"
+   ]
+  },
+  "ejes": {
+   "1": [
+    "seguridad",
+    "gachancipá con la seguridad"
+   ],
+   "2": [
+    "desarrollo social y cultural",
+    "social y cultural",
+    "cultural",
+    "gachancipá con desarrollo social"
+   ],
+   "3": [
+    "gestión deportiva",
+    "deportiva",
+    "gachancipá con gestión deportiva"
+   ],
+   "4": [
+    "medio ambiente",
+    "gachancipá con el medio ambiente"
+   ],
+   "5": [
+    "prosperidad",
+    "gachancipá con prosperidad"
+   ],
+   "6": [
+    "planificada y sostenible",
+    "planificada",
+    "sostenible",
+    "gachancipá planificada"
+   ],
+   "7": [
+    "agropecuaria e industrial",
+    "industrial",
+    "agropecuaria e industrial"
+   ],
+   "8": [
+    "gestión del riesgo",
+    "riesgo",
+    "gestion del riesgo"
+   ],
+   "9": [
+    "transparencia y gestión institucional",
+    "transparencia",
+    "gestión institucional"
+   ],
+   "10": [
+    "recuperación del río bogotá",
+    "río bogotá",
+    "rio bogota",
+    "recuperación del río"
+   ]
+  },
+  "ambiguos": [
+   {
+    "alias": "social",
+    "sec": "secretaria-desarrollo-social",
+    "eje": 2,
+    "defecto": null
+   },
+   {
+    "alias": "cultura",
+    "sec": "secretaria-educacion",
+    "eje": 2,
+    "defecto": null
+   },
+   {
+    "alias": "deporte",
+    "sec": "secretaria-educacion",
+    "eje": 3,
+    "defecto": null
+   },
+   {
+    "alias": "deportes",
+    "sec": "secretaria-educacion",
+    "eje": 3,
+    "defecto": null
+   },
+   {
+    "alias": "ambiente",
+    "sec": "secretaria-desarrollo-agropecuario",
+    "eje": 4,
+    "defecto": null
+   },
+   {
+    "alias": "agropecuaria",
+    "sec": "secretaria-desarrollo-agropecuario",
+    "eje": 7,
+    "defecto": "eje"
+   }
+  ],
+  "numeros": {
+   "uno": 1,
+   "una": 1,
+   "primer": 1,
+   "primero": 1,
+   "dos": 2,
+   "segundo": 2,
+   "tres": 3,
+   "tercer": 3,
+   "tercero": 3,
+   "cuatro": 4,
+   "cuarto": 4,
+   "cinco": 5,
+   "quinto": 5,
+   "seis": 6,
+   "sexto": 6,
+   "siete": 7,
+   "septimo": 7,
+   "ocho": 8,
+   "octavo": 8,
+   "nueve": 9,
+   "noveno": 9,
+   "diez": 10,
+   "decimo": 10
+  }
+ },
+ "normalizacion": {
+  "frases": [
+   [
+    "\\bp ?/? ?np\\b",
+    " pnp "
+   ],
+   [
+    "\\bno programad[oa]s?\\b|\\bsin programacion\\b|\\bno planead[oa]s?\\b|\\bno planificad[oa]s?\\b|\\bnp\\b|\\bgris(?:es)?\\b",
+    " noprog "
+   ],
+   [
+    "\\bno (?:esta|este|estan|sea|son|es|fue|han sido) (?:programad[oa]s?|planead[oa]s?)\\b",
+    " noprog "
+   ],
+   [
+    "\\ben avance\\b|\\bavanzando\\b|\\bamarill[oa]s?\\b|\\bambar\\b",
+    " enavance "
+   ],
+   [
+    "\\brezagad[oa]s?\\b|\\batrasad[oa]s?\\b|\\bretrasad[oa]s?\\b|\\bcriticas?\\b|\\ben rojo\\b|\\brojas?\\b|\\brojos?\\b",
+    " rezagada "
+   ],
+   [
+    "\\bcumplid[oa]s?\\b|\\bcompletad[oa]s?\\b|\\blograd[oa]s?\\b|\\blogros?\\b|\\bverdes?\\b",
+    " cumplida "
+   ],
+   [
+    "\\bcertificab\\w+|\\bcertificar\\w*|\\bcertificad\\w+|\\bcertificacion\\b",
+    " certificable "
+   ],
+   [
+    "\\bplan de desarrollo(?: municipal)?\\b",
+    " pdm "
+   ],
+   [
+    "\\bpor ciento\\b|\\bporciento\\b|\\bpor cien\\b",
+    " porcentaje "
+   ],
+   [
+    "\\bmas alt[oa]s?\\b|\\bmayor(?:es)?\\b|\\bmejor(?:es)?\\b|\\blidera\\b|\\bmaximo\\b",
+    " mayor "
+   ],
+   [
+    "\\bmas baj[oa]s?\\b|\\bmenor(?:es)?\\b|\\bpeor(?:es)?\\b|\\bultim[oa]s?\\b|\\bminimo\\b",
+    " menor "
+   ],
+   [
+    "\\bquiere decir\\b|\\bquieren decir\\b",
+    " significa "
+   ],
+   [
+    "\\bmedio ambiente\\b",
+    " medioambiente "
+   ],
+   [
+    "\\b(donde|como|puedo|quiero|necesito) bajo\\b",
+    " $1 descargar "
+   ],
+   [
+    "\\bmodo (?:claro|clara)\\b|\\bfondo (?:claro|clara)\\b|\\btema (?:claro|clara)\\b",
+    " modo dia "
+   ],
+   [
+    "\\bpagina web\\b|\\bsitio web\\b",
+    " portal "
+   ],
+   [
+    "\\bsolo una pagina\\b|\\buna sola pagina\\b",
+    " unapagina "
+   ]
+  ],
+  "palabras": {
+   "avance": "indicador",
+   "avances": "indicador",
+   "porcentaje": "indicador",
+   "porcentajes": "indicador",
+   "clicable": "clic",
+   "clicables": "clic",
+   "interactivo": "clic",
+   "interactivos": "clic",
+   "interactiva": "clic",
+   "resultado": "indicador",
+   "resultados": "indicador",
+   "desempeno": "indicador",
+   "calificacion": "indicador",
+   "puntaje": "indicador",
+   "cifra": "dato",
+   "cifras": "dato",
+   "datos": "dato",
+   "informacion": "dato",
+   "numeros": "dato",
+   "dependencia": "secretaria",
+   "dependencias": "secretaria",
+   "despacho": "secretaria",
+   "tablero": "portal",
+   "dashboard": "portal",
+   "panel": "portal",
+   "sitio": "portal",
+   "plataforma": "portal",
+   "herramienta": "portal",
+   "aplicacion": "portal",
+   "objetivo": "meta",
+   "objetivos": "meta",
+   "compromiso": "meta",
+   "global": "institucional",
+   "alcaldia": "institucional",
+   "entidad": "institucional",
+   "institucion": "institucional",
+   "llevame": "ir",
+   "abre": "ir",
+   "abrir": "ir",
+   "dirigeme": "ir",
+   "vamos": "ir",
+   "navega": "ir",
+   "ve": "ir",
+   "ir": "ir",
+   "abreme": "ir",
+   "muestrame": "mostrar",
+   "muestra": "mostrar",
+   "mostrar": "mostrar",
+   "ensename": "mostrar",
+   "dame": "mostrar",
+   "dime": "mostrar",
+   "ver": "mostrar",
+   "lista": "mostrar",
+   "listar": "mostrar",
+   "listame": "mostrar",
+   "enumera": "mostrar",
+   "cuantos": "cuanto",
+   "cuantas": "cuanto",
+   "cuanta": "cuanto",
+   "cantidad": "cuanto",
+   "descarga": "descargar",
+   "descargar": "descargar",
+   "descargo": "descargar",
+   "bajar": "descargar",
+   "baja": "descargar",
+   "exportar": "descargar",
+   "exporta": "descargar",
+   "exporto": "descargar",
+   "guardar": "descargar",
+   "guardo": "descargar",
+   "descargas": "descargar",
+   "grafica": "grafico",
+   "graficos": "grafico",
+   "graficas": "grafico",
+   "diagrama": "grafico",
+   "diagramas": "grafico",
+   "barras": "grafico",
+   "torta": "grafico",
+   "anillo": "grafico",
+   "dona": "grafico",
+   "funciona": "usar",
+   "funcionar": "usar",
+   "funcionan": "usar",
+   "operar": "usar",
+   "uso": "usar",
+   "utilizar": "usar",
+   "utiliza": "usar",
+   "usa": "usar",
+   "usar": "usar",
+   "manejo": "usar",
+   "manejar": "usar",
+   "empleo": "usar",
+   "color": "semaforo",
+   "colores": "semaforo",
+   "semaforizacion": "semaforo",
+   "umbrales": "umbral",
+   "rango": "umbral",
+   "rangos": "umbral",
+   "criterio": "umbral",
+   "criterios": "umbral",
+   "regla": "umbral",
+   "reglas": "umbral",
+   "explica": "explicar",
+   "explicame": "explicar",
+   "aclara": "explicar",
+   "aclarar": "explicar",
+   "aclaras": "explicar",
+   "explicas": "explicar",
+   "significado": "significa",
+   "significan": "significa",
+   "representa": "significa",
+   "representan": "significa",
+   "significar": "significa",
+   "sirve": "sirve",
+   "sirven": "sirve",
+   "utilidad": "sirve",
+   "util": "sirve",
+   "beneficio": "sirve",
+   "beneficios": "sirve",
+   "servir": "sirve",
+   "calcula": "calcula",
+   "calcular": "calcula",
+   "calculo": "calcula",
+   "calculan": "calcula",
+   "calculado": "calcula",
+   "calcularon": "calcula",
+   "general": "institucional",
+   "colaborar": "ayuda",
+   "colaboras": "ayuda",
+   "colabora": "ayuda",
+   "apoyar": "ayuda",
+   "apoyas": "ayuda",
+   "asistir": "ayuda",
+   "asistes": "ayuda",
+   "promedio": "media",
+   "promedios": "media",
+   "saca": "calcula",
+   "sacan": "calcula",
+   "sacar": "calcula",
+   "formula": "calcula",
+   "operacion": "calcula",
+   "mide": "calcula",
+   "miden": "calcula",
+   "medir": "calcula",
+   "chao": "adios",
+   "bye": "adios",
+   "hola": "hola",
+   "ey": "hola",
+   "hey": "hola",
+   "saludos": "hola",
+   "buenas": "hola",
+   "ayudame": "ayuda",
+   "ayudar": "ayuda",
+   "ayudas": "ayuda",
+   "ayudan": "ayuda",
+   "ayudarme": "ayuda",
+   "vigencias": "vigencia",
+   "ano": "vigencia",
+   "anos": "vigencia",
+   "imprime": "imprimir",
+   "imprimo": "imprimir",
+   "impresion": "imprimir",
+   "impresora": "imprimir",
+   "oscuro": "noche",
+   "oscura": "noche",
+   "nocturno": "noche",
+   "metas": "meta",
+   "ejes": "eje"
+  },
+  "stop": [
+   "a",
+   "al",
+   "algo",
+   "ante",
+   "con",
+   "de",
+   "del",
+   "el",
+   "la",
+   "lo",
+   "los",
+   "las",
+   "un",
+   "una",
+   "unos",
+   "unas",
+   "y",
+   "o",
+   "u",
+   "e",
+   "en",
+   "me",
+   "te",
+   "se",
+   "mi",
+   "tu",
+   "su",
+   "sus",
+   "mis",
+   "tus",
+   "ese",
+   "esa",
+   "eso",
+   "este",
+   "esta",
+   "esto",
+   "estos",
+   "estas",
+   "le",
+   "les",
+   "nos",
+   "es",
+   "son",
+   "ser",
+   "hay",
+   "ya",
+   "tan",
+   "muy",
+   "mas",
+   "tambien",
+   "solo",
+   "ha",
+   "han",
+   "he"
+  ],
+  "relleno": [
+   "nemequi",
+   "oye",
+   "favor",
+   "porfa",
+   "porfavor",
+   "quisiera",
+   "quiero",
+   "queria",
+   "saber",
+   "podrias",
+   "podria",
+   "puedes",
+   "puede",
+   "pudieras",
+   "decir",
+   "gustaria",
+   "disculpa",
+   "perdon",
+   "pues",
+   "entonces",
+   "bueno",
+   "ok",
+   "hola",
+   "buenos",
+   "dias",
+   "tardes",
+   "noches",
+   "gracias",
+   "mil",
+   "doctora",
+   "amiga",
+   "duda",
+   "una"
+  ]
+ },
+ "inicio": [
+  "que_es_portal",
+  "resumen_general",
+  "colores_semaforo",
+  "rezagadas_lista",
+  "como_se_calcula",
+  "menu_como"
+ ],
+ "por_pagina": {
+  "resumen": [
+   "resumen_general",
+   "ind_inst",
+   "colores_semaforo",
+   "rezagadas_lista",
+   "clic_graficos",
+   "filtros_globales"
+  ],
+  "ejes": [
+   "lista_ejes",
+   "mayor_eje",
+   "menor_eje",
+   "eje_vs_institucional",
+   "ranking_eje",
+   "que_es_eje"
+  ],
+  "eje": [
+   "ind_eje",
+   "secs_de_eje",
+   "rezagadas_lista",
+   "eje_vs_institucional",
+   "que_es_eje"
+  ],
+  "secretarias": [
+   "ranking_sec",
+   "mayor_sec",
+   "menor_sec",
+   "no_es_calificacion",
+   "calculo_institucional",
+   "sobre_inst"
+  ],
+  "secretaria": [
+   "ind_sec",
+   "metas_sec",
+   "informe_sec_dl",
+   "ejes_de_sec",
+   "calculo_secretaria_eje"
+  ],
+  "metas": [
+   "buscar_explorador",
+   "filtrar_explorador",
+   "filtro_vigencia",
+   "ordenar_explorador",
+   "exportar_csv",
+   "compartir_enlace"
+  ],
+  "meta": [
+   "como_se_calcula",
+   "colores_semaforo",
+   "meta_compartida",
+   "etiquetas_metas",
+   "arrastre"
+  ],
+  "logros": [
+   "meta_certificable",
+   "t4_pendiente",
+   "certificables_datos",
+   "cumplida_vs_certificable"
+  ],
+  "alertas": [
+   "que_es_rezagada",
+   "rezagadas_lista",
+   "por_que_no_penaliza",
+   "no_programadas_lista",
+   "lim_causas"
+  ],
+  "compartidas": [
+   "meta_compartida",
+   "registros_vs_unicas",
+   "arrastre",
+   "verificacion_meta",
+   "mayor_100"
+  ],
+  "informes": [
+   "descargar_informes",
+   "informes_anio",
+   "word_vs_pdf",
+   "informe_general_dl"
+  ],
+  "metodologia": [
+   "como_se_calcula",
+   "calculo_institucional",
+   "umbrales",
+   "glosario",
+   "huellas",
+   "fuentes_datos"
+  ],
+  "defecto": [
+   "que_es_portal",
+   "resumen_general",
+   "colores_semaforo",
+   "como_se_calcula",
+   "que_puedes_hacer"
+  ]
+ },
+ "intenciones": [
+  {
+   "id": "saludo",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "¡Hola!",
+    "hola",
+    "buenos días",
+    "buenas tardes",
+    "buenas noches",
+    "buenas",
+    "hola nemequi",
+    "saludos"
+   ],
+   "respuesta": "¡Hola! Soy NEMEQUI, la guía virtual del portal de seguimiento al PDM de Gachancipá. Puedo explicarte cómo leer el tablero, responder con las cifras del corte {{corte.texto}} y llevarte a la página que necesites. ¿Por dónde empezamos?",
+   "enlaces": [],
+   "sugerencias": [
+    "que_puedes_hacer",
+    "resumen_general",
+    "que_es_portal"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "como_estas",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "¿Cómo estás?",
+    "cómo te va",
+    "cómo amaneciste",
+    "qué tal estás",
+    "todo bien contigo",
+    "cómo vas hoy",
+    "cómo te encuentras"
+   ],
+   "respuesta": "¡Muy bien, gracias por preguntar! Lista para ayudarte con el tablero. ¿Qué te gustaría saber?",
+   "enlaces": [],
+   "sugerencias": [
+    "que_puedes_hacer",
+    "ind_inst"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "gracias",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "Gracias",
+    "muchas gracias",
+    "mil gracias",
+    "te lo agradezco",
+    "gracias nemequi",
+    "súper, gracias",
+    "vale, gracias",
+    "genial, gracias"
+   ],
+   "respuesta": "¡Con gusto! Si quedó alguna duda sobre el tablero, aquí sigo.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_puedes_hacer",
+    "glosario"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "despedida",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "Adiós",
+    "chao",
+    "hasta luego",
+    "nos vemos",
+    "hasta pronto",
+    "me despido",
+    "bye",
+    "hasta mañana"
+   ],
+   "respuesta": "¡Hasta pronto! Cuando quieras volver a consultar el avance del Plan, aquí estaré.",
+   "enlaces": [],
+   "sugerencias": [
+    "resumen_general"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "quien_eres",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "¿Quién eres?",
+    "cómo te llamas",
+    "cuál es tu nombre",
+    "qué eres",
+    "preséntate",
+    "tú quién eres",
+    "eres un robot",
+    "eres una persona"
+   ],
+   "respuesta": "Soy NEMEQUI, la guía virtual del portal de seguimiento al PDM de Gachancipá. No soy una persona: soy un asistente que responde con los datos oficiales del corte {{corte.texto}} y te ayuda a entender y usar el tablero.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_puedes_hacer",
+    "como_funciona_nemequi"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_significa_nemequi",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "¿Por qué te llamas NEMEQUI?",
+    "qué significa nemequi",
+    "de dónde viene tu nombre",
+    "por qué eres una niña muisca",
+    "quién es la niña del video",
+    "qué es nemequi",
+    "por qué te ves así"
+   ],
+   "respuesta": "NEMEQUI es el nombre de la guía virtual del portal. Me representan como una niña muisca, un guiño a la herencia ancestral del territorio de Gachancipá, para acompañarte con cercanía a entender el tablero.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_puedes_hacer",
+    "que_es_portal"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_puedes_hacer",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "¿Qué puedes hacer?",
+    "ayuda",
+    "en qué me puedes ayudar",
+    "para qué sirves",
+    "qué sabes hacer",
+    "qué funciones tienes",
+    "qué me puedes responder",
+    "cómo me ayudas"
+   ],
+   "respuesta": "Puedo: (1) explicarte qué significa cada concepto del tablero, como el indicador, el semáforo o el corte; (2) enseñarte cómo usar cada página; (3) responder con cifras del corte {{corte.texto}}, por secretaría, eje o meta; y (4) llevarte a la página adecuada. Lo que el portal no contiene, como presupuesto o causas de un rezago, te lo diré con claridad.",
+   "enlaces": [],
+   "sugerencias": [
+    "resumen_general",
+    "colores_semaforo",
+    "como_se_calcula"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "como_funciona_nemequi",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "¿Cómo funcionas?",
+    "cómo funciona el motor de preguntas",
+    "usas inteligencia artificial",
+    "te conectas a internet",
+    "tus respuestas vienen de internet",
+    "tus respuestas son confiables",
+    "inventas las cifras",
+    "respondes con datos reales"
+   ],
+   "respuesta": "Funciono con un motor propio que corre en tu navegador, sin conectarse a servidores externos. Las cifras no están escritas a mano: las calculo en el momento desde los datos oficiales del corte {{corte.texto}}. Si algo no está en el portal, te lo digo en lugar de inventarlo.",
+   "enlaces": [],
+   "sugerencias": [
+    "no_recalcula",
+    "fuentes_datos"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "repetir_simple",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "No entendí",
+    "puedes explicarlo más fácil",
+    "explícame más sencillo",
+    "dilo de otra forma",
+    "repite por favor",
+    "no comprendo",
+    "me perdí",
+    "en palabras simples"
+   ],
+   "respuesta": "Con gusto lo aclaro. Dime qué parte no quedó clara (por ejemplo «indicador», «semáforo» o «corte») y te la explico en palabras sencillas, o elige una de estas opciones.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_es_indicador",
+    "colores_semaforo",
+    "que_es_corte"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "afirmar",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "Sí",
+    "sí por favor",
+    "ok",
+    "dale",
+    "listo",
+    "claro",
+    "de acuerdo",
+    "vale"
+   ],
+   "respuesta": "¡Perfecto! ¿Qué te gustaría ver ahora? Puedo mostrarte el resumen del corte, las metas rezagadas o explicarte cómo se lee el semáforo.",
+   "enlaces": [],
+   "sugerencias": [
+    "resumen_general",
+    "rezagadas_lista",
+    "colores_semaforo"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "negar",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "No",
+    "no gracias",
+    "no por ahora",
+    "eso es todo",
+    "eso sería todo",
+    "no necesito nada más por ahora",
+    "nada más",
+    "ya no"
+   ],
+   "respuesta": "Entendido. Aquí sigo por si surge otra duda sobre el tablero.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_puedes_hacer"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "elogio",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "Excelente",
+    "qué bien",
+    "muy bien",
+    "me gusta",
+    "eres genial",
+    "buen trabajo",
+    "qué útil",
+    "bravo"
+   ],
+   "respuesta": "¡Muchas gracias! Me alegra que te sea útil. Si quieres profundizar, te dejo algunas ideas.",
+   "enlaces": [],
+   "sugerencias": [
+    "resumen_general",
+    "como_leer_graficos"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "queja",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "No me sirves",
+    "esto no funciona",
+    "no entiendes nada",
+    "qué mal",
+    "respuesta mala",
+    "eso no responde mi pregunta",
+    "no es lo que pregunté",
+    "estás equivocada"
+   ],
+   "respuesta": "Lamento no haber acertado. Cuéntame de otra forma lo que buscas (por ejemplo, «metas rezagadas de Gobierno») o elige una de las preguntas sugeridas. Si el dato no está en el portal, también te lo diré con claridad.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_puedes_hacer",
+    "ejemplos_preguntas"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "perdon",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "Perdón",
+    "disculpa",
+    "lo siento",
+    "perdona la molestia",
+    "disculpa la insistencia",
+    "perdona"
+   ],
+   "respuesta": "No hay problema, pregunta con toda confianza. ¿En qué te ayudo?",
+   "enlaces": [],
+   "sugerencias": [
+    "que_puedes_hacer"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "risa",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "Jaja",
+    "jeje",
+    "jajaja",
+    "lol",
+    "xd",
+    "ja ja",
+    "qué chistoso"
+   ],
+   "respuesta": "¡Me alegra! Cuando quieras, seguimos con el tablero.",
+   "enlaces": [],
+   "sugerencias": [
+    "resumen_general"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "ejemplos_preguntas",
+   "categoria": "conversacion",
+   "tipo": "conversacion",
+   "formulaciones": [
+    "Dame ejemplos de preguntas",
+    "qué puedo preguntarte",
+    "ejemplos",
+    "sugiéreme una pregunta",
+    "no sé qué preguntar",
+    "por dónde empiezo",
+    "qué pregunto",
+    "dame ideas de preguntas"
+   ],
+   "respuesta": "Aquí van algunas ideas. Puedes preguntarme por conceptos («¿qué es una meta no programada?»), por cifras («¿cuántas metas están rezagadas?») o por navegación («llévame al explorador de metas»).",
+   "enlaces": [],
+   "sugerencias": [
+    "resumen_general",
+    "colores_semaforo",
+    "rezagadas_lista"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_es_portal",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es este portal?",
+    "qué es este tablero",
+    "de qué trata este portal",
+    "qué es el portal de seguimiento",
+    "explícame el dashboard",
+    "qué es esto",
+    "de qué se trata el tablero",
+    "para qué es esta página"
+   ],
+   "respuesta": "Es el portal de seguimiento al Plan de Desarrollo Municipal (PDM) de Gachancipá. Reúne, con corte al {{corte.texto}}, el avance de {{n.registros}} filas de meta ({{n.unicas}} metas únicas) reportadas por {{n.sec}} secretarías y organizadas en {{n.ejes}} ejes estratégicos. Sirve para ver el panorama, encontrar metas y consultar los informes.",
+   "enlaces": [
+    {
+     "texto": "Resumen ejecutivo",
+     "hash": "#/resumen"
+    }
+   ],
+   "sugerencias": [
+    "para_que_sirve",
+    "menu_como",
+    "resumen_general"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "para_que_sirve",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Para qué sirve el portal?",
+    "cuál es el objetivo del tablero",
+    "qué puedo hacer aquí",
+    "qué utilidad tiene",
+    "para qué me sirve este dashboard",
+    "qué beneficios tiene",
+    "con qué fin se hizo",
+    "cuál es el propósito del portal"
+   ],
+   "respuesta": "Sirve para conocer cómo avanza el Plan: ver el indicador general, comparar secretarías y ejes, encontrar metas puntuales, identificar las que conviene acompañar y descargar los informes. Es una herramienta de lectura y orientación, no de calificación de personas ni dependencias.",
+   "enlaces": [],
+   "sugerencias": [
+    "a_quien_dirigido",
+    "menu_como",
+    "no_es_calificacion"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "a_quien_dirigido",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿A quién va dirigido el portal?",
+    "quién usa este tablero",
+    "esto es para el Concejo",
+    "es para la ciudadanía",
+    "para quién es esta información",
+    "quién puede entrar a este portal",
+    "quién puede consultar el tablero",
+    "es de uso público"
+   ],
+   "respuesta": "Está pensado para el seguimiento institucional: la administración, las secretarías, el Concejo Municipal en su control político y la ciudadanía interesada. Por eso el lenguaje busca ser claro y las cifras son las oficiales del corte.",
+   "enlaces": [],
+   "sugerencias": [
+    "para_que_sirve",
+    "no_es_calificacion"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_es_pdm",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es el PDM?",
+    "qué es el plan de desarrollo municipal",
+    "qué significa PDM",
+    "para qué sirve el plan de desarrollo",
+    "qué es un plan de desarrollo",
+    "qué es el plan de desarrollo de Gachancipá",
+    "de qué trata el PDM"
+   ],
+   "respuesta": "El PDM (Plan de Desarrollo Municipal) es la hoja de ruta de la administración para su período de gobierno: define ejes estratégicos y metas que cada secretaría se compromete a lograr. Este portal sigue {{n.registros}} filas de meta ({{n.unicas}} metas únicas) en {{n.ejes}} ejes.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_es_eje",
+    "que_es_meta_producto",
+    "lista_ejes"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_es_indicador",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué mide el indicador?",
+    "qué es el indicador de avance",
+    "qué significa el indicador",
+    "qué representa el porcentaje",
+    "qué muestra el número grande del resumen",
+    "qué es el indicador",
+    "qué quiere decir indicador de avance",
+    "el indicador qué significa"
+   ],
+   "respuesta": "El indicador de avance compara lo ejecutado con lo programado hasta el corte: indica qué porcentaje de lo previsto se ha cumplido. Un 100% significa que se ejecutó lo que estaba programado a la fecha.",
+   "enlaces": [
+    {
+     "texto": "Metodología",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "como_se_calcula",
+    "colores_semaforo",
+    "ind_inst"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "como_se_calcula",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo se calcula el indicador?",
+    "cuál es la fórmula del indicador",
+    "cómo se saca el porcentaje de una meta",
+    "de dónde sale el porcentaje de avance",
+    "cómo calculan el avance",
+    "fórmula del avance",
+    "cómo se mide el avance de una meta",
+    "cómo se obtiene el indicador de una meta"
+   ],
+   "respuesta": "Para cada meta: indicador = ejecutado acumulado ÷ programado acumulado × 100, sumando la vigencia {{ant}} completa y la vigencia {{vig}} hasta el corte. Por ejemplo, la meta {{ej.cod}} ({{ej.sec}}): {{ej.ea|n}} ÷ {{ej.pa|n}} = {{ej.ind|p}}.",
+   "enlaces": [
+    {
+     "texto": "Metodología",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "calculo_secretaria_eje",
+    "calculo_institucional",
+    "ejemplo_calculo"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "ejemplo_calculo",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "Dame un ejemplo del cálculo",
+    "ejemplo de cómo se calcula una meta",
+    "muéstrame un cálculo paso a paso",
+    "un caso práctico del indicador",
+    "cómo se calculó la meta de ejemplo",
+    "ejemplifica la fórmula"
+   ],
+   "respuesta": "Tomemos la meta {{ej.cod}} ({{ej.sec}}). Programado acumulado: {{ej.pa|n}}; ejecutado acumulado: {{ej.ea|n}}. Indicador = {{ej.ea|n}} ÷ {{ej.pa|n}} × 100 = {{ej.ind|p}}.",
+   "enlaces": [
+    {
+     "texto": "Ver la meta",
+     "hash": "#/meta/{{ej.car}}/{{ej.cod}}"
+    }
+   ],
+   "sugerencias": [
+    "como_se_calcula",
+    "colores_semaforo"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "calculo_secretaria_eje",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo se calcula el indicador de una secretaría?",
+    "cómo se calcula el indicador de un eje",
+    "cómo se saca el promedio de la secretaría",
+    "el indicador de la secretaría es un promedio",
+    "cómo se agrupan las metas",
+    "se promedian las metas",
+    "cómo se calcula el indicador por eje"
+   ],
+   "respuesta": "El indicador de una secretaría o de un eje es la media simple de los indicadores de sus metas programadas al corte. Las metas no programadas no entran en ese promedio.",
+   "enlaces": [],
+   "sugerencias": [
+    "calculo_institucional",
+    "por_que_no_penaliza"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "calculo_institucional",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo se calcula el indicador institucional?",
+    "cómo se calcula el indicador general",
+    "el indicador institucional es un promedio de qué",
+    "qué es el indicador de la alcaldía",
+    "de dónde sale el indicador institucional",
+    "por qué pesan igual las secretarías",
+    "cómo se saca el indicador global",
+    "el indicador institucional pondera por metas"
+   ],
+   "respuesta": "El indicador institucional ({{inst.ind|p}} al corte) es la media simple de los indicadores de las {{n.sec}} secretarías: cada una pesa igual, sin importar cuántas metas tenga. Por eso las secretarías con pocas metas programadas influyen tanto como las que tienen muchas.",
+   "enlaces": [],
+   "sugerencias": [
+    "eje_vs_institucional",
+    "media_simple",
+    "ind_inst"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "colores_semaforo",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué significan los colores?",
+    "qué significa el semáforo",
+    "qué quiere decir el rojo",
+    "qué es el verde",
+    "qué significa el amarillo",
+    "qué color es cada estado",
+    "explícame el semáforo",
+    "qué significa el color gris"
+   ],
+   "respuesta": "El semáforo clasifica cada meta según su indicador: verde, cumplida (100% o más); ámbar, en avance (de 20% a 99%); rojo, rezagada (menos de 20%, con programación al corte); gris, no programada (sin programación al corte). Los colores siempre van con el nombre del estado.",
+   "enlaces": [
+    {
+     "texto": "Metodología",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "umbrales",
+    "por_que_no_penaliza",
+    "conteo_estados"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "umbrales",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cuáles son los umbrales del semáforo?",
+    "a partir de cuánto es rezagada",
+    "desde cuándo una meta está cumplida",
+    "qué porcentaje es en avance",
+    "rangos del semáforo",
+    "con cuánto una meta es roja",
+    "cuánto hay que tener para estar cumplida",
+    "límites de cada estado"
+   ],
+   "respuesta": "Estados oficiales: cumplida, indicador de 100% o más; en avance, de 20% a 99%; rezagada, menos de 20% (solo si la meta tiene programación al corte); no programada, sin programación al corte, que no entra en el promedio.",
+   "enlaces": [
+    {
+     "texto": "Metodología",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "colores_semaforo",
+    "que_es_rezagada"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_es_cumplida",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es una meta cumplida?",
+    "qué significa cumplida",
+    "cuándo una meta se considera cumplida",
+    "meta cumplida qué quiere decir",
+    "qué es estar en verde",
+    "qué es una meta al 100"
+   ],
+   "respuesta": "Una meta cumplida tiene un indicador de 100% o más: lo ejecutado alcanzó lo programado al corte. Hoy hay {{inst.cumplida}} metas en ese estado.",
+   "enlaces": [
+    {
+     "texto": "Logros y metas cumplidas",
+     "hash": "#/logros"
+    }
+   ],
+   "sugerencias": [
+    "cumplida_vs_certificable",
+    "mayor_100"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_es_en_avance",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es una meta en avance?",
+    "qué significa en avance",
+    "cuándo una meta está en avance",
+    "meta en avance qué quiere decir",
+    "qué es estar en ámbar",
+    "qué es una meta amarilla"
+   ],
+   "respuesta": "Una meta en avance tiene programación al corte y un indicador entre 20% y 99%: va ejecutándose, aunque aún no alcanza lo programado. Hoy hay {{inst.en_avance}} metas en ese estado.",
+   "enlaces": [
+    {
+     "texto": "Alertas",
+     "hash": "#/alertas"
+    }
+   ],
+   "sugerencias": [
+    "que_es_rezagada",
+    "umbrales"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_es_rezagada",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es una meta rezagada?",
+    "qué significa rezagada",
+    "cuándo una meta está rezagada",
+    "meta rezagada qué quiere decir",
+    "qué es estar en rojo",
+    "qué es una meta atrasada",
+    "qué es una meta crítica"
+   ],
+   "respuesta": "Una meta rezagada tiene programación al corte, pero un indicador menor al 20%. No es un juicio sobre la secretaría: es una señal para acompañar y revisar cronograma y soportes. Hoy hay {{inst.rezagada}} metas en ese estado.",
+   "enlaces": [
+    {
+     "texto": "Alertas",
+     "hash": "#/alertas"
+    }
+   ],
+   "sugerencias": [
+    "rezagadas_lista",
+    "lim_causas"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_es_no_programada",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es una meta no programada?",
+    "qué significa no programada",
+    "meta sin programación qué es",
+    "qué quiere decir no programada al corte",
+    "qué significa que una meta no esté programada",
+    "cuándo una meta es no programada",
+    "meta no planeada qué significa",
+    "qué es estar en gris"
+   ],
+   "respuesta": "Una meta no programada no tiene programación acumulada hasta el corte (ni en {{ant}} ni en {{vig}} hasta {{corte.trimestre}}). No indica incumplimiento y no entra en el promedio. Hoy hay {{inst.no_programada}} metas así.",
+   "enlaces": [
+    {
+     "texto": "Alertas",
+     "hash": "#/alertas"
+    }
+   ],
+   "sugerencias": [
+    "por_que_no_penaliza",
+    "no_programadas_lista"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "por_que_no_penaliza",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Por qué las metas no programadas no penalizan?",
+    "por qué no cuentan las no programadas",
+    "una meta no programada es incumplimiento",
+    "las no programadas bajan el indicador",
+    "por qué no entran en el promedio",
+    "por qué no se castiga una meta sin programación",
+    "cómo afectan las no programadas"
+   ],
+   "respuesta": "Porque no tenían nada previsto para ejecutar hasta el corte: no hay un compromiso vencido que medir. Por eso no entran en el promedio y no indican incumplimiento; su programación, si la hay, corresponde a otras vigencias.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_es_no_programada",
+    "calculo_secretaria_eje"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_es_corte",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es el corte?",
+    "qué significa corte",
+    "qué es la fecha de corte",
+    "qué significa al corte",
+    "por qué dicen al corte",
+    "a qué se refiere el corte",
+    "qué quiere decir corte de información"
+   ],
+   "respuesta": "El corte es la fecha hasta la cual se acumula la información: {{corte.texto}} ({{corte.trimestre}} de {{vig}}). Todo lo que ves está medido hasta ese día; el corte se actualiza cada mes.",
+   "enlaces": [],
+   "sugerencias": [
+    "vigencias",
+    "actualizacion",
+    "corte_datos"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "vigencias",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué son las vigencias 2025 y 2026?",
+    "qué significa vigencia",
+    "qué es la vigencia",
+    "por qué hay dos vigencias",
+    "qué diferencia hay entre 2025 y 2026",
+    "qué es el avance 2025",
+    "qué es el avance 2026 al corte",
+    "por qué se comparan dos años"
+   ],
+   "respuesta": "Vigencia es el año de ejecución del Plan. El portal compara {{ant}} (vigencia cerrada, tomada del {{fuente.anterior}}) y {{vig}} (acumulada desde enero hasta el corte). Cada avance se mide frente a lo programado en su período, y el indicador suma ambos.",
+   "enlaces": [],
+   "sugerencias": [
+    "avance_vs_indicador",
+    "que_es_corte"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "avance_vs_indicador",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué diferencia hay entre avance e indicador?",
+    "avance 2025, avance 2026 e indicador: qué son",
+    "por qué hay tres porcentajes",
+    "qué diferencia hay entre indicador y avance",
+    "cuál porcentaje define el semáforo",
+    "qué es cada porcentaje de una meta"
+   ],
+   "respuesta": "Avance {{ant}}: lo ejecutado frente a lo programado en ese año. Avance {{vig}} al corte: lo mismo, de enero al corte. Indicador: lo ejecutado frente a lo programado en ambos períodos acumulados; es el valor que define el semáforo.",
+   "enlaces": [],
+   "sugerencias": [
+    "vigencias",
+    "como_se_calcula"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "meta_compartida",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es una meta compartida?",
+    "qué significa meta compartida",
+    "por qué hay metas en varias secretarías",
+    "dos secretarías reportan la misma meta",
+    "por qué una meta aparece en dos secretarías",
+    "qué pasa si una meta es de dos secretarías",
+    "metas compartidas qué son",
+    "quién responde por una meta compartida"
+   ],
+   "respuesta": "Es una meta que figura en más de una secretaría: cada una reporta su parte. Por eso aparece una vez por secretaría ({{n.registros}} filas para {{n.unicas}} metas únicas). Hoy hay {{n.compartidas}} metas compartidas.",
+   "enlaces": [
+    {
+     "texto": "Metas compartidas",
+     "hash": "#/compartidas"
+    }
+   ],
+   "sugerencias": [
+    "registros_vs_unicas",
+    "compartidas_datos"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "registros_vs_unicas",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Por qué hay más filas que metas únicas?",
+    "hay metas duplicadas",
+    "se cuentan dos veces las compartidas",
+    "diferencia entre registro y meta única",
+    "por qué se repiten algunas metas",
+    "por qué el total de metas no coincide con las únicas",
+    "qué es un registro de meta"
+   ],
+   "respuesta": "Cada fila es una meta reportada por una secretaría. Las metas compartidas aparecen una vez por secretaría, por eso hay {{n.registros}} filas pero {{n.unicas}} metas únicas por código. No son errores: es la forma de respetar el reporte de cada dependencia.",
+   "enlaces": [
+    {
+     "texto": "Metas compartidas",
+     "hash": "#/compartidas"
+    }
+   ],
+   "sugerencias": [
+    "meta_compartida",
+    "total_metas"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "arrastre",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es el arrastre de 2025?",
+    "qué significa arrastre",
+    "qué es una meta de arrastre",
+    "qué significa sin programación 2026 al corte",
+    "por qué hay metas que dicen sin programación 2026 al corte",
+    "metas con arrastre qué son",
+    "qué es la marca de arrastre",
+    "por qué dice arrastre 2025"
+   ],
+   "respuesta": "Arrastre de {{ant}} marca metas que no tienen programación {{vig}} al corte. Algunas ya se cumplieron con lo registrado en {{ant}}; otras conservan el avance de ese año o registran ejecución sin programación. Hoy hay {{n.arrastre}} metas marcadas; la marca busca que su lectura sea transparente.",
+   "enlaces": [
+    {
+     "texto": "Metas compartidas y calidad de dato",
+     "hash": "#/compartidas"
+    }
+   ],
+   "sugerencias": [
+    "arrastre_datos",
+    "etiquetas_metas"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "pnp",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es P/NP?",
+    "qué significa P y NP",
+    "qué quiere decir pnp",
+    "p np qué es",
+    "qué es una meta P",
+    "qué es una meta NP",
+    "siglas P y NP",
+    "qué son metas planeadas y no planeadas"
+   ],
+   "respuesta": "P/NP distingue las metas programadas (P) de las no programadas (NP) al corte; en reportes internos también se dice planeadas y no planeadas. Las NP no entran en el promedio ni penalizan. Hoy hay {{inst.programadas}} programadas y {{inst.no_programada}} no programadas.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_es_no_programada",
+    "por_que_no_penaliza"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "meta_certificable",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es una meta certificable?",
+    "qué significa certificable",
+    "cuándo se certifica una meta",
+    "metas certificables cómo se definen",
+    "qué es certificar una meta",
+    "qué quiere decir meta certificada"
+   ],
+   "respuesta": "Certificable es una meta que cumplió lo programado y no tiene programación en {{corte.posteriores}}: ya no queda nada por ejecutar frente a lo programado en {{ant}}-{{vig}}. Hoy hay {{n.cert}} certificables.",
+   "enlaces": [
+    {
+     "texto": "Logros y metas cumplidas",
+     "hash": "#/logros"
+    }
+   ],
+   "sugerencias": [
+    "t4_pendiente",
+    "cumplida_vs_certificable",
+    "certificables_datos"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "t4_pendiente",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es una meta con T4 pendiente?",
+    "qué significa con programación posterior",
+    "meta al 100 con programación posterior",
+    "por qué una meta cumplida no está certificada",
+    "cuándo se certifican las que tienen programación pendiente",
+    "qué es meta pendiente de certificar",
+    "metas cumplidas con T4",
+    "qué quiere decir cumplida con programación en el cuarto trimestre"
+   ],
+   "respuesta": "Son metas que van al 100% al corte, pero todavía tienen programación en {{corte.posteriores}}: se certifican cuando concluya ese período. Hoy son {{n.pend}} metas únicas ({{n.pend_reg}} filas).",
+   "enlaces": [
+    {
+     "texto": "Logros y metas cumplidas",
+     "hash": "#/logros"
+    }
+   ],
+   "sugerencias": [
+    "meta_certificable",
+    "pendientes_t4"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "cumplida_vs_certificable",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cuál es la diferencia entre cumplida y certificable?",
+    "una meta cumplida es certificable",
+    "por qué no todas las cumplidas son certificables",
+    "cumplida versus certificable",
+    "qué distingue una meta cumplida de una certificable"
+   ],
+   "respuesta": "Cumplida es un estado al corte (indicador de 100% o más). Certificable es una cumplida sin programación posterior. Hoy hay {{inst.cumplida}} cumplidas, de las cuales {{n.cert}} son certificables y el resto aún tiene programación en {{corte.posteriores}}.",
+   "enlaces": [
+    {
+     "texto": "Logros y metas cumplidas",
+     "hash": "#/logros"
+    }
+   ],
+   "sugerencias": [
+    "meta_certificable",
+    "t4_pendiente"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "mayor_100",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Por qué hay valores mayores a 100%?",
+    "qué significa un indicador de 200",
+    "ejecución superior a lo programado",
+    "por qué una meta tiene más de 100",
+    "es un error pasar del 100",
+    "sobreejecución qué es",
+    "puede una meta pasar de 100 por ciento"
+   ],
+   "respuesta": "Un indicador mayor a 100% indica que se ejecutó más de lo programado al corte (o que hubo ejecución sin programación). Son {{n.sobre}} casos; se verifican con la secretaría para confirmar que el ejecutado corresponda al período. Siguen contando como cumplidas.",
+   "enlaces": [
+    {
+     "texto": "Metas compartidas y calidad de dato",
+     "hash": "#/compartidas"
+    }
+   ],
+   "sugerencias": [
+    "sobreejecucion_datos",
+    "que_es_cumplida"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "ambas_distinto",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Por qué «Ambas» da un valor distinto al promedio?",
+    "qué significa Ambas",
+    "ambas 2025 2026 qué es",
+    "por qué el indicador no es el promedio de 2025 y 2026",
+    "el indicador no es el promedio de las dos vigencias",
+    "por qué no coincide con el promedio de los dos años",
+    "qué significa ambas en el tablero"
+   ],
+   "respuesta": "Con «Ambas» (2025–2026) al corte, el indicador se calcula sobre la suma de las dos vigencias en cada meta, no promediando los dos porcentajes. Por eso puede diferir del promedio simple de {{inst.a2025|p}} y {{inst.a2026|p}}. Esta opción aparece en el tablero de control de una sola página.",
+   "enlaces": [
+    {
+     "texto": "Tablero de una sola página",
+     "hash": "tablero.html"
+    }
+   ],
+   "sugerencias": [
+    "avance_vs_indicador",
+    "tablero_una_pagina"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_es_meta_producto",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es una meta de producto?",
+    "qué es meta de producto DNP",
+    "qué es un producto en el plan",
+    "meta de producto significado",
+    "qué significa meta",
+    "qué es una meta en el plan"
+   ],
+   "respuesta": "En la terminología del DNP, una meta de producto es la cantidad de bienes o servicios que la administración se compromete a entregar en una vigencia. En el portal cada meta tiene un código, una secretaría responsable, un eje y valores programados y ejecutados.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_es_programado",
+    "que_es_ejecutado"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_es_programado",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué significa programado?",
+    "qué es lo programado",
+    "qué es programado acumulado",
+    "qué es la programación",
+    "qué quiere decir prog",
+    "qué se programa en una meta"
+   ],
+   "respuesta": "Programado es la cantidad prevista para un período en el plan indicativo. El programado acumulado suma lo previsto en {{ant}} y en {{vig}} hasta el corte.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_es_ejecutado",
+    "acumulado"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_es_ejecutado",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué significa ejecutado?",
+    "qué es lo ejecutado",
+    "qué es ejecutado acumulado",
+    "qué es la ejecución",
+    "quién reporta lo ejecutado",
+    "qué quiere decir ejec"
+   ],
+   "respuesta": "Ejecutado es la cantidad que la secretaría reporta como lograda. El ejecutado acumulado suma lo logrado en {{ant}} y en {{vig}} hasta el corte; se compara con el programado acumulado.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_es_programado",
+    "como_se_calcula"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "acumulado",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué significa acumulado?",
+    "por qué se acumula",
+    "qué es acumulado al corte",
+    "acumulado hasta el corte qué significa",
+    "por qué se suman las dos vigencias",
+    "qué se acumula en el indicador"
+   ],
+   "respuesta": "Acumulado es la suma de lo previsto (o lo logrado) desde {{ant}} hasta el corte de {{vig}}. Se acumula para medir el cumplimiento total frente a lo que debía estar hecho a la fecha, no solo el del último período.",
+   "enlaces": [],
+   "sugerencias": [
+    "como_se_calcula",
+    "que_es_corte"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_es_eje",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es un eje estratégico?",
+    "qué significa eje",
+    "qué son los ejes del plan",
+    "para qué sirven los ejes",
+    "qué es un eje del PDM",
+    "cómo se organiza el plan en ejes"
+   ],
+   "respuesta": "Un eje estratégico agrupa metas por tema. El Plan tiene {{n.ejes}} ejes y cada meta pertenece a uno; en el portal puedes ver el indicador, el semáforo y las secretarías de cada eje.",
+   "enlaces": [
+    {
+     "texto": "Avance por eje",
+     "hash": "#/ejes"
+    }
+   ],
+   "sugerencias": [
+    "lista_ejes",
+    "como_se_asigna_eje"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "como_se_asigna_eje",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo se asigna una meta a un eje?",
+    "a qué eje pertenece una meta",
+    "una secretaría puede estar en varios ejes",
+    "por qué una secretaría aparece en varios ejes",
+    "las secretarías tienen un solo eje",
+    "cómo se reparten las metas por eje"
+   ],
+   "respuesta": "Cada meta pertenece a un eje según el Plan. Como una secretaría tiene metas de distintos temas, puede aparecer en varios ejes; por ejemplo, {{sec_eje_max.corto}} participa en {{sec_eje_max.n}} ejes.",
+   "enlaces": [],
+   "sugerencias": [
+    "ejes_de_sec",
+    "que_es_eje"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_es_trimestre",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es T3?",
+    "qué significan T1 T2 T3 T4",
+    "qué es el trimestre del corte",
+    "a qué trimestre corresponde el corte",
+    "qué es el cuarto trimestre",
+    "qué es T4",
+    "qué significa trimestre"
+   ],
+   "respuesta": "T1 a T4 son los trimestres del año. El corte actual es {{corte.trimestre}} ({{corte.texto}}); lo programado para {{corte.posteriores}} aún no se cuenta en el indicador.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_es_corte",
+    "t4_pendiente"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_es_dnp",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es el DNP?",
+    "quién es el DNP",
+    "qué significa DNP",
+    "metodología DNP qué es",
+    "por qué usan la metodología del DNP",
+    "qué es el Departamento Nacional de Planeación",
+    "por qué se sigue al DNP"
+   ],
+   "respuesta": "El DNP es el Departamento Nacional de Planeación, entidad del orden nacional que orienta la planeación territorial. El portal sigue su metodología de seguimiento: compara ejecutado y programado acumulados al corte.",
+   "enlaces": [
+    {
+     "texto": "Metodología",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "como_se_calcula",
+    "metodologia_dnp"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "plan_indicativo",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es el Plan Indicativo?",
+    "plan indicativo qué significa",
+    "de dónde sale el avance 2025",
+    "qué es el plan indicativo seg PDM",
+    "por qué se usa el plan indicativo",
+    "qué contiene el plan indicativo"
+   ],
+   "respuesta": "El Plan Indicativo programa, año a año, lo que cada meta debe lograr. El portal toma de allí el avance de {{ant}} (fuente: {{fuente.anterior}}), enlazado por código de meta.",
+   "enlaces": [
+    {
+     "texto": "Metodología",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "vigencias",
+    "fuentes_datos"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "eje_vs_institucional",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Por qué un eje puede tener un indicador mayor al institucional?",
+    "por qué el indicador de los ejes no coincide con el institucional",
+    "por qué el eje da distinto",
+    "por qué el institucional es menor que el de los ejes",
+    "diferencia entre indicador de eje e institucional",
+    "por qué no cuadran ejes e institucional"
+   ],
+   "respuesta": "El indicador de un eje promedia sus metas; el institucional promedia las secretarías. Como cada secretaría pesa igual sin importar su número de metas, las que tienen pocas metas programadas ({{sec_pocas}}) pesan lo mismo que las demás y pueden hacer que los dos valores difieran.",
+   "enlaces": [],
+   "sugerencias": [
+    "calculo_institucional",
+    "media_simple"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "media_simple",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es la media simple?",
+    "promedio simple qué es",
+    "por qué usan media simple",
+    "por qué no ponderan",
+    "ponderado o simple",
+    "por qué no usan promedio ponderado",
+    "qué significa promedio simple de secretarías",
+    "por qué no se pondera por número de metas"
+   ],
+   "respuesta": "La media simple suma los indicadores y divide por la cantidad, sin pesos distintos. Así, cada secretaría cuenta igual en el indicador institucional y cada meta programada cuenta igual en el de su secretaría o eje.",
+   "enlaces": [],
+   "sugerencias": [
+    "calculo_institucional",
+    "eje_vs_institucional"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "no_es_calificacion",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿El portal califica a las secretarías?",
+    "esto es un ranking de culpables",
+    "las cifras evalúan personas",
+    "este tablero es una evaluación",
+    "qué pasa si mi secretaría sale baja",
+    "el ranking mide quién trabaja mejor",
+    "se pueden comparar las secretarías"
+   ],
+   "respuesta": "No. El portal orienta la gestión: muestra el avance frente a lo programado para acompañar a las secretarías y aclarar cronogramas. Cada secretaría responde por metas distintas y de distinta magnitud, así que un orden por indicador no mide la calidad de su trabajo.",
+   "enlaces": [],
+   "sugerencias": [
+    "para_que_sirve",
+    "lim_causas"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "verificacion_meta",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué significa «en verificación con la secretaría»?",
+    "meta en verificación qué es",
+    "qué es la escala mixta",
+    "por qué una meta está en verificación",
+    "qué es un dato en verificación",
+    "qué pasa con una meta con escala distinta"
+   ],
+   "respuesta": "Es una meta cuyos valores programados vienen en escalas distintas entre vigencias (hoy {{n.verif}}, la meta {{verif.cod}} de {{verif.sec}}). Se confirma la escala con la secretaría antes de interpretar su indicador.",
+   "enlaces": [
+    {
+     "texto": "Metas compartidas y calidad de dato",
+     "hash": "#/compartidas"
+    }
+   ],
+   "sugerencias": [
+    "verificacion_datos",
+    "fraccionarios"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "fraccionarios",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué significan los valores fraccionarios del Plan Indicativo?",
+    "por qué hay valores como 0.5",
+    "escala del plan indicativo en verificación",
+    "metas con decimales en el plan",
+    "por qué hay fracciones en la programación"
+   ],
+   "respuesta": "Algunas metas del Plan Indicativo traen valores en escalas distintas (por ejemplo fracciones frente a porcentajes). Son {{n.fracc}} metas, marcadas como «Escala del Plan Indicativo en verificación», y se confirman con la secretaría.",
+   "enlaces": [
+    {
+     "texto": "Metas compartidas y calidad de dato",
+     "hash": "#/compartidas"
+    }
+   ],
+   "sugerencias": [
+    "verificacion_meta",
+    "etiquetas_metas"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "guion_en_tabla",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Por qué sale un guion en la tabla?",
+    "por qué algunas metas no tienen avance 2025",
+    "qué significa el guion",
+    "qué significa el signo — en la tabla",
+    "por qué hay guiones en los porcentajes",
+    "por qué una celda está vacía"
+   ],
+   "respuesta": "Un guion indica que no hay valor para calcular: las metas sin programación en {{ant}} (son {{n.sin2025}}) no tienen avance de ese año, y las no programadas no tienen indicador.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_es_no_programada",
+    "vigencias"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "cero_porciento",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué significa 0% en una meta?",
+    "por qué una meta tiene cero",
+    "meta con indicador cero",
+    "0 por ciento qué quiere decir",
+    "qué es un avance de cero"
+   ],
+   "respuesta": "Un 0% en una meta con programación al corte indica que aún no se registra ejecución frente a lo programado; por eso queda rezagada. No dice por qué: eso se consulta con la secretaría.",
+   "enlaces": [
+    {
+     "texto": "Alertas",
+     "hash": "#/alertas"
+    }
+   ],
+   "sugerencias": [
+    "que_es_rezagada",
+    "lim_causas"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "glosario",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "Glosario",
+    "dame el glosario",
+    "¿dónde encuentro el glosario?",
+    "términos del portal",
+    "diccionario de términos",
+    "vocabulario DNP",
+    "definiciones de los términos",
+    "qué significan los términos del tablero"
+   ],
+   "respuesta": "Glosario breve: meta, compromiso del Plan con una cantidad a lograr; programado, lo previsto; ejecutado, lo logrado; indicador, ejecutado acumulado ÷ programado acumulado; corte, fecha hasta la que se acumula ({{corte.texto}}); vigencia, año de ejecución; eje, agrupación temática ({{n.ejes}} ejes). El glosario completo está en Metodología.",
+   "enlaces": [
+    {
+     "texto": "Metodología y fuentes",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "que_es_indicador",
+    "que_es_corte",
+    "que_es_eje"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "tablero_una_pagina",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es el tablero de control de una sola página?",
+    "hay una versión resumida del tablero",
+    "tablero.html",
+    "dónde está el dashboard simple",
+    "versión de una página",
+    "hay otro tablero con filtros por vigencia"
+   ],
+   "respuesta": "Además del portal hay un tablero de control de una sola página, con filtros por vigencia, periodo y secretaría. Sus cifras son las mismas cifras oficiales del corte.",
+   "enlaces": [
+    {
+     "texto": "Tablero de una sola página",
+     "hash": "tablero.html"
+    }
+   ],
+   "sugerencias": [
+    "ambas_distinto",
+    "que_es_portal"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "como_leer_graficos",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo leo los gráficos?",
+    "cómo se lee el mapa de calor",
+    "qué muestran las barras",
+    "qué es el anillo del semáforo",
+    "qué es el mapa de calor",
+    "qué muestra el gráfico de barras",
+    "cómo interpreto los gráficos"
+   ],
+   "respuesta": "Anillo del semáforo: proporción de metas por estado. Barras: indicador por secretaría o por eje. Barras agrupadas: avance {{ant}} frente a {{vig}} al corte. Mapa de calor: número de metas por eje y estado. Casi todos se pueden abrir con un clic.",
+   "enlaces": [
+    {
+     "texto": "Resumen ejecutivo",
+     "hash": "#/resumen"
+    }
+   ],
+   "sugerencias": [
+    "clic_graficos",
+    "tabla_del_grafico"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "etiquetas_metas",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué son las etiquetas junto a las metas?",
+    "qué significan los tags",
+    "qué son las marcas junto a las metas",
+    "etiquetas de arrastre compartida verificación",
+    "qué significa la etiqueta amarilla de una meta"
+   ],
+   "respuesta": "Junto a algunas metas aparecen etiquetas de lectura: «Meta compartida», «En verificación con la secretaría», «Sin programación 2026 al corte (arrastre 2025)», «Ejecución superior a lo programado» y «Escala del Plan Indicativo en verificación». No restan mérito; aclaran cómo leer el dato.",
+   "enlaces": [
+    {
+     "texto": "Metas compartidas y calidad de dato",
+     "hash": "#/compartidas"
+    }
+   ],
+   "sugerencias": [
+    "arrastre",
+    "meta_compartida",
+    "mayor_100"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "que_es_vigencia_posterior",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué es la programación posterior al corte?",
+    "qué es programado posterior 2026",
+    "qué significa programación posterior",
+    "por qué hay programación después del corte",
+    "qué es lo programado para el cuarto trimestre",
+    "qué es la programación de T4",
+    "qué es lo que viene después del corte"
+   ],
+   "respuesta": "Es lo que está programado para {{corte.posteriores}}, después del corte. No entra en el indicador actual: se medirá cuando se actualice el corte.",
+   "enlaces": [],
+   "sugerencias": [
+    "t4_pendiente",
+    "que_es_corte"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "menu_como",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo funciona el menú?",
+    "cómo navego por el portal",
+    "dónde está el menú",
+    "qué secciones tiene el portal",
+    "cómo me muevo entre páginas",
+    "cuáles son las páginas del portal",
+    "qué páginas tiene el tablero",
+    "cómo uso el menú lateral"
+   ],
+   "respuesta": "El menú lateral tiene tres grupos: Seguimiento (Resumen ejecutivo, Avance por eje, Secretarías y Explorador de metas), Análisis (Logros, Alertas y Metas compartidas) y Documentos (Informes y Metodología). Arriba verás la ruta de navegación para volver atrás.",
+   "enlaces": [
+    {
+     "texto": "Resumen ejecutivo",
+     "hash": "#/resumen"
+    }
+   ],
+   "sugerencias": [
+    "pagina_resumen",
+    "menu_contraer",
+    "menu_movil"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "pagina_resumen",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué hay en el resumen ejecutivo?",
+    "para qué sirve el resumen ejecutivo",
+    "qué muestra la página de inicio",
+    "qué veo en el resumen",
+    "cómo se lee la página principal",
+    "qué contiene el resumen"
+   ],
+   "respuesta": "El Resumen ejecutivo es la página de inicio: muestra el indicador del corte, el avance {{ant}} y {{vig}}, el semáforo de metas, el ranking de secretarías, el mapa de calor por eje y las metas que conviene acompañar. Casi todo es clicable para profundizar.",
+   "enlaces": [
+    {
+     "texto": "Resumen ejecutivo",
+     "hash": "#/resumen"
+    }
+   ],
+   "sugerencias": [
+    "resumen_kpis",
+    "clic_graficos",
+    "filtros_globales"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "resumen_kpis",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué son las tarjetas del resumen?",
+    "qué significan los números grandes",
+    "qué son los indicadores clave",
+    "qué son los KPI del resumen",
+    "qué son las minigráficas de cada tarjeta",
+    "qué muestran las líneas pequeñas"
+   ],
+   "respuesta": "Las tarjetas muestran el indicador del corte, el avance {{ant}}, el avance {{vig}} al corte y el número de metas en cada estado. Las pequeñas gráficas muestran el valor por eje estratégico; al hacer clic en una tarjeta llegas a su detalle.",
+   "enlaces": [
+    {
+     "texto": "Resumen ejecutivo",
+     "hash": "#/resumen"
+    }
+   ],
+   "sugerencias": [
+    "como_leer_graficos",
+    "pagina_resumen"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "pagina_ejes",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué hay en la página de ejes?",
+    "para qué sirve avance por eje",
+    "qué muestra la página de ejes estratégicos",
+    "cómo se lee avance por eje",
+    "qué veo en cada eje"
+   ],
+   "respuesta": "Avance por eje estratégico compara los {{n.ejes}} ejes (indicador, avance {{ant}} y {{vig}} y estados). Cada eje tiene su propia página con las secretarías que participan y sus metas rezagadas.",
+   "enlaces": [
+    {
+     "texto": "Avance por eje",
+     "hash": "#/ejes"
+    }
+   ],
+   "sugerencias": [
+    "lista_ejes",
+    "ind_eje"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "pagina_secretarias",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué hay en la página de secretarías?",
+    "para qué sirve la página de secretarías",
+    "qué muestra la ficha de una secretaría",
+    "cómo veo una secretaría",
+    "qué contiene la sección de secretarías"
+   ],
+   "respuesta": "Secretarías muestra una tarjeta por cada una de las {{n.sec}}, con su indicador y número de metas, gráficos comparativos y el estado de sus metas. Cada ficha incluye su informe y un enlace a sus metas en el explorador.",
+   "enlaces": [
+    {
+     "texto": "Secretarías",
+     "hash": "#/secretarias"
+    }
+   ],
+   "sugerencias": [
+    "lista_secs",
+    "ranking_sec"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "pagina_explorador",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Para qué sirve el explorador de metas?",
+    "qué es el explorador",
+    "qué muestra el explorador de metas",
+    "cómo se usa el explorador",
+    "qué puedo hacer en el explorador",
+    "para qué es la tabla de metas"
+   ],
+   "respuesta": "El Explorador de metas es la tabla con las {{n.registros}} filas de meta. Puedes buscar por texto o código, filtrar por secretaría, eje, estado y vigencia, ordenar columnas, paginar y exportar lo filtrado a CSV. Cada código abre el detalle de la meta.",
+   "enlaces": [
+    {
+     "texto": "Explorador de metas",
+     "hash": "#/metas"
+    }
+   ],
+   "sugerencias": [
+    "buscar_explorador",
+    "filtrar_explorador",
+    "exportar_csv"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "pagina_logros",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué hay en logros y metas cumplidas?",
+    "para qué sirve la página de logros",
+    "qué muestra logros",
+    "dónde veo las metas al 100",
+    "qué contiene la sección de logros"
+   ],
+   "respuesta": "Logros y metas cumplidas reúne las metas al 100% o más, separadas entre las certificables y las que tienen programación posterior; puedes filtrarlas por secretaría.",
+   "enlaces": [
+    {
+     "texto": "Logros y metas cumplidas",
+     "hash": "#/logros"
+    }
+   ],
+   "sugerencias": [
+    "meta_certificable",
+    "t4_pendiente"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "pagina_alertas",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué hay en la página de alertas?",
+    "para qué sirve alertas",
+    "qué muestra la sección de alertas",
+    "dónde veo las metas por acompañar",
+    "qué contiene alertas",
+    "las alertas son sanciones"
+   ],
+   "respuesta": "Alertas lista las metas rezagadas, las metas en avance con menor indicador (con un umbral que puedes ajustar) y las no programadas. Orienta la gestión; no califica a ninguna dependencia.",
+   "enlaces": [
+    {
+     "texto": "Alertas",
+     "hash": "#/alertas"
+    }
+   ],
+   "sugerencias": [
+    "que_es_rezagada",
+    "rezagadas_lista"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "pagina_compartidas",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué hay en metas compartidas y calidad de dato?",
+    "para qué sirve la página de metas compartidas",
+    "qué es calidad de dato",
+    "qué muestra la sección de calidad de dato",
+    "qué contiene compartidas"
+   ],
+   "respuesta": "Metas compartidas y calidad de dato muestra las metas que reportan varias secretarías, la meta en verificación, el arrastre de {{ant}} y otras observaciones de dato. Son aclaraciones de lectura, no reproches.",
+   "enlaces": [
+    {
+     "texto": "Metas compartidas",
+     "hash": "#/compartidas"
+    }
+   ],
+   "sugerencias": [
+    "meta_compartida",
+    "arrastre"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "pagina_informes",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué hay en la página de informes?",
+    "para qué sirve informes",
+    "qué informes puedo descargar",
+    "qué contiene la sección de informes",
+    "qué documentos hay disponibles"
+   ],
+   "respuesta": "Informes permite descargar, en Word y PDF, el informe general por año y el informe de seguimiento de cada secretaría, con el tamaño de cada archivo.",
+   "enlaces": [
+    {
+     "texto": "Informes",
+     "hash": "#/informes"
+    }
+   ],
+   "sugerencias": [
+    "descargar_informes",
+    "informes_anio"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "pagina_metodologia",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué hay en metodología y fuentes?",
+    "para qué sirve la página de metodología",
+    "dónde se explica el cálculo",
+    "qué contiene metodología y fuentes",
+    "dónde están los créditos"
+   ],
+   "respuesta": "Metodología y fuentes explica el cálculo del indicador, el semáforo, las vigencias y el corte, el glosario, las fuentes de las cifras, las huellas de verificación y los créditos.",
+   "enlaces": [
+    {
+     "texto": "Metodología y fuentes",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "como_se_calcula",
+    "glosario",
+    "huellas"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "pagina_ficha_secretaria",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué muestra la ficha de una secretaría?",
+    "qué hay en la página de una secretaría",
+    "cómo abro la ficha de una secretaría",
+    "qué información trae cada secretaría",
+    "qué veo al entrar a una secretaría"
+   ],
+   "respuesta": "La ficha de una secretaría muestra su indicador, el avance {{ant}} y {{vig}}, el semáforo de sus metas, sus informes y un botón para ver sus metas en el explorador. Se abre desde Secretarías o desde cualquier barra o ranking.",
+   "enlaces": [
+    {
+     "texto": "Secretarías",
+     "hash": "#/secretarias"
+    }
+   ],
+   "sugerencias": [
+    "pagina_secretarias",
+    "ficha_sec"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "pagina_eje_detalle",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué muestra la página de un eje?",
+    "qué hay dentro de un eje",
+    "cómo abro un eje",
+    "qué veo al entrar a un eje",
+    "qué información trae cada eje"
+   ],
+   "respuesta": "La página de un eje muestra su indicador, el avance {{ant}} y {{vig}}, el estado de sus metas, las secretarías que participan y sus metas rezagadas, con botones para ir al eje anterior o siguiente.",
+   "enlaces": [
+    {
+     "texto": "Avance por eje",
+     "hash": "#/ejes"
+    }
+   ],
+   "sugerencias": [
+    "pagina_ejes",
+    "ficha_eje"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "pagina_meta_detalle",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué muestra la página de una meta?",
+    "qué hay en el detalle de una meta",
+    "cómo veo todos los datos de una meta",
+    "qué información trae una meta",
+    "cómo abro una meta"
+   ],
+   "respuesta": "La página de una meta muestra su estado, su código, su secretaría y su eje, las etiquetas de lectura, el cálculo del indicador y, si es compartida, los valores de cada secretaría. Se abre con un clic en el código desde cualquier tabla.",
+   "enlaces": [
+    {
+     "texto": "Explorador de metas",
+     "hash": "#/metas"
+    }
+   ],
+   "sugerencias": [
+    "pagina_explorador",
+    "meta_detalle"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "menu_contraer",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo contraigo el menú?",
+    "cómo oculto el menú lateral",
+    "el menú ocupa mucho espacio",
+    "cómo expando el menú",
+    "botón de contraer menú",
+    "cómo hago el menú más pequeño"
+   ],
+   "respuesta": "Usa el botón «Contraer menú» al pie del menú: queda solo con íconos y, al pasar el cursor, aparece el nombre de cada página. Tu preferencia se recuerda en este navegador.",
+   "enlaces": [],
+   "sugerencias": [
+    "menu_como",
+    "modo_noche"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "menu_movil",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo uso el portal en el celular?",
+    "el portal funciona en móvil",
+    "cómo abro el menú en el teléfono",
+    "se ve bien en tablet",
+    "el portal sirve en celular o en tablet",
+    "cómo cierro el menú en el móvil",
+    "versión móvil",
+    "cómo veo las tablas en el celular"
+   ],
+   "respuesta": "Sí, el portal se adapta al celular: el menú se abre con el botón de las tres rayas (se cierra con Escape o tocando fuera) y las tablas se desplazan de lado cuando tienen muchas columnas. En el celular el explorador muestra cada meta como una tarjeta.",
+   "enlaces": [],
+   "sugerencias": [
+    "menu_como",
+    "teclado"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "buscar_explorador",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo busco una meta?",
+    "cómo busco por palabra",
+    "cómo encuentro una meta por código",
+    "dónde está el buscador",
+    "cómo uso el buscador",
+    "puedo buscar por texto",
+    "cómo busco una meta por tema"
+   ],
+   "respuesta": "Hay dos formas: el buscador de la barra superior (escribe texto o código y pulsa Enter) o el campo «Buscar» del Explorador de metas, que filtra mientras escribes. Puedes combinar varias palabras; la búsqueda no distingue tildes ni mayúsculas.",
+   "enlaces": [
+    {
+     "texto": "Explorador de metas",
+     "hash": "#/metas"
+    }
+   ],
+   "sugerencias": [
+    "filtrar_explorador",
+    "meta_busqueda"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "filtrar_explorador",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo filtro las metas?",
+    "cómo filtro por secretaría",
+    "puedo filtrar por estado",
+    "cómo filtro por eje",
+    "cómo combinar filtros",
+    "cómo aplico varios filtros a la vez"
+   ],
+   "respuesta": "En el Explorador abre «Filtrar y buscar» y combina secretaría, eje, estado y vigencia. Debajo verás cuántas metas coinciden y puedes limpiar los filtros con un clic.",
+   "enlaces": [
+    {
+     "texto": "Explorador de metas",
+     "hash": "#/metas"
+    }
+   ],
+   "sugerencias": [
+    "filtro_vigencia",
+    "limpiar_filtros",
+    "exportar_csv"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "filtro_vigencia",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué significa el filtro de vigencia?",
+    "con programación 2025 qué filtra",
+    "qué es sin programación 2026 al corte en el filtro",
+    "filtro de vigencia opciones",
+    "qué opciones tiene el filtro vigencia",
+    "para qué sirve el filtro de vigencia"
+   ],
+   "respuesta": "El filtro Vigencia ofrece: Todas; Con programación {{ant}}; Con programación {{vig}} al corte; Sin programación {{vig}} al corte; y Con programación posterior al corte.",
+   "enlaces": [
+    {
+     "texto": "Explorador de metas",
+     "hash": "#/metas"
+    }
+   ],
+   "sugerencias": [
+    "filtrar_explorador",
+    "arrastre"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "ordenar_explorador",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo ordeno la tabla?",
+    "cómo ordeno por indicador",
+    "cómo cambio el orden de las metas",
+    "puedo ordenar columnas",
+    "cómo ordeno de mayor a menor",
+    "cómo ordeno por secretaría en el explorador"
+   ],
+   "respuesta": "Haz clic en el encabezado de una columna (Código, Meta, Secretaría, Eje, Avance, Indicador o Estado) para ordenar; otro clic invierte el orden. En el celular hay un selector «Ordenar por».",
+   "enlaces": [
+    {
+     "texto": "Explorador de metas",
+     "hash": "#/metas"
+    }
+   ],
+   "sugerencias": [
+    "filtrar_explorador",
+    "paginacion"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "exportar_csv",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo exporto a Excel?",
+    "cómo descargo la tabla de metas",
+    "exportar CSV",
+    "puedo descargar los datos",
+    "cómo saco las metas a una hoja de cálculo",
+    "cómo descargo la tabla filtrada",
+    "dónde está el botón de exportar",
+    "cómo descargo solo las metas filtradas"
+   ],
+   "respuesta": "En el Explorador de metas, el botón «Exportar CSV de lo filtrado» descarga un archivo (.csv, que abre en Excel) con las metas que estén filtradas: valores programados y ejecutados, avances, indicador y estado.",
+   "enlaces": [
+    {
+     "texto": "Explorador de metas",
+     "hash": "#/metas"
+    }
+   ],
+   "sugerencias": [
+    "filtrar_explorador",
+    "accion_csv"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "limpiar_filtros",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo limpio los filtros?",
+    "cómo quito un filtro",
+    "cómo borro la búsqueda",
+    "cómo vuelvo a ver todas las metas",
+    "cómo reinicio el explorador",
+    "cómo elimino un filtro activo"
+   ],
+   "respuesta": "En el explorador usa «Limpiar filtros». En los filtros globales puedes quitar cada filtro activo con su chip (la «x») o usar el botón «Limpiar».",
+   "enlaces": [
+    {
+     "texto": "Explorador de metas",
+     "hash": "#/metas"
+    }
+   ],
+   "sugerencias": [
+    "filtros_globales",
+    "filtrar_explorador"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "paginacion",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo cambio de página en la tabla?",
+    "cuántas metas muestra por página",
+    "dónde están las demás metas",
+    "cómo veo más resultados",
+    "por qué solo veo 25 metas",
+    "cómo veo las otras metas de la tabla",
+    "cómo paso a la siguiente página",
+    "cómo avanzo a más metas"
+   ],
+   "respuesta": "El Explorador muestra 25 metas por página. Al pie de la tabla están los botones «Anterior» y «Siguiente» y el número de página; el contador indica cuántas metas coinciden con tus filtros.",
+   "enlaces": [
+    {
+     "texto": "Explorador de metas",
+     "hash": "#/metas"
+    }
+   ],
+   "sugerencias": [
+    "ordenar_explorador",
+    "exportar_csv"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "filtros_globales",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué son los filtros globales?",
+    "cómo funcionan los filtros del resumen",
+    "los filtros se recuerdan",
+    "cómo quito los filtros activos",
+    "qué son los chips de filtros activos",
+    "los filtros del resumen afectan las tablas"
+   ],
+   "respuesta": "Los filtros globales (secretaría, eje y estado) recortan lo que ves en el resumen y arman los enlaces al explorador. Se recuerdan en tu navegador; los chips de «Filtros activos» permiten quitarlos uno a uno y «Limpiar» los borra todos.",
+   "enlaces": [
+    {
+     "texto": "Resumen ejecutivo",
+     "hash": "#/resumen"
+    }
+   ],
+   "sugerencias": [
+    "limpiar_filtros",
+    "pagina_resumen"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "clic_graficos",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Puedo hacer clic en los gráficos?",
+    "los gráficos son interactivos",
+    "qué pasa si hago clic en una barra",
+    "cómo profundizo desde un gráfico",
+    "al hacer clic en el anillo qué pasa",
+    "qué pasa al tocar una celda del mapa de calor"
+   ],
+   "respuesta": "Sí. Casi todo es clicable: los sectores del anillo y las celdas del mapa de calor abren el explorador ya filtrado; las barras llevan a la ficha de la secretaría o del eje; y las tarjetas llevan a su detalle. Al pasar el cursor verás el valor exacto.",
+   "enlaces": [
+    {
+     "texto": "Resumen ejecutivo",
+     "hash": "#/resumen"
+    }
+   ],
+   "sugerencias": [
+    "tabla_del_grafico",
+    "como_leer_graficos"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "tabla_del_grafico",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo veo los datos de un gráfico en tabla?",
+    "hay versión accesible de los gráficos",
+    "dónde están los números de las barras",
+    "ver los datos del gráfico",
+    "cómo copio las cifras de un gráfico",
+    "los gráficos tienen tabla"
+   ],
+   "respuesta": "Bajo cada gráfico está «Ver los datos del gráfico en tabla», que despliega los mismos valores en una tabla accesible; sirve para lectores de pantalla y para copiar cifras.",
+   "enlaces": [],
+   "sugerencias": [
+    "clic_graficos",
+    "accesibilidad"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "modo_noche",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo activo el modo noche?",
+    "cómo cambio a modo oscuro",
+    "hay modo día y noche",
+    "cómo pongo el fondo oscuro",
+    "cómo cambio el tema",
+    "dónde está el botón de modo oscuro"
+   ],
+   "respuesta": "Con el botón de luna o sol de la barra superior alternas entre modo día y modo noche. Se recuerda tu elección y, si no has elegido, se usa la preferencia de tu dispositivo. Si lo prefieres, dime «activa el modo noche» y lo hago.",
+   "enlaces": [],
+   "sugerencias": [
+    "accesibilidad",
+    "menu_contraer"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "descargar_informes",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo descargo los informes?",
+    "dónde bajo el informe",
+    "cómo obtengo el informe en Word",
+    "hay informes en PDF",
+    "dónde están los informes",
+    "cómo se descarga un informe"
+   ],
+   "respuesta": "En la página Informes: el informe general por año y el de cada secretaría, en Word y PDF, con su tamaño. Los Word se descargan; los PDF se abren en una pestaña nueva.",
+   "enlaces": [
+    {
+     "texto": "Informes",
+     "hash": "#/informes"
+    }
+   ],
+   "sugerencias": [
+    "word_vs_pdf",
+    "informes_anio",
+    "imprimir"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "informes_anio",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Hay informe general de 2025?",
+    "dónde está el informe de 2025",
+    "informe general por año",
+    "puedo ver el informe de gestión de otro año",
+    "qué años tienen informe general",
+    "hay informe de gestión 2026"
+   ],
+   "respuesta": "",
+   "enlaces": [
+    {
+     "texto": "Informes",
+     "hash": "#/informes"
+    }
+   ],
+   "sugerencias": [
+    "descargar_informes",
+    "pagina_informes"
+   ],
+   "handler": "informes_anio",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "word_vs_pdf",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué diferencia hay entre Word y PDF?",
+    "cuál formato me conviene",
+    "puedo editar el informe",
+    "el PDF se puede imprimir",
+    "para qué sirve cada formato del informe",
+    "Word o PDF cuál descargo"
+   ],
+   "respuesta": "El Word (.docx) sirve si necesitas editar o reutilizar el texto; el PDF es la versión para leer, compartir e imprimir tal como fue generada. Ambos traen las mismas cifras oficiales.",
+   "enlaces": [
+    {
+     "texto": "Informes",
+     "hash": "#/informes"
+    }
+   ],
+   "sugerencias": [
+    "descargar_informes",
+    "imprimir"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "imprimir",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo imprimo una página?",
+    "puedo imprimir",
+    "cómo guardo en PDF lo que veo",
+    "hay botón de impresión",
+    "cómo imprimo el resumen",
+    "cómo saco una copia en papel"
+   ],
+   "respuesta": "El botón de impresora de la barra superior (en pantallas grandes) imprime la página actual; en el diálogo del navegador también puedes elegir «Guardar como PDF». Para documentos completos usa la página de Informes. Si prefieres, dime «imprime esta página».",
+   "enlaces": [
+    {
+     "texto": "Informes",
+     "hash": "#/informes"
+    }
+   ],
+   "sugerencias": [
+    "descargar_informes",
+    "word_vs_pdf"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "teclado",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Se puede usar con teclado?",
+    "atajos de teclado",
+    "cómo navego sin ratón",
+    "accesibilidad por teclado",
+    "qué es el enlace de salto",
+    "cómo uso el portal solo con el teclado"
+   ],
+   "respuesta": "Sí: todo se puede usar con teclado. Tab recorre enlaces y controles, Enter activa, Escape cierra el menú móvil y al inicio hay un enlace «Saltar al contenido». Las tablas anchas también reciben foco para desplazarlas con las flechas.",
+   "enlaces": [],
+   "sugerencias": [
+    "accesibilidad",
+    "menu_movil"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "accesibilidad",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Es accesible el portal?",
+    "funciona con lector de pantalla",
+    "tiene buen contraste",
+    "tiene accesibilidad",
+    "sirve para personas con discapacidad visual",
+    "se puede agrandar la letra",
+    "es inclusivo"
+   ],
+   "respuesta": "Se diseñó con accesibilidad: etiquetas ARIA, foco visible, contraste mínimo de 4.5:1, estados con nombre (no solo color), tablas alternativas para los gráficos y compatibilidad con lectores de pantalla. Si encuentras una barrera, avísale a Planeación.",
+   "enlaces": [],
+   "sugerencias": [
+    "teclado",
+    "tabla_del_grafico"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "actualizacion",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cada cuánto se actualiza el portal?",
+    "cuándo se actualizan los datos",
+    "qué tan actuales son las cifras",
+    "cuándo sale el próximo corte",
+    "se actualiza solo",
+    "son datos en tiempo real",
+    "cuándo habrá cifras nuevas"
+   ],
+   "respuesta": "Los datos son de un corte: {{corte.texto}}, generado el {{corte.generado}}. El corte se actualiza cada mes y el portal se regenera con las cifras oficiales; no se actualiza en tiempo real.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_es_corte",
+    "corte_datos"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "sin_internet",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Funciona sin internet?",
+    "necesito conexión",
+    "puedo usarlo sin conexión",
+    "se puede abrir sin internet",
+    "usa recursos externos",
+    "necesito descargar algo para verlo"
+   ],
+   "respuesta": "El portal no depende de servicios externos (ni fuentes ni librerías en línea), así que, una vez cargado, puedes navegarlo sin conexión. Para descargar informes sí necesitas tener acceso a los archivos.",
+   "enlaces": [],
+   "sugerencias": [
+    "navegadores",
+    "privacidad"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "navegadores",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿En qué navegadores funciona?",
+    "funciona en Chrome",
+    "funciona en Safari",
+    "necesito instalar algo",
+    "funciona en Firefox",
+    "con qué navegador lo abro"
+   ],
+   "respuesta": "Funciona en navegadores modernos (Chrome, Edge, Firefox y Safari) sin instalar nada.",
+   "enlaces": [],
+   "sugerencias": [
+    "sin_internet",
+    "menu_movil"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "privacidad",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Guardan mis datos?",
+    "el portal recopila información",
+    "tienen mis preguntas",
+    "es seguro usar el portal",
+    "usa cookies",
+    "qué guarda el portal de mí"
+   ],
+   "respuesta": "El portal no pide datos personales. Lo único que se guarda, solo en tu navegador, son preferencias como el modo día o noche, el menú y los filtros. Mis respuestas se calculan en tu equipo.",
+   "enlaces": [],
+   "sugerencias": [
+    "sin_internet",
+    "como_funciona_nemequi"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "compartir_enlace",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo comparto lo que estoy viendo?",
+    "puedo copiar el enlace de un filtro",
+    "comparto una búsqueda con un colega",
+    "el enlace guarda los filtros",
+    "cómo envío esta vista a otra persona",
+    "cómo copio la dirección de la página"
+   ],
+   "respuesta": "Sí: el explorador actualiza la dirección con los filtros activos (secretaría, eje, estado, vigencia y texto), así que puedes copiar el enlace desde la barra del navegador y enviarlo; quien lo abra verá la misma vista.",
+   "enlaces": [
+    {
+     "texto": "Explorador de metas",
+     "hash": "#/metas"
+    }
+   ],
+   "sugerencias": [
+    "filtrar_explorador",
+    "exportar_csv"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "como_usar_nemequi",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo te hago preguntas?",
+    "cómo te uso",
+    "qué tipo de preguntas entiendes",
+    "puedo escribir preguntas libres",
+    "cómo pregunto",
+    "cómo hablo contigo",
+    "tengo que escribir de alguna forma",
+    "puedo escribirte con mis palabras"
+   ],
+   "respuesta": "Escribe tu pregunta con tus palabras, como se la harías a una compañera: «¿cuántas metas rezagadas tiene Gobierno?», «¿qué es el semáforo?» o «llévame a las alertas». Si no te entiendo, te propongo opciones parecidas. Después de una respuesta puedes seguir con «¿y la de Hacienda?».",
+   "enlaces": [],
+   "sugerencias": [
+    "que_puedes_hacer",
+    "ejemplos_preguntas"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "huellas",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué son las huellas de verificación?",
+    "para qué sirven las huellas",
+    "qué es la verificación técnica",
+    "cómo sé que los datos no cambiaron",
+    "qué es una huella de los datos",
+    "dónde veo las huellas"
+   ],
+   "respuesta": "En Metodología y fuentes hay una «Verificación técnica» con huellas (códigos cortos) de cada conjunto de cifras: permiten comprobar que lo publicado corresponde a las entradas oficiales del corte.",
+   "enlaces": [
+    {
+     "texto": "Metodología y fuentes",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "no_recalcula",
+    "fuentes_datos"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "metodologia_dnp",
+   "categoria": "metodologia",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué metodología usa el portal?",
+    "en qué se basa el seguimiento",
+    "cuál es la metodología de cálculo",
+    "cómo hacen el seguimiento al plan",
+    "resúmeme la metodología",
+    "qué método usan para medir el avance"
+   ],
+   "respuesta": "Se sigue la metodología del DNP: para cada meta se compara el ejecutado acumulado con el programado acumulado al corte; los indicadores de secretaría y eje son medias simples de sus metas programadas; el institucional es la media de las {{n.sec}} secretarías; y el semáforo clasifica el resultado.",
+   "enlaces": [
+    {
+     "texto": "Metodología",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "como_se_calcula",
+    "colores_semaforo",
+    "calculo_institucional"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "no_recalcula",
+   "categoria": "metodologia",
+   "tipo": "info",
+   "formulaciones": [
+    "¿El portal recalcula las cifras?",
+    "puedo confiar en los datos",
+    "quién garantiza las cifras",
+    "las cifras son oficiales",
+    "los números son confiables",
+    "quién valida los datos"
+   ],
+   "respuesta": "El portal no recalcula nada: muestra las cifras oficiales del corte, generadas una sola vez por el proceso de seguimiento a partir de los reportes de las secretarías, y las huellas de verificación permiten comprobarlas.",
+   "enlaces": [
+    {
+     "texto": "Metodología y fuentes",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "huellas",
+    "fuentes_datos"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "formato_decimal",
+   "categoria": "metodologia",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Con cuántos decimales se muestran las cifras?",
+    "por qué usan punto decimal",
+    "cómo se redondean los porcentajes",
+    "por qué 95.9%",
+    "se redondea el indicador",
+    "por qué los decimales"
+   ],
+   "respuesta": "Los porcentajes se muestran con un decimal y punto decimal (por ejemplo, {{sec_top.ind|p}}). Los cálculos usan el valor oficial y solo se redondea para mostrarlo.",
+   "enlaces": [],
+   "sugerencias": [
+    "como_se_calcula"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "meta_programada_al_corte",
+   "categoria": "metodologia",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cuándo una meta se considera programada al corte?",
+    "qué es una meta programada",
+    "qué metas entran en el promedio",
+    "cuáles metas se miden",
+    "cuándo una meta entra al indicador",
+    "qué metas cuentan para el indicador"
+   ],
+   "respuesta": "Una meta es programada al corte cuando tiene programación acumulada hasta el corte, en {{ant}} o en {{vig}} hasta {{corte.trimestre}}. Solo esas metas entran en el promedio; hoy son {{inst.programadas}} de {{inst.metas}}.",
+   "enlaces": [],
+   "sugerencias": [
+    "pnp",
+    "por_que_no_penaliza"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "frecuencia_corte",
+   "categoria": "metodologia",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cada cuánto hay un corte?",
+    "con qué frecuencia se mide",
+    "el corte es mensual",
+    "cuándo se hace el seguimiento",
+    "cada cuánto se reportan las secretarías",
+    "cuál es la periodicidad del seguimiento"
+   ],
+   "respuesta": "El corte se actualiza cada mes: cada secretaría reporta sus avances, Planeación consolida y el portal se regenera con las cifras oficiales. El corte actual es {{corte.texto}}.",
+   "enlaces": [],
+   "sugerencias": [
+    "actualizacion",
+    "que_es_corte"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "jerarquia_indicadores",
+   "categoria": "metodologia",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Cómo se relacionan meta, secretaría, eje e institucional?",
+    "qué orden de agregación tiene el indicador",
+    "de la meta al institucional cómo se llega",
+    "cómo se agregan las metas hasta el indicador general",
+    "jerarquía de los indicadores",
+    "cómo se suman los indicadores por niveles"
+   ],
+   "respuesta": "Primero se calcula el indicador de cada meta (ejecutado ÷ programado acumulados). Luego, el de una secretaría o de un eje promedia sus metas programadas. Por último, el institucional promedia las {{n.sec}} secretarías. Cada nivel es una media simple.",
+   "enlaces": [
+    {
+     "texto": "Metodología",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "como_se_calcula",
+    "calculo_institucional"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "fuentes_datos",
+   "categoria": "fuentes",
+   "tipo": "info",
+   "formulaciones": [
+    "¿De dónde salen las cifras?",
+    "cuáles son las fuentes",
+    "qué fuentes usa el portal",
+    "de dónde vienen los datos",
+    "quién reporta los datos",
+    "qué archivos se usaron",
+    "en qué se basan los datos"
+   ],
+   "respuesta": "",
+   "enlaces": [
+    {
+     "texto": "Metodología y fuentes",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "no_recalcula",
+    "huellas",
+    "metodologia_dnp"
+   ],
+   "handler": "fuentes",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "creditos",
+   "categoria": "fuentes",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Quién elaboró el portal?",
+    "quién hizo el tablero",
+    "créditos",
+    "quién lo desarrolló",
+    "de quién es este portal",
+    "quién es Javier Galindo",
+    "quién está detrás del seguimiento"
+   ],
+   "respuesta": "El portal fue elaborado por el profesional Javier Galindo Bernal, Administrador Público y Especialista en Big Data y Analítica de Datos, en la Secretaría de Planeación y Servicios Públicos de Gachancipá, Cundinamarca (2026). La identidad visual se basa en el sistema GOV.CO.",
+   "enlaces": [
+    {
+     "texto": "Metodología y fuentes",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "fuentes_datos",
+    "sede_electronica"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "sede_electronica",
+   "categoria": "fuentes",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Dónde está la página de la Alcaldía?",
+    "sitio web oficial de Gachancipá",
+    "sede electrónica de la alcaldía",
+    "dónde veo más información de la alcaldía",
+    "cuál es la página oficial",
+    "enlace de la alcaldía"
+   ],
+   "respuesta": "La sede electrónica de la Alcaldía de Gachancipá está en gachancipa-cundinamarca.gov.co; allí encuentras trámites, noticias y datos de contacto. Este portal es solo de seguimiento al Plan.",
+   "enlaces": [
+    {
+     "texto": "Metodología y fuentes",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "creditos",
+    "lim_tramites"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "reportes_secretarias",
+   "categoria": "fuentes",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Quién alimenta los datos?",
+    "quién reporta el avance de las metas",
+    "cómo reportan las secretarías",
+    "de dónde sacan los datos las secretarías",
+    "quién carga la información de cada meta",
+    "cómo llega el avance de cada secretaría a Planeación",
+    "qué hacen las secretarías para reportar"
+   ],
+   "respuesta": "Cada secretaría reporta el avance de sus metas en su archivo de seguimiento, con corte a la fecha acordada. Planeación y Servicios Públicos consolida, valida contra la fuente y genera las cifras oficiales que muestra el portal.",
+   "enlaces": [
+    {
+     "texto": "Metodología y fuentes",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "no_recalcula",
+    "frecuencia_corte"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "datos_para_descargar",
+   "categoria": "fuentes",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Puedo usar los datos en mis propios análisis?",
+    "dónde descargo los datos abiertos",
+    "cómo obtengo la base de datos de metas",
+    "puedo descargar toda la base",
+    "hay archivo con todas las metas",
+    "cómo saco todos los datos del portal"
+   ],
+   "respuesta": "Sí: en el Explorador de metas puedes exportar a CSV todas las metas o solo las filtradas (programado, ejecutado, avances, indicador y estado). Los informes en Word y PDF están en la página Informes.",
+   "enlaces": [
+    {
+     "texto": "Explorador de metas",
+     "hash": "#/metas"
+    }
+   ],
+   "sugerencias": [
+    "exportar_csv",
+    "descargar_informes"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "resumen_general",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "Dame un resumen del corte",
+    "cómo vamos",
+    "resumen general",
+    "cuéntame cómo va todo",
+    "panorama general del plan",
+    "ponme al día",
+    "dame las cifras principales",
+    "cifras clave del PDM"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "resumen",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "ind_inst",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuál es el indicador institucional?",
+    "cómo va el plan de desarrollo",
+    "cuánto avance lleva el plan",
+    "cuál es el avance general",
+    "cuál es el porcentaje de avance del PDM",
+    "qué tan avanzado va el plan",
+    "indicador de la alcaldía",
+    "dame el indicador general"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "ind_inst",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "ind_vigencia",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuál fue el avance de 2025?",
+    "cuánto avanzó el plan en 2025",
+    "cuál es el avance 2026 al corte",
+    "avance de la vigencia 2026",
+    "cómo cerró 2025",
+    "cuál es el avance de este año",
+    "cuánto es el avance del año pasado"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "ind_inst",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "ind_sec",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuál es el indicador de la Secretaría de Gobierno?",
+    "cómo va Hacienda",
+    "cuánto avance tiene Educación",
+    "dame el indicador de Obras Públicas",
+    "porcentaje de avance de Planeación",
+    "qué indicador tiene Desarrollo Social",
+    "cómo le va a la secretaría de Desarrollo Agropecuario",
+    "avance de la secretaría general"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "ind_sec",
+   "acciones": [],
+   "req": "sec"
+  },
+  {
+   "id": "ind_eje",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuál es el indicador del eje 3?",
+    "cómo va el eje de Seguridad",
+    "cuánto avance tiene el eje 5",
+    "indicador del eje de Medio Ambiente",
+    "porcentaje de avance del eje 2",
+    "cómo está el eje de Transparencia",
+    "qué indicador tiene el eje 7",
+    "cómo va el eje de Gestión del Riesgo"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "ind_eje",
+   "acciones": [],
+   "req": "eje"
+  },
+  {
+   "id": "ficha_sec",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "Hablame de la Secretaría de Hacienda",
+    "ficha de Gobierno",
+    "resumen de Educación",
+    "información de Obras Públicas",
+    "dime todo de Planeación",
+    "cuéntame de la secretaría de Desarrollo Social",
+    "quiero saber de Desarrollo Agropecuario",
+    "datos de la Secretaría General"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "ficha_sec",
+   "acciones": [],
+   "req": "sec"
+  },
+  {
+   "id": "ficha_eje",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "Háblame del eje 2",
+    "ficha del eje de Seguridad",
+    "resumen del eje 6",
+    "información del eje de Prosperidad",
+    "dime todo del eje 9",
+    "cuéntame del eje del Río Bogotá",
+    "datos del eje 4"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "ficha_eje",
+   "acciones": [],
+   "req": "eje"
+  },
+  {
+   "id": "conteo_estados",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuántas metas hay en cada estado?",
+    "cómo está repartido el semáforo",
+    "resumen del semáforo",
+    "distribución de metas por estado",
+    "cuántas metas hay cumplidas, en avance, rezagadas y no programadas",
+    "dame el conteo del semáforo",
+    "cuántas metas tiene cada color",
+    "cuál es el estado de las metas"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "conteo",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "conteo_cumplidas",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuántas metas están cumplidas?",
+    "cuántas metas hay cumplidas",
+    "número de metas cumplidas",
+    "cuántas llevan el 100%",
+    "cuántas metas se han cumplido",
+    "cuántas metas cumplidas tiene Gobierno",
+    "cuántas metas cumplidas hay en el eje 2",
+    "cuántas metas cumplidas hay en total"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "conteo",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "conteo_en_avance",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuántas metas están en avance?",
+    "cuántas metas hay en avance",
+    "número de metas en avance",
+    "cuántas metas van avanzando",
+    "cuántas metas en avance tiene Educación",
+    "cuántas metas en avance hay en el eje 6",
+    "cuántas metas en avance hay en total",
+    "cuántas metas ámbar hay"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "conteo",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "conteo_rezagadas",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuántas metas están rezagadas?",
+    "cuántas metas hay rezagadas",
+    "número de metas rezagadas",
+    "cuántas metas van atrasadas",
+    "cuántas metas rezagadas tiene Obras Públicas",
+    "cuántas metas rezagadas hay en el eje 2",
+    "cuántas metas rezagadas hay en total",
+    "cuántas metas están en rojo"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "conteo",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "conteo_no_programadas",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuántas metas no están programadas?",
+    "cuántas metas no programadas hay",
+    "número de metas no programadas",
+    "cuántas metas no tienen programación",
+    "cuántas metas no programadas tiene Gobierno",
+    "cuántas metas sin programación hay en el eje 6",
+    "cuántas metas sin programación hay en total",
+    "cuántas metas grises hay"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "conteo",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "pct_estado",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Qué porcentaje de metas está cumplido?",
+    "qué proporción de metas está rezagada",
+    "cuánto representan las cumplidas del total",
+    "qué porcentaje de las metas está en avance",
+    "qué tanto por ciento de metas son no programadas",
+    "qué parte de las metas está cumplida"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "pct_estado",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "total_metas",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuántas metas tiene el plan?",
+    "cuántas metas hay en total",
+    "número total de metas",
+    "cuántas metas únicas hay",
+    "cuántos registros de meta hay",
+    "cuántas metas tiene Hacienda",
+    "cuántas metas tiene el eje 3",
+    "cuántas metas se siguen"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "totales",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lista_secs",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuáles son las secretarías?",
+    "cuántas secretarías hay",
+    "lista de secretarías",
+    "qué secretarías participan",
+    "nombres de las secretarías",
+    "cuántas dependencias se siguen",
+    "qué secretarías reportan"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "lista_secs",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lista_ejes",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuáles son los ejes del plan?",
+    "cuántos ejes hay",
+    "lista de ejes estratégicos",
+    "nombres de los ejes",
+    "dime los ejes",
+    "qué ejes tiene el plan",
+    "cuántos ejes estratégicos tiene el PDM"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "lista_ejes",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "metas_programadas_n",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuántas metas están programadas al corte?",
+    "cuántas metas tienen programación",
+    "cuántas metas entran en el promedio",
+    "cuántas metas se miden",
+    "cuántas metas están programadas",
+    "cuántas metas cuentan para el indicador"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "programadas",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "mayor_sec",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Qué secretaría tiene el mayor indicador?",
+    "qué secretaría va mejor",
+    "quién tiene el indicador más alto",
+    "secretaría con mejor avance",
+    "cuál lidera",
+    "cuál es la secretaría con más avance",
+    "qué secretaría tiene el indicador más alto"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "extremo_sec",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "menor_sec",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Qué secretaría tiene el menor indicador?",
+    "qué secretaría va más atrasada",
+    "secretaría con el indicador más bajo",
+    "cuál tiene menor avance",
+    "quién va de última",
+    "cuál está más abajo",
+    "qué secretaría tiene menos avance",
+    "qué secretaría va peor"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "extremo_sec",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "mayor_eje",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Qué eje tiene el mayor indicador?",
+    "qué eje va mejor",
+    "cuál eje tiene el indicador más alto",
+    "eje con mejor avance",
+    "cuál es el eje que lidera",
+    "qué eje tiene más avance"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "extremo_eje",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "menor_eje",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Qué eje tiene el menor indicador?",
+    "qué eje va más atrasado",
+    "cuál eje tiene el indicador más bajo",
+    "eje con menor avance",
+    "qué eje tiene menos avance",
+    "cuál es el eje más rezagado",
+    "qué eje va peor"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "extremo_eje",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "ranking_sec",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "Ranking de secretarías",
+    "ordena las secretarías por indicador",
+    "dame el ranking",
+    "clasificación de las secretarías",
+    "tabla de posiciones",
+    "secretarías de mayor a menor",
+    "quiero ver el orden de las secretarías"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "ranking_sec",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "ranking_eje",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "Ranking de ejes",
+    "ordena los ejes por indicador",
+    "clasificación de los ejes",
+    "ejes de mayor a menor",
+    "dame el orden de los ejes",
+    "tabla de posiciones de los ejes"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "ranking_eje",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "extremo_estado",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Qué secretaría tiene más metas rezagadas?",
+    "cuál secretaría tiene más metas cumplidas",
+    "qué eje tiene más metas no programadas",
+    "dónde hay más rezagadas",
+    "qué secretaría tiene más metas en avance",
+    "en qué eje hay más metas cumplidas",
+    "dónde se concentran las metas rezagadas"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "extremo_estado",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "rezagadas_lista",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuáles son las metas rezagadas?",
+    "lista de metas rezagadas",
+    "cuáles metas están en rojo",
+    "qué metas van atrasadas",
+    "qué metas hay que acompañar",
+    "metas rezagadas del eje 4",
+    "qué metas rezagadas tiene Hacienda",
+    "metas rezagadas de Obras Públicas en el eje 6"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "rezagadas",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "no_programadas_lista",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuáles son las metas no programadas?",
+    "qué metas no tienen programación",
+    "dime las no programadas",
+    "lista de metas sin programación",
+    "cuáles metas están en gris",
+    "qué metas no tienen programación al corte de Gobierno"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "noprog",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "cumplidas_lista",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuáles son las metas cumplidas?",
+    "qué metas están al 100%",
+    "dime las metas cumplidas",
+    "lista de logros",
+    "qué hemos logrado",
+    "cuáles metas se cumplieron",
+    "qué metas cumplidas tiene Desarrollo Social"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "cumplidas",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "meta_detalle",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "Detalle de la meta 14",
+    "qué dice la meta 14",
+    "información de la meta 17",
+    "cómo va la meta 20",
+    "estado de la meta 25",
+    "de qué trata la meta 100",
+    "la meta 17 está rezagada",
+    "consulta la meta 43"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "meta",
+   "acciones": [],
+   "req": "meta"
+  },
+  {
+   "id": "meta_busqueda",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "Busca la meta de vivienda",
+    "hay alguna meta sobre residuos",
+    "qué meta habla de acueducto",
+    "metas relacionadas con tránsito",
+    "encuentra la meta de la Policía",
+    "hay metas de biblioteca",
+    "qué metas hay sobre agua",
+    "busca metas de cultura"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "meta_texto",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "metas_sec",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Qué metas tiene la Secretaría de Gobierno?",
+    "metas de la secretaría de Hacienda",
+    "muéstrame las metas de Educación",
+    "lista las metas de Obras Públicas",
+    "cuáles son las metas de Planeación",
+    "qué metas le corresponden a Desarrollo Social",
+    "metas a cargo de Desarrollo Agropecuario"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "metas_sec",
+   "acciones": [],
+   "req": "sec"
+  },
+  {
+   "id": "metas_eje",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Qué metas tiene el eje 3?",
+    "metas del eje de Seguridad",
+    "muéstrame las metas del eje 5",
+    "lista las metas del eje 2",
+    "cuáles son las metas del eje de Medio Ambiente",
+    "qué metas hay en el eje 9",
+    "metas que pertenecen al eje 7"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "metas_eje",
+   "acciones": [],
+   "req": "eje"
+  },
+  {
+   "id": "comparar",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "Compara Gobierno con Hacienda",
+    "qué diferencia hay entre Educación y Obras Públicas",
+    "quién va mejor, Desarrollo Social o Planeación",
+    "compara el eje 2 y el eje 3",
+    "Gobierno contra Hacienda",
+    "comparar secretarías",
+    "diferencia entre el eje 4 y el eje 5",
+    "Gobierno vs Educación"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "comparar",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "sec_vs_inst",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cómo está Hacienda frente al indicador institucional?",
+    "está Gobierno por encima del promedio",
+    "Educación está por debajo del indicador general",
+    "Obras Públicas supera el promedio institucional",
+    "cómo se compara Planeación con el promedio",
+    "cómo está el eje 2 frente al institucional"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "vs_inst",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "sobre_inst",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Qué secretarías están por encima del indicador institucional?",
+    "cuáles secretarías superan el promedio",
+    "quién está por debajo del promedio general",
+    "cuántas secretarías superan el indicador institucional",
+    "secretarías por debajo del institucional",
+    "qué ejes están por encima del promedio"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "sobre_inst",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "certificables_datos",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuántas metas son certificables?",
+    "cuáles metas se pueden certificar",
+    "metas certificables",
+    "cuántas metas se certifican",
+    "lista de certificables",
+    "cuántas metas certificables tiene Educación",
+    "dime las metas certificables"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "certificables",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "pendientes_t4",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuántas metas están al 100% con programación posterior?",
+    "cuántas metas tienen T4 pendiente",
+    "metas pendientes de certificar",
+    "qué metas se certifican al cierre",
+    "cuántas metas cumplidas tienen programación en el cuarto trimestre",
+    "metas cumplidas con programación posterior"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "pendientes",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "compartidas_datos",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuáles son las metas compartidas?",
+    "cuántas metas compartidas hay",
+    "qué metas comparten varias secretarías",
+    "dime las metas compartidas",
+    "qué metas están repartidas entre secretarías",
+    "metas compartidas con valores distintos",
+    "cuántas metas son compartidas"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "compartidas",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "cambio_anios",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Qué cambió entre 2025 y 2026?",
+    "cómo va 2026 frente a 2025",
+    "mejoró el avance respecto a 2025",
+    "comparación 2025 2026",
+    "el avance subió o bajó",
+    "cómo cambió el avance de Gobierno frente a 2025",
+    "cómo cambió el avance del eje 3 respecto a 2025",
+    "diferencia entre 2025 y 2026"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "cambio",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "corte_datos",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuál es la fecha de corte?",
+    "a qué fecha están los datos",
+    "hasta qué fecha van las cifras",
+    "qué corte es este",
+    "cuál es el corte actual",
+    "cuándo se generó el portal",
+    "de qué mes son los datos",
+    "a cuándo corresponde la información"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "corte",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "sobreejecucion_datos",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuáles metas superan el 100%?",
+    "qué metas tienen más de 100",
+    "metas con ejecución superior a la programada",
+    "cuáles metas pasan del 100 por ciento",
+    "cuántas metas tienen indicador mayor a 100",
+    "qué metas se sobreejecutaron"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "sobre",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "arrastre_datos",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuáles metas tienen arrastre?",
+    "cuántas metas de arrastre hay",
+    "metas sin programación 2026 al corte",
+    "qué metas vienen de 2025",
+    "dime las metas con arrastre de 2025",
+    "cuántas metas tienen la marca de arrastre"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "arrastre",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "verificacion_datos",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Qué meta está en verificación?",
+    "hay metas en verificación",
+    "cuál es la meta con escala mixta",
+    "metas con datos por aclarar",
+    "qué metas se están verificando con la secretaría",
+    "cuál meta tiene escala distinta"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "verificacion",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "mas_metas",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Qué secretaría tiene más metas?",
+    "qué eje tiene más metas",
+    "cuál tiene menos metas",
+    "quién tiene mayor número de metas",
+    "qué secretaría tiene menos metas",
+    "cuál eje concentra más metas"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "mas_metas",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "sin_rezago",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Qué secretarías no tienen metas rezagadas?",
+    "qué ejes no tienen rezagadas",
+    "dónde no hay metas en rojo",
+    "cuáles están libres de rezago",
+    "qué secretarías no tienen ninguna meta rezagada",
+    "qué ejes no tienen metas rezagadas"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "sin_rezago",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "secs_de_eje",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Qué secretarías participan en el eje 2?",
+    "quiénes responden por el eje 4",
+    "qué secretarías tienen metas en el eje 5",
+    "qué secretarías están en el eje de Seguridad",
+    "quién ejecuta el eje 9",
+    "qué dependencias atienden el eje 6"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "secs_eje",
+   "acciones": [],
+   "req": "eje"
+  },
+  {
+   "id": "ejes_de_sec",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿En qué ejes tiene metas Gobierno?",
+    "qué ejes atiende Educación",
+    "ejes de Obras Públicas",
+    "en qué ejes participa Hacienda",
+    "a qué ejes aporta Planeación",
+    "qué ejes cubre Desarrollo Social"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "ejes_sec",
+   "acciones": [],
+   "req": "sec"
+  },
+  {
+   "id": "meta_extremo",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Cuál es la meta con menor avance?",
+    "meta con mayor indicador",
+    "cuál meta va peor",
+    "meta más atrasada",
+    "cuál es la meta con más avance",
+    "qué meta tiene el indicador más bajo",
+    "cuál meta tiene el indicador más alto"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "meta_extremo",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "verificar_cifra",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Es cierto que el indicador institucional es 99.9%?",
+    "verdad que Hacienda tiene 12.3%",
+    "confírmame que Gobierno está en 50%",
+    "dicen que hay 300 metas, ¿es cierto?",
+    "me dijeron que el eje 2 va en 70%, ¿correcto?",
+    "es verdad que ya se cumplió todo"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "verificar",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "secs_pocas_metas",
+   "categoria": "datos",
+   "tipo": "datos",
+   "formulaciones": [
+    "¿Qué secretarías tienen pocas metas?",
+    "por qué Desarrollo Institucional tiene solo dos metas",
+    "secretarías con menos de tres metas",
+    "por qué hay secretarías con tan pocas metas",
+    "qué secretarías tienen menos metas programadas"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "pocas_metas",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "ir_resumen",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Llévame al resumen",
+    "ir al inicio",
+    "abre el resumen ejecutivo",
+    "quiero ver la página principal",
+    "volver al inicio",
+    "vamos al resumen",
+    "llévame a la portada"
+   ],
+   "respuesta": "Claro, te llevo a «Resumen ejecutivo».",
+   "enlaces": [
+    {
+     "texto": "Resumen ejecutivo",
+     "hash": "#/resumen"
+    }
+   ],
+   "sugerencias": [
+    "pagina_resumen",
+    "ind_inst"
+   ],
+   "handler": null,
+   "acciones": [
+    {
+     "tipo": "ir",
+     "hash": "#/resumen"
+    }
+   ],
+   "req": null
+  },
+  {
+   "id": "ir_ejes",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Llévame a los ejes",
+    "abre avance por eje",
+    "quiero ver los ejes estratégicos",
+    "ir a ejes",
+    "muéstrame la página de ejes",
+    "vamos a los ejes"
+   ],
+   "respuesta": "Claro, te llevo a «Avance por eje estratégico».",
+   "enlaces": [
+    {
+     "texto": "Avance por eje estratégico",
+     "hash": "#/ejes"
+    }
+   ],
+   "sugerencias": [
+    "pagina_ejes",
+    "ranking_eje"
+   ],
+   "handler": null,
+   "acciones": [
+    {
+     "tipo": "ir",
+     "hash": "#/ejes"
+    }
+   ],
+   "req": null
+  },
+  {
+   "id": "ir_secretarias",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Llévame a las secretarías",
+    "abre la página de secretarías",
+    "quiero ver todas las secretarías",
+    "ir a secretarías",
+    "muéstrame las secretarías en tarjetas"
+   ],
+   "respuesta": "Claro, te llevo a «Secretarías».",
+   "enlaces": [
+    {
+     "texto": "Secretarías",
+     "hash": "#/secretarias"
+    }
+   ],
+   "sugerencias": [
+    "pagina_secretarias",
+    "ranking_sec"
+   ],
+   "handler": null,
+   "acciones": [
+    {
+     "tipo": "ir",
+     "hash": "#/secretarias"
+    }
+   ],
+   "req": null
+  },
+  {
+   "id": "ir_explorador",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Llévame al explorador de metas",
+    "abre el buscador de metas",
+    "quiero ver todas las metas",
+    "ir a la tabla de metas",
+    "abre el explorador",
+    "vamos al explorador de metas"
+   ],
+   "respuesta": "Claro, te llevo a «Explorador de metas».",
+   "enlaces": [
+    {
+     "texto": "Explorador de metas",
+     "hash": "#/metas"
+    }
+   ],
+   "sugerencias": [
+    "pagina_explorador",
+    "filtrar_explorador"
+   ],
+   "handler": null,
+   "acciones": [
+    {
+     "tipo": "ir",
+     "hash": "#/metas"
+    }
+   ],
+   "req": null
+  },
+  {
+   "id": "ir_logros",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Llévame a logros",
+    "abre la página de metas cumplidas",
+    "quiero ver los logros",
+    "ir a logros y metas cumplidas",
+    "muéstrame las metas certificables en la página de logros"
+   ],
+   "respuesta": "Claro, te llevo a «Logros y metas cumplidas».",
+   "enlaces": [
+    {
+     "texto": "Logros y metas cumplidas",
+     "hash": "#/logros"
+    }
+   ],
+   "sugerencias": [
+    "meta_certificable",
+    "certificables_datos"
+   ],
+   "handler": null,
+   "acciones": [
+    {
+     "tipo": "ir",
+     "hash": "#/logros"
+    }
+   ],
+   "req": null
+  },
+  {
+   "id": "ir_alertas",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Llévame a las alertas",
+    "abre la página de alertas",
+    "quiero ver las alertas",
+    "ir a alertas",
+    "vamos a las metas por acompañar"
+   ],
+   "respuesta": "Claro, te llevo a «Alertas».",
+   "enlaces": [
+    {
+     "texto": "Alertas",
+     "hash": "#/alertas"
+    }
+   ],
+   "sugerencias": [
+    "rezagadas_lista",
+    "pagina_alertas"
+   ],
+   "handler": null,
+   "acciones": [
+    {
+     "tipo": "ir",
+     "hash": "#/alertas"
+    }
+   ],
+   "req": null
+  },
+  {
+   "id": "ir_compartidas",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Llévame a metas compartidas",
+    "abre calidad de dato",
+    "quiero ver las metas compartidas en su página",
+    "ir a metas compartidas y calidad de dato",
+    "muéstrame la página de arrastre"
+   ],
+   "respuesta": "Claro, te llevo a «Metas compartidas y calidad de dato».",
+   "enlaces": [
+    {
+     "texto": "Metas compartidas y calidad de dato",
+     "hash": "#/compartidas"
+    }
+   ],
+   "sugerencias": [
+    "meta_compartida",
+    "arrastre"
+   ],
+   "handler": null,
+   "acciones": [
+    {
+     "tipo": "ir",
+     "hash": "#/compartidas"
+    }
+   ],
+   "req": null
+  },
+  {
+   "id": "ir_informes",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "¿Dónde descargo los informes?",
+    "llévame a informes",
+    "abre la página de informes",
+    "ir a descargas",
+    "quiero ver los informes",
+    "dónde está la sección de informes"
+   ],
+   "respuesta": "Claro, te llevo a «Informes».",
+   "enlaces": [
+    {
+     "texto": "Informes",
+     "hash": "#/informes"
+    }
+   ],
+   "sugerencias": [
+    "descargar_informes",
+    "informes_anio"
+   ],
+   "handler": null,
+   "acciones": [
+    {
+     "tipo": "ir",
+     "hash": "#/informes"
+    }
+   ],
+   "req": null
+  },
+  {
+   "id": "ir_metodologia",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Llévame a metodología",
+    "abre metodología y fuentes",
+    "dónde se explica la metodología",
+    "ir a la metodología",
+    "llévame al glosario",
+    "abre el glosario del portal"
+   ],
+   "respuesta": "Claro, te llevo a «Metodología y fuentes».",
+   "enlaces": [
+    {
+     "texto": "Metodología y fuentes",
+     "hash": "#/metodologia"
+    }
+   ],
+   "sugerencias": [
+    "como_se_calcula",
+    "glosario"
+   ],
+   "handler": null,
+   "acciones": [
+    {
+     "tipo": "ir",
+     "hash": "#/metodologia"
+    }
+   ],
+   "req": null
+  },
+  {
+   "id": "ir_tablero",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Abre el tablero de control",
+    "ir al tablero de una página",
+    "llévame al dashboard simple",
+    "quiero ver el tablero de una sola página",
+    "abre tablero.html",
+    "llévame al tablero con filtros por vigencia"
+   ],
+   "respuesta": "Te dejo el enlace al tablero de control de una sola página.",
+   "enlaces": [
+    {
+     "texto": "Tablero de una sola página",
+     "hash": "tablero.html"
+    }
+   ],
+   "sugerencias": [
+    "tablero_una_pagina",
+    "ambas_distinto"
+   ],
+   "handler": null,
+   "acciones": [
+    {
+     "tipo": "abrir",
+     "href": "tablero.html"
+    }
+   ],
+   "req": null
+  },
+  {
+   "id": "ir_sec",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Llévame a la Secretaría de Gobierno",
+    "abre la ficha de Hacienda",
+    "quiero ver la página de Educación",
+    "ir a Obras Públicas",
+    "muéstrame la secretaría de Planeación",
+    "abre la página de Desarrollo Social",
+    "llévame a la ficha de Desarrollo Agropecuario"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "nav_sec",
+   "acciones": [],
+   "req": "sec"
+  },
+  {
+   "id": "ir_eje",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Llévame al eje 3",
+    "abre el eje de Seguridad",
+    "ir al eje 5",
+    "ver la página del eje 2",
+    "muéstrame el eje de Transparencia",
+    "abre el eje 9",
+    "llévame al eje de Medio Ambiente"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "nav_eje",
+   "acciones": [],
+   "req": "eje"
+  },
+  {
+   "id": "ir_meta",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Llévame a la meta 14",
+    "abre la meta 17",
+    "ir a la meta 20",
+    "ver la página de la meta 33",
+    "abre el detalle de la meta 100",
+    "muéstrame la meta 5 en su página"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "nav_meta",
+   "acciones": [],
+   "req": "meta"
+  },
+  {
+   "id": "informe_general_dl",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "¿Dónde descargo el informe de gestión?",
+    "descargar informe general",
+    "quiero el informe general en PDF",
+    "dame el informe consolidado",
+    "dónde está el informe de gestión 2026",
+    "descarga el informe general en Word"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "informe_general",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "informe_sec_dl",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "¿Dónde descargo el informe de Gobierno?",
+    "descargar el informe de Educación",
+    "quiero el PDF de Obras Públicas",
+    "informe de seguimiento de Hacienda en Word",
+    "dónde está el informe de Planeación",
+    "bajar el informe de Desarrollo Social",
+    "necesito el informe de la secretaría general"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "informe_sec",
+   "acciones": [],
+   "req": "sec"
+  },
+  {
+   "id": "ver_metas_estado",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Muéstrame solo las metas rezagadas",
+    "quiero ver las metas cumplidas en el explorador",
+    "filtra las metas en avance",
+    "llévame a las metas no programadas",
+    "abre las metas rezagadas de Educación",
+    "filtra las metas cumplidas de Gobierno en el explorador",
+    "ver en el explorador las metas del eje 2"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "nav_metas",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "accion_csv",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Exporta las metas a CSV",
+    "descarga el CSV",
+    "exporta lo filtrado",
+    "descarga la tabla en Excel ahora",
+    "exporta las metas rezagadas",
+    "saca el CSV de las metas de Gobierno"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "accion_csv",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "accion_tema",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Pon el modo noche",
+    "activa el modo oscuro",
+    "cambia a modo día",
+    "quita el modo oscuro",
+    "cambia el tema",
+    "ponme el fondo claro",
+    "activa el modo claro",
+    "modo oscuro por favor"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "accion_tema",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "accion_imprimir",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Imprime esta página",
+    "quiero imprimir",
+    "manda a imprimir",
+    "imprime lo que estoy viendo",
+    "imprimir ahora",
+    "abre el diálogo de impresión"
+   ],
+   "respuesta": "Abriré el diálogo de impresión; allí también puedes elegir «Guardar como PDF».",
+   "enlaces": [],
+   "sugerencias": [
+    "descargar_informes",
+    "word_vs_pdf"
+   ],
+   "handler": null,
+   "acciones": [
+    {
+     "tipo": "imprimir"
+    }
+   ],
+   "req": null
+  },
+  {
+   "id": "accion_limpiar",
+   "categoria": "navegacion",
+   "tipo": "navegacion",
+   "formulaciones": [
+    "Limpia los filtros",
+    "quita todos los filtros",
+    "borra los filtros",
+    "reinicia los filtros",
+    "deja el explorador sin filtros",
+    "resetea los filtros"
+   ],
+   "respuesta": "Listo, limpio los filtros para que veas todas las metas.",
+   "enlaces": [
+    {
+     "texto": "Explorador de metas",
+     "hash": "#/metas"
+    }
+   ],
+   "sugerencias": [
+    "pagina_explorador",
+    "filtrar_explorador"
+   ],
+   "handler": null,
+   "acciones": [
+    {
+     "tipo": "limpiar_filtros"
+    }
+   ],
+   "req": null
+  },
+  {
+   "id": "lim_presupuesto",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Cuánto presupuesto tiene la secretaría?",
+    "cuánto se ha invertido en vivienda",
+    "cuánto dinero se gastó",
+    "presupuesto asignado a cada meta",
+    "recursos ejecutados",
+    "cuál es el presupuesto del plan",
+    "cuánto cuesta esta meta",
+    "ejecución presupuestal"
+   ],
+   "respuesta": "El portal no contiene información presupuestal ni financiera: solo mide el avance físico de las metas frente a lo programado. Para presupuesto o ejecución de recursos, consulta a la Secretaría de Hacienda o a Planeación y Servicios Públicos.",
+   "enlaces": [],
+   "sugerencias": [
+    "ind_inst",
+    "que_es_indicador"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_contratos",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Qué contratos tiene esta meta?",
+    "quién es el contratista",
+    "cuántos contratos se firmaron",
+    "valor del contrato",
+    "qué proyecto de inversión financia la meta",
+    "cuál es el BPIN",
+    "qué contratistas ejecutan las metas"
+   ],
+   "respuesta": "El portal no incluye contratos, contratistas ni proyectos de inversión; solo el avance de cada meta frente a lo programado. Esa información la tiene la secretaría responsable de la meta; también puedes consultar la contratación pública oficial.",
+   "enlaces": [],
+   "sugerencias": [
+    "meta_detalle",
+    "que_es_indicador"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_personas",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Quién es el secretario de Gobierno?",
+    "cómo se llama el alcalde",
+    "quién es el responsable de la meta 14",
+    "nombre del funcionario a cargo",
+    "teléfono de la secretaría",
+    "correo de Planeación",
+    "quién es el jefe de Hacienda",
+    "quién maneja esta meta"
+   ],
+   "respuesta": "No publico nombres de funcionarios ni datos de contacto: el portal muestra la secretaría responsable de cada meta. Para contactos, consulta la sede electrónica de la Alcaldía o a Planeación y Servicios Públicos.",
+   "enlaces": [],
+   "sugerencias": [
+    "sede_electronica",
+    "ficha_sec"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_causas",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Por qué está rezagada la meta?",
+    "cuál es la causa del atraso",
+    "qué pasó con la meta que no avanza",
+    "por qué no se ha cumplido",
+    "a qué se debe el rezago",
+    "qué problema tiene la meta 90",
+    "por qué la secretaría va lenta",
+    "por qué Educación tiene metas rezagadas"
+   ],
+   "respuesta": "El portal muestra cuánto se ha avanzado, no las causas. Las razones de un rezago (cronograma, contratación, factores externos) las conoce la secretaría responsable; te sugiero consultarla o pedir los soportes a Planeación. Esto es para acompañar, no para señalar a nadie.",
+   "enlaces": [
+    {
+     "texto": "Alertas",
+     "hash": "#/alertas"
+    }
+   ],
+   "sugerencias": [
+    "rezagadas_lista",
+    "que_es_rezagada"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_culpables",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Quién tiene la culpa del rezago?",
+    "quién es el responsable del atraso",
+    "qué secretaría es la peor",
+    "a quién hay que sancionar",
+    "quién está fallando",
+    "ponle nota a la secretaría",
+    "quién incumplió",
+    "qué secretaría es la más incumplida"
+   ],
+   "respuesta": "No señalo culpables ni califico dependencias: las cifras sirven para acompañar y aclarar cronogramas. Cada secretaría responde por metas distintas y de distinta magnitud. Si quieres, te muestro los datos de una meta o una secretaría para entender mejor el caso.",
+   "enlaces": [],
+   "sugerencias": [
+    "no_es_calificacion",
+    "rezagadas_lista"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_futuro",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Cuánto avance tendrá en diciembre?",
+    "se va a cumplir el plan",
+    "cuánto será el indicador al cierre",
+    "proyección de cumplimiento",
+    "llegaremos al 100%",
+    "qué pasará en 2027",
+    "predicción del indicador",
+    "cómo cerraremos el año"
+   ],
+   "respuesta": "El portal refleja el avance al corte {{corte.texto}}; no proyecta ni predice resultados. Lo programado para {{corte.posteriores}} aún no se cuenta. Puedo mostrarte lo ejecutado frente a lo programado hoy.",
+   "enlaces": [],
+   "sugerencias": [
+    "ind_inst",
+    "pendientes_t4"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_opinion",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Está bien la gestión del alcalde?",
+    "quién gobierna mejor",
+    "el plan va bien o mal",
+    "es buena la administración",
+    "vale la pena votar",
+    "opinas que la secretaría hace bien su trabajo",
+    "está mal el plan",
+    "qué opinas del gobierno"
+   ],
+   "respuesta": "No emito opiniones políticas ni valoraciones de gestión: ofrezco las cifras oficiales y cómo leerlas. Por ejemplo, el indicador institucional al corte es {{inst.ind|p}}; la interpretación corresponde a cada lector, incluido el Concejo en su control político.",
+   "enlaces": [],
+   "sugerencias": [
+    "ind_inst",
+    "como_se_calcula"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_otros_municipios",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Cómo va el PDM de otro municipio?",
+    "compara con Cajicá",
+    "cómo está Zipaquirá",
+    "indicador de otros municipios",
+    "promedio de Cundinamarca",
+    "cómo está Gachancipá frente a otros municipios",
+    "compárame con Sopó"
+   ],
+   "respuesta": "El portal solo contiene el seguimiento al PDM de Gachancipá, así que no puedo compararlo con otros municipios.",
+   "enlaces": [],
+   "sugerencias": [
+    "ind_inst",
+    "resumen_general"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_historico",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Cuál era el indicador en agosto?",
+    "datos del corte anterior",
+    "cómo estaba en junio",
+    "evolución mensual",
+    "histórico de cortes",
+    "indicador de marzo",
+    "serie mensual del avance",
+    "cómo estaba el mes pasado"
+   ],
+   "respuesta": "El portal muestra un solo corte ({{corte.texto}}) y la comparación entre las vigencias {{ant}} y {{vig}}; no guarda una serie mensual. Para cortes anteriores, consulta a Planeación y Servicios Públicos.",
+   "enlaces": [],
+   "sugerencias": [
+    "cambio_anios",
+    "corte_datos"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_trimestre",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Cuánto avanzó en el primer trimestre?",
+    "avance del T1 2026",
+    "solo el segundo trimestre",
+    "desglose por trimestres",
+    "avance de cada trimestre",
+    "cuánto fue el avance del T2"
+   ],
+   "respuesta": "El portal acumula hasta el corte y no desglosa el avance trimestre a trimestre. Para ese detalle, consulta los reportes de la secretaría o a Planeación.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_es_trimestre",
+    "cambio_anios"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_ubicacion",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿En qué vereda se ejecuta la meta?",
+    "dónde queda el proyecto",
+    "en qué barrio es la obra",
+    "mapa de las obras",
+    "georreferenciación de las metas",
+    "dónde se construye la vía",
+    "en qué sector se hace"
+   ],
+   "respuesta": "El portal no incluye ubicación geográfica de las metas ni mapas. Esa información la tiene la secretaría responsable.",
+   "enlaces": [],
+   "sugerencias": [
+    "meta_detalle",
+    "ficha_sec"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_tramites",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Cómo pago el impuesto predial?",
+    "quiero sacar un certificado",
+    "dónde hago un trámite",
+    "horario de la alcaldía",
+    "cómo radico una petición",
+    "PQRS",
+    "quiero pedir una cita",
+    "cómo hago un derecho de petición"
+   ],
+   "respuesta": "Este es un portal de seguimiento al Plan, no atiende trámites, PQRS ni horarios. Para eso, usa la sede electrónica de la Alcaldía de Gachancipá o acércate a la Alcaldía.",
+   "enlaces": [],
+   "sugerencias": [
+    "sede_electronica",
+    "que_es_portal"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_fuera_tema",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Cuál es la capital de Francia?",
+    "cuéntame un chiste",
+    "qué hora es",
+    "cómo estará el clima",
+    "resultados del fútbol",
+    "dame una receta",
+    "quién ganó el partido",
+    "escribe un poema"
+   ],
+   "respuesta": "Eso queda fuera de lo que puedo responder: me dedico a explicar y consultar el portal de seguimiento al PDM de Gachancipá. ¿Quieres ver cómo va el indicador del corte o aprender a leer el semáforo?",
+   "enlaces": [],
+   "sugerencias": [
+    "ind_inst",
+    "colores_semaforo",
+    "que_puedes_hacer"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_inventar",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "Invéntame un dato",
+    "inventa un número",
+    "supón que Hacienda tiene 100%",
+    "dame un número cualquiera",
+    "di que el indicador es 100%",
+    "cambia el indicador de Gobierno",
+    "pon que todas las metas están cumplidas",
+    "haz de cuenta que cumplimos todo"
+   ],
+   "respuesta": "No puedo inventar ni modificar cifras: todo lo que respondo sale de los datos oficiales del corte {{corte.texto}}. Si quieres, te muestro el valor real.",
+   "enlaces": [],
+   "sugerencias": [
+    "ind_inst",
+    "resumen_general"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_editar",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Puedo corregir un dato desde aquí?",
+    "cómo edito una meta",
+    "quiero actualizar el avance de mi meta",
+    "subir mi reporte",
+    "cargar información",
+    "cómo cambio el dato de una secretaría",
+    "puedo modificar el avance"
+   ],
+   "respuesta": "El portal es de consulta: no permite editar ni cargar datos. Los cambios se hacen en el reporte de la secretaría y se ven reflejados cuando Planeación genere el siguiente corte.",
+   "enlaces": [],
+   "sugerencias": [
+    "frecuencia_corte",
+    "reportes_secretarias"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_calidad_impacto",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Las metas cumplidas tienen calidad?",
+    "el cumplimiento significa impacto en la gente",
+    "miden el impacto en la ciudadanía",
+    "el portal mide satisfacción",
+    "cumplir la meta mejora la vida de las personas",
+    "miden resultados o solo productos"
+   ],
+   "respuesta": "El indicador mide cumplimiento frente a lo programado (avance de producto), no la calidad, el impacto ni la satisfacción ciudadana. Para evaluar resultados e impacto se requieren otros instrumentos de evaluación.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_es_indicador",
+    "que_es_meta_producto"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_normativa",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Qué dice la ley sobre el plan de desarrollo?",
+    "qué artículo ordena el seguimiento",
+    "es obligatorio hacer seguimiento",
+    "ley 152",
+    "cuál es el fundamento legal del plan",
+    "qué norma aprobó el plan",
+    "qué acuerdo adoptó el PDM"
+   ],
+   "respuesta": "El portal no es una fuente normativa. Para el fundamento legal del PDM (el Acuerdo que lo adopta y las normas de planeación), consulta a Planeación y Servicios Públicos o el Concejo Municipal.",
+   "enlaces": [],
+   "sugerencias": [
+    "que_es_pdm",
+    "que_es_dnp"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_secretaria_inexistente",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Cuál es el indicador de la Secretaría de Salud?",
+    "cómo va la secretaría de Turismo",
+    "avance de la secretaría de Movilidad",
+    "cuántas metas tiene la secretaría de Cultura y Turismo",
+    "indicador de la oficina jurídica",
+    "cómo va la personería",
+    "cómo va la Secretaría de Tránsito"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "sec_inexistente",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_eje_inexistente",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Cómo va el eje 15?",
+    "indicador del eje 12",
+    "qué metas tiene el eje 20",
+    "dame el eje 0",
+    "muéstrame el eje 11",
+    "cuál es el avance del eje 13"
+   ],
+   "respuesta": "",
+   "enlaces": [],
+   "sugerencias": [],
+   "handler": "eje_inexistente",
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "lim_demografia",
+   "categoria": "limites",
+   "tipo": "limite",
+   "formulaciones": [
+    "¿Cuántos habitantes tiene Gachancipá?",
+    "cuál es la población del municipio",
+    "cuántas personas viven en Gachancipá",
+    "cuál es el nivel de pobreza",
+    "qué tasa de desempleo hay",
+    "cuál es el PIB del municipio",
+    "datos del censo"
+   ],
+   "respuesta": "El portal no contiene indicadores sociodemográficos ni económicos del municipio (población, pobreza, empleo): solo el seguimiento a las metas del Plan. Para esos datos, consulta el DANE o a Planeación y Servicios Públicos.",
+   "enlaces": [],
+   "sugerencias": [
+    "ind_inst",
+    "que_es_portal"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
+   "id": "sin_reporte_secretaria",
+   "categoria": "funcionamiento",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Qué pasa si una secretaría no reporta?",
+    "qué sucede si una secretaría no entrega su reporte",
+    "si una secretaría no reporta sus metas, qué se ve en el portal",
+    "y si una dependencia no envía el avance",
+    "qué ocurre cuando una secretaría no reporta el avance",
+    "cómo se muestra una secretaría que no reportó"
+   ],
+   "respuesta": "El portal no supone ni completa datos: muestra lo que cada secretaría reportó en su archivo de seguimiento. Una meta programada sin ejecución registrada aparece con indicador 0% y queda rezagada, una señal para acompañar y aclarar con la secretaría; una meta sin programación al corte queda no programada y no penaliza. Cuando la secretaría complete su reporte, el cambio se ve en el siguiente corte.",
+   "enlaces": [
+    {
+     "texto": "Alertas",
+     "hash": "#/alertas"
+    }
+   ],
+   "sugerencias": [
+    "cero_porciento",
+    "reportes_secretarias",
+    "frecuencia_corte"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  }
+ ]
+}

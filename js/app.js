@@ -5,7 +5,7 @@
   var doc = document, root = doc.documentElement;
   var $ = function (s) { return doc.querySelector(s); };
   var main = $("#main"), titulo = $("#pageTitle"), crumbs = $("#crumbs");
-  var RUTAS = { resumen: "resumen", ejes: "ejes", secretarias: "secretarias", metas: "metas", meta: "metas", logros: "logros", alertas: "alertas", compartidas: "compartidas", informes: "informes", metodologia: "metodologia" };
+  var RUTAS = { resumen: "resumen", ejes: "ejes", secretarias: "secretarias", metas: "metas", meta: "metas", logros: "logros", alertas: "alertas", compartidas: "compartidas", informes: "informes", metodologia: "metodologia", ayuda: "ayuda" };
   var App = window.App = {};
   var primera = true;
 
@@ -112,10 +112,14 @@
       }
     });
   }
-  function render() {
+  var SKEL = '<div class="skel" aria-hidden="true"><div class="sk sk-ban"></div><div class="sk-row"><div class="sk sk-k"></div><div class="sk sk-k"></div><div class="sk sk-k"></div></div><div class="sk-row two"><div class="sk sk-c"></div><div class="sk sk-c"></div></div></div>';
+  var tk = 0, prev = null;
+  function reducido() { return window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches; }
+  function render(opts) {
+    opts = opts && opts.keep ? opts : {};
     var ctx = parsear();
     if (!ctx.ruta) { location.replace("#/resumen"); return; }
-    var clave = RUTAS[ctx.ruta], pg;
+    var clave = RUTAS[ctx.ruta], pg, mi = ++tk;
     Charts.reset();
     try {
       pg = clave ? window.Paginas[ctx.ruta](ctx) : window.Paginas.noEncontrada();
@@ -124,18 +128,33 @@
       if (window.console) console.error(err);
       pg = { title: "Error al mostrar la página", crumbs: [["Inicio", "#/resumen"]], html: '<div class="card vacio"><h2>No se pudo mostrar esta página</h2><p><a class="btn" href="#/resumen">Volver al resumen</a></p></div>' };
     }
-    main.innerHTML = pg.html;
     titulo.textContent = pg.title;
     pintarMigas(pg.crumbs);
     doc.title = pg.title + " · Seguimiento al PDM · Alcaldía de Gachancipá";
     marcarMenu(clave || "");
-    if (pg.init) pg.init(main);
-    Charts.mount(main);
-    accesibles(main);
-    if (esMovil()) abrirMenu(false);
-    if (!primera) { window.scrollTo(0, 0); titulo.focus({ preventScroll: true }); App.anunciar(pg.title); }
-    primera = false;
+    main.setAttribute("data-p", clave || "");
+    function pintar() {
+      if (mi !== tk) return;
+      main.removeAttribute("aria-busy");
+      main.innerHTML = (pg.filtros ? window.Filtros.barra() : "") + pg.html;
+      if (pg.filtros) window.Filtros.ligar(main, function (foco) { App.refrescar(foco); });
+      if (pg.init) pg.init(main);
+      Charts.mount(main);
+      accesibles(main);
+      if (!opts.keep) { main.classList.remove("enter"); void main.offsetWidth; main.classList.add("enter"); }
+      if (esMovil()) abrirMenu(false);
+      if (opts.keep) {
+        var f = opts.foco && doc.getElementById(opts.foco); if (f) f.focus({ preventScroll: true });
+        App.anunciar(window.Filtros.texto());
+      } else if (!primera) { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); titulo.focus({ preventScroll: true }); App.anunciar(pg.title); }
+      primera = false;
+    }
+    /* esqueleto breve al cambiar de página (no en la primera carga ni al filtrar) */
+    if (!primera && !opts.keep && prev !== clave && !reducido()) { main.setAttribute("aria-busy", "true"); main.innerHTML = SKEL; setTimeout(pintar, 90); }
+    else pintar();
+    prev = clave;
   }
-  window.addEventListener("hashchange", render);
+  App.refrescar = function (foco) { render({ keep: true, foco: foco }); };
+  window.addEventListener("hashchange", function () { render(); });
   render();
 })();
