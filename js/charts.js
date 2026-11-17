@@ -142,7 +142,7 @@
       var wide = w >= 560, lblW = wide ? Math.min(250, Math.round(w * 0.34)) : 0, padR = kind === "stack" ? 64 : 58;
       var bw = Math.max(80, w - lblW - padR), x0 = lblW, top = 20;
       var n = spec.items.length;
-      var per = kind === "gbar" ? 12 : 14, rowH = wide ? (kind === "gbar" ? 38 : 30) : (kind === "gbar" ? 58 : 46);
+      var per = kind === "gbar" ? 12 : 14, rowH = wide ? (kind === "gbar" ? 46 : 44) : (kind === "gbar" ? 58 : 46);
       h = top + n * rowH + 6;
       var max = spec.max || 100;
       if (kind !== "stack") g += axis(w, x0, bw, top, h - 4, max, max === 100 ? [0, 25, 50, 75, 100] : [0, 50, 100, 150, 200]);
@@ -154,21 +154,24 @@
         var by = wide ? y0 + (rowH - (kind === "gbar" ? per * 2 + 3 : per)) / 2 : y0 + 20;
         if (kind === "hbar") {
           var wv = Math.max(2, bw * Math.min(it.value, max) / max);
-          inner += '<rect class="bar f-26" x="' + x0 + '" y="' + by + '" width="' + wv + '" height="' + per + '" rx="4"/>';
+          inner += '<rect class="f-grid" x="' + x0 + '" y="' + by + '" width="' + bw + '" height="' + per + '" rx="6"/>';
+          inner += '<rect class="bar f-26" x="' + x0 + '" y="' + by + '" width="' + wv + '" height="' + per + '" rx="6"/>';
           inner += '<text class="val" x="' + (x0 + wv + 6) + '" y="' + (by + per - 2) + '">' + U.p(it.value) + "</text>";
         } else if (kind === "gbar") {
           var wa = Math.max(2, bw * Math.min(it.a, max) / max), wb = Math.max(2, bw * Math.min(it.b, max) / max);
-          inner += '<rect class="bar f-25" x="' + x0 + '" y="' + by + '" width="' + wa + '" height="' + per + '" rx="3"/>';
-          inner += '<text class="val mut" x="' + (x0 + wa + 6) + '" y="' + (by + per - 2) + '" font-size="11">' + U.p(it.a) + "</text>";
-          inner += '<rect class="bar f-26" x="' + x0 + '" y="' + (by + per + 3) + '" width="' + wb + '" height="' + per + '" rx="3"/>';
-          inner += '<text class="val" x="' + (x0 + wb + 6) + '" y="' + (by + per * 2 + 1) + '" font-size="11">' + U.p(it.b) + "</text>";
+          inner += '<rect class="f-grid" x="' + x0 + '" y="' + by + '" width="' + bw + '" height="' + per + '" rx="6"/>';
+          inner += '<rect class="bar f-25" x="' + x0 + '" y="' + by + '" width="' + wa + '" height="' + per + '" rx="6"/>';
+          inner += '<text class="val mut" x="' + (x0 + wa + 6) + '" y="' + (by + per - 2) + '" font-size="12">' + U.p(it.a) + "</text>";
+          inner += '<rect class="f-grid" x="' + x0 + '" y="' + (by + per + 3) + '" width="' + bw + '" height="' + per + '" rx="6"/>';
+          inner += '<rect class="bar f-26" x="' + x0 + '" y="' + (by + per + 3) + '" width="' + wb + '" height="' + per + '" rx="6"/>';
+          inner += '<text class="val" x="' + (x0 + wb + 6) + '" y="' + (by + per * 2 + 1) + '" font-size="12">' + U.p(it.b) + "</text>";
         } else {
           var tot = 0, acc = x0; U.SEMORD.forEach(function (k) { tot += it.sem[k] || 0; });
           U.SEMORD.forEach(function (k) {
             var v = it.sem[k] || 0; if (!v) return;
             var ww = bw * v / tot;
-            inner += '<rect class="bar f-' + U.SEM[k].k + '" x="' + acc + '" y="' + by + '" width="' + Math.max(ww - 1, 1) + '" height="' + per + '"/>';
-            if (ww > 20) inner += '<text class="on-' + U.SEM[k].k + '" x="' + (acc + ww / 2) + '" y="' + (by + per - 3) + '" text-anchor="middle" font-size="10.5" font-weight="700">' + v + "</text>";
+            inner += '<rect class="bar f-' + U.SEM[k].k + '" x="' + acc + '" y="' + by + '" width="' + Math.max(ww - 2, 1) + '" height="' + per + '" rx="4"/>';
+            if (ww > 24) inner += '<text class="on-' + U.SEM[k].k + '" x="' + (acc + ww / 2) + '" y="' + (by + per - 3) + '" text-anchor="middle" font-size="12" font-weight="700">' + v + "</text>";
             acc += ww;
           });
           inner += '<text class="val mut" x="' + (x0 + bw + 8) + '" y="' + (by + per - 2) + '">' + tot + " metas</text>";
@@ -181,7 +184,7 @@
     }
     if (kind === "heat") {
       var wide2 = w >= 420, lw = wide2 ? Math.min(230, Math.round(w * 0.4)) : Math.min(124, Math.round(w * 0.32));
-      var gap = 5, cw = (w - lw - gap * 3) / 4, rh = 34, th = 30, mx = 1;
+      var gap = 5, cw = (w - lw - gap * 3) / 4, rh = 44, th = 30, mx = 1;
       spec.rows.forEach(function (r) { r.cells.forEach(function (c) { if (c.v > mx) mx = c.v; }); });
       h = th + spec.rows.length * (rh + gap);
       g = "";
@@ -196,8 +199,8 @@
           var tx3 = r.label + " · " + U.SEM[U.SEMORD[ci]].et + ": " + c.v + (c.v === 1 ? " meta" : " metas");
           var pc = Math.round(10 + 30 * c.v / mx);
           var cell = c.v > 0
-            ? '<rect class="hc" x="' + x0 + '" y="' + y0 + '" width="' + cw + '" height="' + rh + '" rx="8" fill="var(--b-' + k + ')" style="fill:color-mix(in srgb,var(--c-' + k + ') ' + pc + '%,var(--surf))"/><text class="hn" x="' + (x0 + cw / 2) + '" y="' + (y0 + rh / 2 + 5) + '" text-anchor="middle">' + c.v + "</text>"
-            : '<rect class="hc0" x="' + x0 + '" y="' + y0 + '" width="' + cw + '" height="' + rh + '" rx="8"/><text class="hz" x="' + (x0 + cw / 2) + '" y="' + (y0 + rh / 2 + 5) + '" text-anchor="middle">0</text>';
+            ? '<rect class="hc" x="' + x0 + '" y="' + y0 + '" width="' + cw + '" height="' + rh + '" rx="10" fill="var(--b-' + k + ')" style="fill:color-mix(in srgb,var(--c-' + k + ') ' + pc + '%,var(--surf))"/><text class="hn" x="' + (x0 + cw / 2) + '" y="' + (y0 + rh / 2 + 5) + '" text-anchor="middle">' + c.v + "</text>"
+            : '<rect class="hc0" x="' + x0 + '" y="' + y0 + '" width="' + cw + '" height="' + rh + '" rx="10"/><text class="hz" x="' + (x0 + cw / 2) + '" y="' + (y0 + rh / 2 + 5) + '" text-anchor="middle">0</text>';
           g += c.v > 0 && c.href ? '<a href="' + U.esc(c.href) + '" data-tip="' + U.esc(tx3) + '" aria-label="' + U.esc(tx3 + ". Ver en el explorador") + '">' + cell + "</a>" : '<g data-tip="' + U.esc(tx3) + '" role="img" aria-label="' + U.esc(tx3) + '">' + cell + "</g>";
         });
       });
@@ -206,11 +209,11 @@
     if (kind === "donut") {
       var D = Math.min(w, 200), r = D / 2 - 18, cx = D / 2, circ = 2 * Math.PI * r, tot2 = 0, off = 0;
       U.SEMORD.forEach(function (k) { tot2 += spec.sem[k] || 0; });
-      g = '<circle cx="' + cx + '" cy="' + cx + '" r="' + r + '" fill="none" class="" stroke="var(--grid)" stroke-width="26"/>';
+      g = '<circle cx="' + cx + '" cy="' + cx + '" r="' + r + '" fill="none" class="" stroke="var(--grid)" stroke-width="22"/>';
       U.SEMORD.forEach(function (k) {
         var v = spec.sem[k] || 0; if (!v) return;
         var len = circ * v / tot2;
-        var tx2 = U.SEM[k].et + ": " + v + " metas", cir = '<circle cx="' + cx + '" cy="' + cx + '" r="' + r + '" fill="none" stroke="var(--c-' + U.SEM[k].k + ')" stroke-width="26" stroke-dasharray="' + (len - 1.5) + " " + (circ - len + 1.5) + '" stroke-dashoffset="' + (-off) + '" transform="rotate(-90 ' + cx + " " + cx + ')"/>';
+        var tx2 = U.SEM[k].et + ": " + v + " metas", cir = '<circle cx="' + cx + '" cy="' + cx + '" r="' + r + '" fill="none" stroke="var(--c-' + U.SEM[k].k + ')" stroke-width="22" stroke-dasharray="' + (len - 2) + " " + (circ - len + 2) + '" stroke-dashoffset="' + (-off) + '" transform="rotate(-90 ' + cx + " " + cx + ')"/>';
         g += spec.hrefs && spec.hrefs[k] ? '<a href="' + U.esc(spec.hrefs[k]) + '" data-tip="' + U.esc(tx2) + '" aria-label="' + U.esc(tx2 + ". Ver en el explorador") + '">' + cir + "</a>" : '<g data-tip="' + U.esc(tx2) + '">' + cir + "</g>";
         off += len;
       });
@@ -220,9 +223,9 @@
     }
     if (kind === "ring") {
       var Dm = Math.min(w, spec.size || 150), rr = Dm / 2 - 12, c0 = Dm / 2, cc = 2 * Math.PI * rr, vv = Math.max(0, Math.min(100, spec.value || 0));
-      g = '<circle cx="' + c0 + '" cy="' + c0 + '" r="' + rr + '" fill="none" stroke="var(--grid)" stroke-width="14"/>' +
-        '<circle cx="' + c0 + '" cy="' + c0 + '" r="' + rr + '" fill="none" stroke="var(--a26)" stroke-width="14" stroke-linecap="round" stroke-dasharray="' + (cc * vv / 100) + " " + cc + '" transform="rotate(-90 ' + c0 + " " + c0 + ')"/>' +
-        '<text x="' + c0 + '" y="' + (c0 + 8) + '" text-anchor="middle" font-size="26" font-weight="800" style="font-family:var(--f-tit)">' + U.p(spec.value) + "</text>";
+      g = '<circle cx="' + c0 + '" cy="' + c0 + '" r="' + rr + '" fill="none" stroke="var(--grid)" stroke-width="12"/>' +
+        '<circle cx="' + c0 + '" cy="' + c0 + '" r="' + rr + '" fill="none" stroke="var(--a26)" stroke-width="12" stroke-linecap="round" stroke-dasharray="' + (cc * vv / 100) + " " + cc + '" transform="rotate(-90 ' + c0 + " " + c0 + ')"/>' +
+        '<text class="ring-n" x="' + c0 + '" y="' + (c0 + 8) + '" text-anchor="middle" font-size="26" font-weight="800" style="font-family:var(--f-tit)">' + U.p(spec.value) + "</text>";
       s = el(Dm, Dm, spec.aria); s.innerHTML = g; return s;
     }
   }

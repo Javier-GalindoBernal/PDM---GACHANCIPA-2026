@@ -6,31 +6,32 @@
 <title>Tablero de Seguimiento — PDM Gachancipá</title>
 <style>
   /* Tokens de color: modo día (por defecto) y modo noche ([data-theme="dark"]).
-     Identidad GOV.CO: azul institucional #3366CC, variante #004884, acento verde. */
+     Identidad GOV.CO: azul institucional #3366CC, variante #004884 y verde institucional #078930
+     (mismos tokens y semáforo que el portal: portal/css/app.css). */
   :root{
     color-scheme:light;
     --govco:#3366CC; --govco-d:#004884; --govco-dd:#0b224f; --link:#2B5CB8; --focus:#0b224f;
     --f-tit:Montserrat,"Segoe UI",Arial,Helvetica,sans-serif;
     --f-txt:"Work Sans","Segoe UI",Arial,Helvetica,sans-serif;
     /* colores de gráfico y semáforo (>= 3:1 sobre blanco); el texto siempre va en --tinta */
-    --verde:#178A52; --amar:#B87400; --rojo:#D6293E; --gris:#6B7686;
-    --soft-cumplida:#CDEBDA; --soft-en_avance:#FBE3A6; --soft-rezagada:#F9CDD3; --soft-no_programada:#E3E7EE;
-    --tinta:#131b26; --linea:#E6EBF2; --fondo:#eef2f8; --panel:#FFFFFF; --panel2:#f7f9fd;
+    --verde:#078930; --verde-marca:#078930; --amar:#C98500; --rojo:#B3261E; --gris:#6B7689;
+    --soft-cumplida:#E4F4E8; --soft-en_avance:#FFF1CF; --soft-rezagada:#FDE6E4; --soft-no_programada:#E8ECF3;
+    --tinta:#131b26; --linea:#E6EBF2; --fondo:#F4F6F8; --panel:#FFFFFF; --panel2:#f7f9fd;
     --hero-a:#fff; --hero-b:#f2f7ff; --kpi-b:#f7f9fd; --kpi-ic:#e7f0ff;
     --track:#e3e7ee; --grid:#d7dde8; --line2:#536174; --campo-bd:#6B7686;
     --chip-bg:#eef3fc; --chip-bd:#b9c9e8; --th-bg:#f1f5fb; --hover:#f7faff;
     --nota-bg:#fff6e0; --nota-bd:#b87400;
     --glow1:rgba(51,102,204,.10); --glow2:rgba(244,178,35,.10);
     --bar-bg:#3366CC; --bar-fg:#fff; --head-bg:#fff;
-    --btn-w-bg:#3366CC; --btn-w-fg:#fff; --btn-p-bg:#1C7C54; --btn-p-fg:#fff;
+    --btn-w-bg:#3366CC; --btn-w-fg:#fff; --btn-p-bg:#078930; --btn-p-fg:#fff;
     --sel-bg:#e7f0ff; --tt-bg:#0b224f; --tt-fg:#fff;
-    --sombra:0 6px 22px rgba(19,45,102,.08),0 1px 3px rgba(19,45,102,.06);
+    --sombra:0 1px 2px rgba(16,32,60,.05),0 6px 20px rgba(16,32,60,.08);
   }
   [data-theme="dark"]{
     color-scheme:dark;
     --govco:#7FA8F5; --govco-d:#9DB9F7; --govco-dd:#9DB9F7; --link:#9DB9F7; --focus:#FFD966;
-    --verde:#3DBE7E; --amar:#F2B138; --rojo:#FF7A8A; --gris:#9AA7BA;
-    --soft-cumplida:#1B5E43; --soft-en_avance:#6B4E0E; --soft-rezagada:#7A2A36; --soft-no_programada:#34445C;
+    --verde:#46C791; --verde-marca:#4FCB78; --amar:#F2B138; --rojo:#FF8F86; --gris:#9AA7BC;
+    --soft-cumplida:#0F3A2A; --soft-en_avance:#3A2C08; --soft-rezagada:#40161A; --soft-no_programada:#1E2B40;
     --tinta:#E8EEF8; --linea:#24406a; --fondo:#0B1F3A; --panel:#102A4C; --panel2:#0d2342;
     --hero-a:#133158; --hero-b:#102A4C; --kpi-b:#0f2748; --kpi-ic:#1b3d6e;
     --track:#2a4570; --grid:#2a4570; --line2:#9AA7BA; --campo-bd:#9AA7BA;
@@ -38,7 +39,7 @@
     --nota-bg:#3a2f12; --nota-bd:#F2B138;
     --glow1:rgba(127,168,245,.12); --glow2:rgba(242,177,56,.05);
     --bar-bg:#004884; --bar-fg:#fff; --head-bg:#102A4C;
-    --btn-w-bg:#7FA8F5; --btn-w-fg:#0B1F3A; --btn-p-bg:#3DBE7E; --btn-p-fg:#0B1F3A;
+    --btn-w-bg:#7FA8F5; --btn-w-fg:#0B1F3A; --btn-p-bg:#4FCB78; --btn-p-fg:#07131F;
     --sel-bg:#1b3d6e; --tt-bg:#E8EEF8; --tt-fg:#0B1F3A;
     --sombra:0 6px 22px rgba(0,0,0,.35),0 1px 3px rgba(0,0,0,.3);
   }
@@ -60,14 +61,14 @@
   .skip:focus{top:8px}
   .govbar{background:var(--bar-bg);color:var(--bar-fg);font-size:12px;letter-spacing:.05em;padding:6px 22px;display:flex;gap:14px;align-items:center}
   .govbar b{font-weight:700;font-size:15px;letter-spacing:.04em}
-  header.masthead{background:linear-gradient(115deg,#0b224f,#123a8c 60%,#3366CC);color:#fff;padding:22px 24px;position:relative;overflow:hidden}
+  header.masthead{background:linear-gradient(115deg,#0b224f,#123a8c 60%,#3366CC);color:#fff;padding:22px 24px;position:relative;overflow:hidden;border-bottom:4px solid var(--verde-marca)}
   .masthead .crest{display:flex;align-items:center;gap:16px;position:relative;z-index:1}
   .crest .shield{width:54px;height:62px;flex:0 0 auto}
   .masthead h1{margin:0;font-size:22px;font-weight:700}
   .masthead .sub{margin:3px 0 0;font-size:13px;max-width:760px}
   .masthead .corte{margin-top:11px;font-size:13px;background:rgba(255,255,255,.16);display:inline-block;padding:5px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.4)}
   /* encabezado blanco con escudo oficial */
-  header.masthead-w{background:var(--head-bg);border-bottom:3px solid var(--govco);padding:16px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;box-shadow:0 2px 10px rgba(19,45,102,.06)}
+  header.masthead-w{background:var(--head-bg);border-bottom:4px solid var(--verde-marca);padding:16px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;box-shadow:0 2px 10px rgba(19,45,102,.06)}
   .oficial-logo{height:70px;width:auto;flex:0 0 auto;border-radius:12px}
   [data-theme="dark"] .oficial-logo{background:#fff;padding:5px}
   .mw-txt{min-width:220px;flex:1 1 260px}
@@ -92,7 +93,7 @@
   .sbtn:hover{background:rgba(255,255,255,.18)}
   .sbtn:focus-visible{outline:3px solid #FFD966;outline-offset:-4px;box-shadow:none}
   .wrap{max-width:1220px;margin:0 auto;padding:18px 22px 46px}
-  .filtros{background:var(--panel);border:1px solid var(--linea);border-radius:16px;padding:14px 16px;margin:16px 0;
+  .filtros{background:var(--panel);border:1px solid var(--linea);border-radius:14px;padding:14px 16px;margin:16px 0;
     display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;box-shadow:var(--sombra)}
   @media(min-width:700px){.filtros{position:sticky;top:8px;z-index:20}}
   .filtros label,.infsel label{display:block;font-size:12px;font-weight:700;color:var(--tinta);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
@@ -104,7 +105,7 @@
   .fnote{margin:-4px 0 12px;color:var(--tinta);background:var(--nota-bg);border:1px solid var(--nota-bd);border-radius:10px;padding:8px 12px;font-size:12.5px;display:none}
   .fnote.show{display:block;animation:fade .3s}
   /* cómo leer */
-  details.how{background:var(--panel);border:1px solid var(--linea);border-radius:16px;padding:4px 18px;margin:0 0 16px;box-shadow:var(--sombra)}
+  details.how{background:var(--panel);border:1px solid var(--linea);border-radius:14px;padding:4px 18px;margin:0 0 16px;box-shadow:var(--sombra)}
   details.how summary{cursor:pointer;font-weight:700;padding:12px 0;font-size:14px;list-style-position:inside}
   .how h3{font-size:13px;font-weight:700;margin:14px 0 4px}
   .how p,.how li{font-size:12.5px;margin:3px 0}
@@ -119,7 +120,7 @@
   .r-1{grid-template-columns:1fr}
   @media(max-width:900px){.r-hero{grid-template-columns:1fr 1fr}.r-2{grid-template-columns:1fr}}
   @media(max-width:560px){.r-hero{grid-template-columns:1fr}.wrap{padding:14px 16px 36px}}
-  .card{background:var(--panel);border:1px solid var(--linea);border-radius:16px;padding:18px;box-shadow:var(--sombra);position:relative;overflow:hidden;min-width:0}
+  .card{background:var(--panel);border:1px solid var(--linea);border-radius:14px;padding:18px;box-shadow:var(--sombra);position:relative;overflow:hidden;min-width:0}
   .card h2{margin:0 0 4px;font-size:14px;font-weight:700;color:var(--tinta)}
   .card .csub{font-size:12px;color:var(--tinta);margin:0 0 12px}
   .hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;

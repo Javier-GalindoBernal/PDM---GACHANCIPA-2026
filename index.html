@@ -7,6 +7,8 @@
 <title>Seguimiento al PDM · Alcaldía de Gachancipá</title>
 <meta name="description" content="Portal de seguimiento al Plan de Desarrollo Municipal de Gachancipá: avance por eje y secretaría, explorador de metas, alertas e informes.">
 <script>try{var t=localStorage.getItem("pdm_tema");if(t!=="dark"&&t!=="light"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.setAttribute("data-theme",t);if(localStorage.getItem("pdm_menu")==="min"&&innerWidth>=1024){document.documentElement.setAttribute("data-menu","min")}}catch(e){document.documentElement.setAttribute("data-theme",(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light")}</script>
+<meta name="theme-color" content="#3366CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A1322" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/favicon.png">
 <link rel="stylesheet" href="css/app.css">
 </head>
@@ -91,14 +93,15 @@
   <div class="main">
     <header class="top">
       <button class="ico-btn burger" id="burger" type="button" aria-label="Abrir el menú" aria-expanded="false" aria-controls="sb"><svg class="ic"><use href="#i-menu"/></svg></button>
+      <span class="pastilla top-escudo"><img src="assets/escudo.png" alt=""></span>
       <div class="ttl">
         <nav class="crumbs" id="crumbs" aria-label="Ruta de navegación"></nav>
         <h1 id="pageTitle" tabindex="-1">Resumen ejecutivo</h1>
       </div>
       <form class="gsearch" id="gsearch" role="search" aria-label="Búsqueda global de metas">
         <label class="sr" for="gq">Buscar una meta por texto o código</label>
-        <svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>
         <input id="gq" type="search" placeholder="Buscar meta por texto o código" autocomplete="off" enterkeyhint="search">
+        <button class="gs-go" type="submit" aria-label="Buscar"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></button>
       </form>
       <div class="acts">
         <button class="ico-btn" id="themeBtn" type="button" aria-label="Cambiar a modo noche" title="Modo día / noche"><svg class="ic" id="themeIc"><use href="#i-moon"/></svg></button>
