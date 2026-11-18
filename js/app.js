@@ -82,6 +82,13 @@
 
   /* ---------- impresión ---------- */
   $("#printBtn").addEventListener("click", function () { window.print(); });
+  /* el papel es blanco: al imprimir se fuerza la paleta de día y después se restaura el tema elegido (los gráficos usan variables CSS, no hace falta redibujar) */
+  var temaPrevio = null;
+  function aPapel() { if (temaPrevio === null) { temaPrevio = root.getAttribute("data-theme") || "light"; root.setAttribute("data-theme", "light"); } }
+  function dePapel() { if (temaPrevio !== null) { root.setAttribute("data-theme", temaPrevio); temaPrevio = null; } }
+  window.addEventListener("beforeprint", aPapel);
+  window.addEventListener("afterprint", dePapel);
+  if (window.matchMedia) { var mp = matchMedia("print"), cp = function (e) { if (e.matches) aPapel(); else dePapel(); }; if (mp.addEventListener) mp.addEventListener("change", cp); else if (mp.addListener) mp.addListener(cp); }
 
   /* ---------- enrutador ---------- */
   function dec(t) { try { return decodeURIComponent(t); } catch (e) { return t; } }
@@ -139,7 +146,8 @@
       main.innerHTML = (pg.filtros ? window.Filtros.barra() : "") + pg.html;
       if (pg.filtros) window.Filtros.ligar(main, function (foco) { App.refrescar(foco); });
       if (pg.init) pg.init(main);
-      Charts.mount(main);
+      Charts.mount(main, !opts.keep);
+      if (!opts.keep) Charts.contar(main);
       accesibles(main);
       if (!opts.keep) { main.classList.remove("enter"); void main.offsetWidth; main.classList.add("enter"); }
       if (esMovil()) abrirMenu(false);
