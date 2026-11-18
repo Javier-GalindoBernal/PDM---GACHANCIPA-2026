@@ -165,6 +165,8 @@
     }
   };
   /* con filtros activos los conteos son de las metas filtradas; indicador y avance siguen siendo los oficiales del eje o la secretaría completos */
+  /* ilustración de cada secretaría (SVG propio, decorativa: el nombre ya está en el texto) */
+  function ilus(car, cls) { return '<span class="' + cls + '"><img src="assets/sec/' + h(car) + '.svg" alt="" width="480" height="270" loading="lazy" decoding="async"></span>'; }
   function notaFiltro() { return hay() ? '<p class="nota mt"><b>Filtros activos.</b> Los conteos de metas corresponden a las metas filtradas; el indicador y el avance de 2025 y 2026 son los oficiales del eje o la secretaría completos.</p>' : ""; }
   function vacioFiltros() {
     return '<section class="card vacio"><svg class="ic big" aria-hidden="true"><use href="#i-search"/></svg><h2>Ninguna meta coincide con estos filtros</h2><p>La combinación de secretaría, eje y estado no tiene metas. Pruebe quitar uno de los filtros.</p><p><button class="btn" type="button" id="vf-limpiar">Limpiar filtros</button></p></section>';
@@ -303,7 +305,7 @@
     var SC = {}; S.forEach(function (x) { var sub = M.filter(function (m) { return m.car === x.carpeta; }); SC[x.carpeta] = { c: cuenta(sub), n: sub.length }; });
     var cards = S.map(function (s, i) {
       var c = i % 5 + 1;
-      return '<a class="card lcard c' + c + '" href="#/secretarias/' + s.carpeta + '"><div class="lc-h">' + U.ring(s.ind, { size: 68, sw: 8, k: "b1", text: U.p(s.ind), fs: 13, aria: "Indicador de " + s.corto + ": " + U.p(s.ind) }) + '<div><h3>' + h(s.corto) + '</h3><span class="mini">' + SC[s.carpeta].n + " metas</span></div></div>" +
+      return '<a class="card lcard c' + c + '" href="#/secretarias/' + s.carpeta + '">' + ilus(s.carpeta, "lc-img") + '<div class="lc-h">' + U.ring(s.ind, { size: 68, sw: 8, k: "b1", text: U.p(s.ind), fs: 13, aria: "Indicador de " + s.corto + ": " + U.p(s.ind) }) + '<div><h3>' + h(s.corto) + '</h3><span class="mini">' + SC[s.carpeta].n + " metas</span></div></div>" +
         stackBar(SC[s.carpeta].c) + '<div class="mini">' + SC[s.carpeta].c.cumplida + " cumplidas · " + SC[s.carpeta].c.en_avance + " en avance · " + SC[s.carpeta].c.rezagada + " rezagadas · " + SC[s.carpeta].c.no_programada + " no prog.</div></a>";
     }).join("");
     var html = '<p class="muted">Comparativo de las nueve secretarías. Cada una responde por metas distintas; el indicador resume su avance acumulado al corte.</p>' + notaFiltro() +
@@ -321,7 +323,7 @@
     var rows = D.metas.filter(function (m) { return m.car === car; }).sort(function (a, b) { return natural(a.cod, b.cod); });
     var prog = rows.filter(function (m) { return m.s !== "no_programada"; }).sort(function (a, b) { return a.ind - b.ind; });
     var inf = s.informe || {};
-    var html = '<p class="muted">' + h(s.nombre) + "</p>" +
+    var html = '<section class="sec-hero">' + ilus(car, "sec-hero-img") + '<div class="sec-hero-tx"><p class="eyebrow">Secretaría</p><h2>' + h(s.nombre) + '</h2><p>' + s.metas + ' metas · indicador ' + U.p(s.ind) + ' al corte</p></div></section>' +
       '<div class="grid g4 mt">' + kpi(U.p(s.ind), "Indicador de la secretaría", "Indicador institucional: " + U.p(D.inst.ind), "", s.ind) + kpi(U.p(s.a2025), "Avance " + CORTE.anterior, "", "k-a25", s.a2025) + kpi(U.p(s.a2026), "Avance " + CORTE.vigencia + " al corte", "", "k-a26", s.a2026) + kpi(s.metas, "Metas a cargo", "reporte de la secretaría, corte " + h(CORTE.texto)) + "</div>" +
       '<div class="grid g2 mt"><section class="card"><h2>Estado de sus metas</h2><div class="donut-wrap"><div style="width:190px">' + Charts.donut({ sem: s.sem, aria: "Semáforo de " + s.corto }) + "</div>" + leyenda(s.sem) + "</div></section>" +
       '<section class="card"><h2>Informe de seguimiento</h2><p class="sub">Informe de la secretaría con corte ' + h(CORTE.texto) + ".</p>" + (D.informes ? '<div class="row">' + btnInf(inf.docx, "docx", "Word") + btnInf(inf.pdf, "pdf", "PDF") + "</div>" : '<p class="muted">El catálogo de informes no está disponible por ahora.</p>') +

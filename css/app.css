@@ -594,3 +594,18 @@ a.chip{min-height:44px}
 .sb-col:focus-visible{outline:3px solid #FFFFFF;outline-offset:2px}
 .nav::-webkit-scrollbar-thumb{background:rgba(255,255,255,.35);border-radius:6px}
 body.menu-open .sb{box-shadow:6px 0 24px rgba(4,16,18,.45)}
+
+/* ilustraciones por secretaría */
+.lcard .lc-img{display:block;margin:-24px -24px 6px;aspect-ratio:16/9;overflow:hidden;background:var(--azul-l);border-radius:var(--r) var(--r) 0 0}
+.lcard .lc-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+.lcard:hover .lc-img img{transform:scale(1.04)}
+.lcard::before{z-index:2}
+.sec-hero{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr);align-items:stretch;border-radius:var(--r);overflow:hidden;background:linear-gradient(120deg,var(--hero-a),var(--hero-b));color:#fff;box-shadow:var(--shadow2);min-height:190px}
+.sec-hero-tx{padding:24px 26px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.sec-hero-tx h2{color:#fff;font-size:clamp(1.2rem,2.4vw,1.7rem);line-height:1.2}
+.sec-hero-tx p{margin:0;color:#E8F1FF}
+.sec-hero-tx .eyebrow{font:700 11.5px var(--f-tit);letter-spacing:.14em;text-transform:uppercase;color:#CFE3FF}
+.sec-hero-img{display:block;order:2;min-height:190px}
+.sec-hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:720px){.sec-hero{grid-template-columns:1fr}.sec-hero-img{order:-1;min-height:0;aspect-ratio:16/9}.sec-hero-tx{padding:18px}}
+@media (prefers-reduced-motion:reduce){.lcard .lc-img img{transition:none}.lcard:hover .lc-img img{transform:none}}
