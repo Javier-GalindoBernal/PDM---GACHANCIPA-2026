@@ -215,6 +215,8 @@
       var rowH = kind === "hbar" ? (wide ? Math.max(46, LH * maxL + 18) : Math.max(54, LH * maxL + 32)) : wide ? (kind === "gbar" ? 54 : 46) : (kind === "gbar" ? 68 : 54);
       h = top + n * rowH + 6;
       var max = spec.max || 100;
+      var mx100 = x0 + bw * 100 / max;
+      function lx(x) { return (x < mx100 + 6 && x + 46 > mx100 - 4) ? mx100 + 8 : x; }
       if (kind !== "stack") g += axis(x0, bw, top, h - 4, max, max === 100 ? [0, 25, 50, 75, 100] : [0, 50, 100, 150, 200]);
       spec.items.forEach(function (it, idx) {
         var y0 = top + idx * rowH, d = Math.min(idx * 40, 600), dl = it.a != null && it.b != null ? U.delta(it.a, it.b) : null, cw = dl ? Math.round((dl.ar + " " + dl.t).length * 6.6 + 20) : 0;
@@ -232,15 +234,15 @@
           inner += '<rect class="bar k-' + k + '" x="' + x0 + '" y="' + (cy - 5) + '" width="' + wv.toFixed(1) + '" height="10" rx="5" style="' + fillG(id, k) + ";" + delay + '"/>';
           var zero = Number(U.f(it.value, 1)) === 0;
           inner += '<circle class="fade dotend k-' + k + (zero ? " zero" : "") + '" cx="' + (x0 + wv).toFixed(1) + '" cy="' + cy + '" r="8" style="' + (zero ? "fill:var(--surf);stroke:var(" + vr(k)[0] + ")" : "fill:var(" + vr(k)[1] + ")") + ";" + delay + '"/>';
-          inner += '<text class="val fade" x="' + (x0 + wv + 16).toFixed(1) + '" y="' + (cy + 4) + '" style="' + delay + '">' + U.p(it.value) + (zero ? " de avance" : "") + (it.et && wide ? '<tspan class="et" font-weight="500"> · ' + U.esc(it.et) + "</tspan>" : "") + "</text>";
+          inner += '<text class="val fade" x="' + lx(x0 + wv + 16).toFixed(1) + '" y="' + (cy + 4) + '" style="' + delay + '">' + U.p(it.value) + (zero ? " de avance" : "") + (it.et && wide ? '<tspan class="et" font-weight="500"> · ' + U.esc(it.et) + "</tspan>" : "") + "</text>";
           if (it.et && !wide) inner += '<text class="mut et fade" x="' + w + '" y="' + (y0 + 14) + '" text-anchor="end" font-size="11.5" style="' + delay + '">' + U.esc(it.et) + "</text>";
           tx = it.label + ": " + U.p(it.value) + (it.et ? " (" + it.et + ")" : "") + FALTAN(it.value);
         } else if (kind === "gbar") {
           var wa = Math.max(3, bw * Math.min(Math.max(it.a, 0), max) / max), wb = Math.max(3, bw * Math.min(Math.max(it.b, 0), max) / max), c1 = cy - (wide ? 7 : 0), c2 = c1 + 15; used.b5 = 1; used.b2 = 1;
           inner += '<rect class="f-grid" x="' + x0 + '" y="' + (c1 - 5) + '" width="' + bw + '" height="10" rx="5"/><rect class="bar" x="' + x0 + '" y="' + (c1 - 5) + '" width="' + wa.toFixed(1) + '" height="10" rx="5" style="' + fillG(id, "b5") + ";" + delay + '"/>';
-          inner += '<text class="val mut fade" x="' + (x0 + wa + 8).toFixed(1) + '" y="' + (c1 + 4) + '" font-size="12" style="' + delay + '">' + U.p(it.a) + "</text>";
+          inner += '<text class="val mut fade" x="' + lx(x0 + wa + 8).toFixed(1) + '" y="' + (c1 + 4) + '" font-size="12" style="' + delay + '">' + U.p(it.a) + "</text>";
           inner += '<rect class="f-grid" x="' + x0 + '" y="' + (c2 - 5) + '" width="' + bw + '" height="10" rx="5"/><rect class="bar" x="' + x0 + '" y="' + (c2 - 5) + '" width="' + wb.toFixed(1) + '" height="10" rx="5" style="' + fillG(id, "b2") + ";" + delay + '"/>';
-          inner += '<text class="val fade" x="' + (x0 + wb + 8).toFixed(1) + '" y="' + (c2 + 4) + '" font-size="12" style="' + delay + '">' + U.p(it.b) + "</text>";
+          inner += '<text class="val fade" x="' + lx(x0 + wb + 8).toFixed(1) + '" y="' + (c2 + 4) + '" font-size="12" style="' + delay + '">' + U.p(it.b) + "</text>";
           if (dl) {
             var cx = wide ? w - cw : w - cw, cyy = wide ? (c1 + c2) / 2 - 10 : y0 + 1;
             inner += '<g class="dchip fade" style="' + delay + '"><rect class="dc" x="' + cx + '" y="' + cyy + '" width="' + cw + '" height="20" rx="10"/><text class="dct" x="' + (cx + cw / 2) + '" y="' + (cyy + 14) + '" text-anchor="middle" font-size="11.5">' + dl.ar + " " + dl.t + "</text></g>";
