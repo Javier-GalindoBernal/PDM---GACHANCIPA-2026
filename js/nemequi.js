@@ -133,7 +133,7 @@
     wel.innerHTML =
       '<div class="nq-wel" role="dialog" aria-modal="true" aria-labelledby="nq-wel-t">' +
       '<button type="button" class="nq-ib nq-wel-x" id="nq-wel-x" aria-label="Cerrar el video y conversar con NEMEQUI" title="Cerrar el video">' + ic("x") + "</button>" +
-      '<div class="nq-vid"><video id="nq-video" preload="none" playsinline controls poster="' + POSTER + '" aria-label="Video de NEMEQUI (10 segundos, con audio)"><source src="' + VIDEO + '" type="video/mp4">Su navegador no reproduce video; lea el saludo escrito.</video></div>' +
+      '<div class="nq-vid"><video id="nq-video" preload="auto" playsinline disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback" poster="' + POSTER + '" aria-label="Video de NEMEQUI (10 segundos, con audio)"><source src="' + VIDEO + '" type="video/mp4">Su navegador no reproduce video; lea el saludo escrito.</video></div>' +
       '<div class="nq-wb"><div class="nq-wt"><h2 id="nq-wel-t">Hola, soy NEMEQUI</h2>' +
       '<details class="nq-tr"><summary>Leer el saludo en texto</summary><p>' + esc(SALUDO) + '</p><p class="mini">Texto de apoyo escrito para este portal; no es la transcripción literal del audio del video.</p></details></div>' +
       '<div class="nq-wa"><button type="button" class="btn" id="nq-wel-chat">' + ic("x") + '<span>Cerrar el video y conversar</span></button></div></div>' +
@@ -296,13 +296,19 @@
     safe(function () { sessionStorage.setItem(K_SES, "1"); });
     fondoInerte(true); S.fab.setAttribute("inert", "");
     var b = $("#nq-wel-chat"); b && b.focus();
-    /* reproduce el video al abrirse; si el navegador exige un gesto de la persona, queda listo con su botón de play */
-    var vv = $("#nq-video"); if (vv) safe(function () { if (vv.ended || (vv.duration && vv.currentTime >= vv.duration - 0.2)) vv.currentTime = 0; var pr = vv.play(); if (pr && pr.catch) pr.catch(function () { }); });
+    /* el video empieza apenas se abre (el clic en el agente permite el sonido), una sola vez y sin controles */
+    var vv = $("#nq-video");
+    if (vv) safe(function () {
+      vv.loop = false; vv.muted = false; vv.currentTime = 0;
+      var pr = vv.play();
+      /* si el navegador bloqueara el sonido, arranca igual (en silencio) en vez de quedarse detenido */
+      if (pr && pr.catch) pr.catch(function () { safe(function () { vv.muted = true; vv.play(); }); });
+    });
   }
   function cerrarBienvenida(devolverFoco) {
     try { pararVoz(); var _v = document.getElementById('nq-video'); if (_v && !_v.paused) _v.pause(); } catch (e) {}
     if (!S.bienvenida) return;
-    var v = $("#nq-video"); safe(function () { v.pause(); });
+    var v = $("#nq-video"); safe(function () { v.pause(); v.currentTime = 0; });
     if ($("#nq-wel-no").checked) safe(function () { localStorage.setItem(K_BIEN, "no"); });
     S.bienvenida = false; S.wel.hidden = true; fondoInerte(false); S.fab.removeAttribute("inert");
     resetPlay();
@@ -481,9 +487,7 @@
     try {
       if (!W.PDM) return;
       construir(); cargarHist(); enlazar(); actualizarContexto();
-      var no = safe(function () { return localStorage.getItem(K_BIEN); }), h0 = (location.hash || "").replace(/^#\/?/, "").split("?")[0].split("/")[0];
-      /* el video se abre en la pantalla de inicio en cada visita (salvo que se marque «No volver a mostrar»); en cualquier momento se abre con el botón «Video de NEMEQUI» */
-      if (no !== "no" && (h0 === "" || h0 === "resumen") && !/print/.test(location.search)) setTimeout(function () { if (!S.abierto && !S.bienvenida) abrirBienvenida(); }, 700);
+      /* el video no se abre solo: empieza con sonido cuando la persona hace clic en el agente */
     } catch (e) { if (W.console) console.error("NEMEQUI no pudo iniciar", e); }
   }
   if (doc.readyState === "loading") doc.addEventListener("DOMContentLoaded", iniciar); else iniciar();
