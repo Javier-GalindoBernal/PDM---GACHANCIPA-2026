@@ -131,17 +131,13 @@
     var wel = doc.createElement("div");
     wel.id = "nq-wel"; wel.className = "nq-wel-w"; wel.hidden = true;
     wel.innerHTML =
-      '<div class="nq-wel" role="dialog" aria-modal="true" aria-labelledby="nq-wel-t" aria-describedby="nq-wel-d">' +
-      '<button type="button" class="nq-ib nq-wel-x" id="nq-wel-x" aria-label="Cerrar la bienvenida">' + ic("x") + "</button>" +
-      '<div class="nq-vid"><video id="nq-video" preload="none" playsinline controls poster="' + POSTER + '" aria-label="Video de bienvenida de NEMEQUI (10 segundos, con audio)"><source src="' + VIDEO + '" type="video/mp4">Su navegador no reproduce video; lea el saludo escrito.</video></div>' +
-      '<div class="nq-vc"><button type="button" class="btn min sec" id="nq-v-play">' + ic("play") + '<span>Reproducir saludo</span></button>' +
-      '<button type="button" class="btn min sec" id="nq-v-mute" aria-pressed="false">' + ic("speaker") + "<span>Silenciar</span></button>" +
-      '<button type="button" class="btn min" id="nq-v-voz" aria-pressed="false">' + ic("speaker") + "<span>Escucha a NEMEQUI</span></button></div>" +
-      '<h2 id="nq-wel-t">Hola, soy NEMEQUI</h2>' +
-      '<p id="nq-wel-d" class="nq-wel-d">Soy la guía virtual del tablero del Plan de Desarrollo Municipal de Gachancipá. Puedo explicarte cómo leerlo y responderte con las cifras oficiales del corte.</p>' +
-      '<details class="nq-tr"><summary>Leer el saludo en texto</summary><p>' + esc(SALUDO) + '</p><p class="mini">Texto de apoyo escrito para este portal; no es la transcripción literal del audio del video.</p></details>' +
-      '<label class="nq-chk"><input type="checkbox" id="nq-wel-no"><span>No volver a mostrar esta bienvenida</span></label>' +
-      '<div class="nq-wa"><button type="button" class="btn" id="nq-wel-chat">Conversar con NEMEQUI</button><button type="button" class="btn sec" id="nq-wel-ex">Explorar el tablero</button></div></div>';
+      '<div class="nq-wel" role="dialog" aria-modal="true" aria-labelledby="nq-wel-t">' +
+      '<button type="button" class="nq-ib nq-wel-x" id="nq-wel-x" aria-label="Cerrar el video y conversar con NEMEQUI" title="Cerrar el video">' + ic("x") + "</button>" +
+      '<div class="nq-vid"><video id="nq-video" preload="none" playsinline controls poster="' + POSTER + '" aria-label="Video de NEMEQUI (10 segundos, con audio)"><source src="' + VIDEO + '" type="video/mp4">Su navegador no reproduce video; lea el saludo escrito.</video></div>' +
+      '<div class="nq-wb"><div class="nq-wt"><h2 id="nq-wel-t">Hola, soy NEMEQUI</h2>' +
+      '<details class="nq-tr"><summary>Leer el saludo en texto</summary><p>' + esc(SALUDO) + '</p><p class="mini">Texto de apoyo escrito para este portal; no es la transcripción literal del audio del video.</p></details></div>' +
+      '<div class="nq-wa"><button type="button" class="btn" id="nq-wel-chat">' + ic("x") + '<span>Cerrar el video y conversar</span></button></div></div>' +
+      '<label class="nq-chk"><input type="checkbox" id="nq-wel-no"><span>No mostrar el video al abrir el agente</span></label></div>';
     doc.body.appendChild(wel);
     S.fab = fab; S.panel = panel; S.wel = wel;
   }
@@ -364,7 +360,7 @@
   }
 
   function enlazar() {
-    S.fab.addEventListener("click", function () { abrir({ desde: S.fab }); });
+    S.fab.addEventListener("click", function () { var no = safe(function () { return localStorage.getItem(K_BIEN); }); if (no === "no") abrir({ desde: S.fab }); else abrirBienvenida(); });
     $("#nq-b-x").addEventListener("click", function () { cerrar(); });
     $("#nq-b-faq").addEventListener("click", function () { var f = $("#nq-faq"); if (f.hidden) abrirFaq(); else cerrarFaq(true); });
     $("#nq-faq-x").addEventListener("click", function () { cerrarFaq(true); });
@@ -399,21 +395,16 @@
       }
     });
     function refrescar() { if (W.App && App.refrescar) { var r = (location.hash.replace(/^#\/?/, "").split(/[/?]/)[0]) || ""; if (RUTAS_FILTRO[r]) App.refrescar(); else location.hash = "#/resumen"; } }
-    /* bienvenida */
+    /* video de NEMEQUI: al cerrarlo la persona queda en el agente (panel de chat) */
     var v = $("#nq-video");
-    $("#nq-wel-x").addEventListener("click", function () { cerrarBienvenida(); });
-    var bv = doc.getElementById("nqVideoBtn"); if (bv) bv.addEventListener("click", function () { if (S.abierto) cerrar(); abrirBienvenida(); });
-    $("#nq-wel-chat").addEventListener("click", function () { cerrarBienvenida(false); abrir({ desde: S.fab }); });
-    $("#nq-wel-ex").addEventListener("click", function () { cerrarBienvenida(); anunciar("Puedes explorar el tablero. El asistente queda disponible en el botón inferior derecho."); var m = $("#main"); m && m.focus(); });
-    $("#nq-v-play").addEventListener("click", function () { safe(function () { if (v.paused) v.play(); else v.pause(); }); });
-    v.addEventListener("play", function () { var p = $("#nq-v-play"); p.querySelector("span").textContent = "Pausar"; p.querySelector("use").setAttribute("href", "#i-pause"); });
-    v.addEventListener("pause", resetPlay); v.addEventListener("ended", resetPlay);
-    $("#nq-v-voz").addEventListener("click", alternarVoz);
-    $("#nq-b-saludo").addEventListener("click", alternarVoz);
+    function videoAChat() { cerrarBienvenida(false); abrir({ desde: S.fab }); }
+    $("#nq-wel-x").addEventListener("click", videoAChat);
+    $("#nq-wel-chat").addEventListener("click", videoAChat);
+    S.wel.addEventListener("click", function (e) { if (e.target === S.wel) videoAChat(); });
     v.addEventListener("play", pararVoz);
-    $("#nq-v-mute").addEventListener("click", function () { v.muted = !v.muted; this.setAttribute("aria-pressed", String(v.muted)); this.querySelector("span").textContent = v.muted ? "Activar sonido" : "Silenciar"; });
+    var bs = $("#nq-b-saludo"); if (bs) bs.addEventListener("click", alternarVoz);
     doc.addEventListener("keydown", function (e) {
-      if (S.bienvenida) { if (e.key === "Escape") { e.preventDefault(); cerrarBienvenida(); } else if (e.key === "Tab") atrapar(e, $(".nq-wel", S.wel)); return; }
+      if (S.bienvenida) { if (e.key === "Escape") { e.preventDefault(); videoAChat(); } else if (e.key === "Tab") atrapar(e, $(".nq-wel", S.wel)); return; }
       if (S.abierto) { if (e.key === "Escape") { e.preventDefault(); cerrar(); } else if (e.key === "Tab") atrapar(e, S.panel); }
     });
     W.addEventListener("hashchange", function () { setTimeout(function () { actualizarContexto(); if (S.abierto && S.chips === "ctx") pintarChips(contextuales(), "ctx"); }, 160); });

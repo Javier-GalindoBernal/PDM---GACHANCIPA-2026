@@ -91,7 +91,7 @@ body.nq-open .nq-fab{display:none}
 /* ---------- bienvenida ---------- */
 .nq-wel-w{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:16px;background:rgba(8,17,31,.62);overflow-y:auto}
 .nq-wel-w[hidden]{display:none}
-.nq-wel{position:relative;width:min(460px,100%);max-height:100%;overflow-y:auto;background:var(--surf);color:var(--ink);border:1px solid var(--line);border-radius:20px;box-shadow:var(--nq-sh);padding:16px 18px 18px;animation:nqIn .25s ease-out}
+.nq-wel{position:relative;width:min(1000px,100%);max-height:100%;overflow-y:auto;background:var(--surf);color:var(--ink);border:1px solid var(--line);border-radius:20px;box-shadow:var(--nq-sh);padding:14px 16px 14px;animation:nqIn .25s ease-out}
 .nq-wel-x{position:absolute;right:8px;top:8px;z-index:2;background:rgba(11,42,85,.72);color:#fff;border-radius:50%}
 .nq-wel-x:hover{background:rgba(11,42,85,.92)}
 .nq-vid{border-radius:14px;overflow:hidden;background:#0B2A55;aspect-ratio:16/9;margin:0 0 10px}
@@ -160,3 +160,21 @@ body.nq-open .nq-fab{display:none}
 @media (max-width:720px){.nq-chips{max-height:104px}}
 
 .nq-wel-x:focus-visible{outline:3px solid #FFFFFF;outline-offset:2px;box-shadow:0 0 0 5px #0B2A55}
+
+/* video grande: ocupa casi toda la pantalla; al cerrarlo se queda en el agente */
+.nq-wel .nq-vid{width:min(100%,calc((100vh - 220px) * 16 / 9));margin:0 auto 12px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.nq-wel .nq-vid video{object-fit:contain}
+.nq-wel-x{width:46px;height:46px;right:14px;top:14px}
+.nq-wb{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.nq-wt{flex:1 1 320px;min-width:0}
+.nq-wb .nq-wt h2{margin:0 0 4px}
+.nq-wb .nq-wa{display:flex;flex:none;margin:0}
+.nq-wb .nq-wa .btn{min-height:48px;padding:0 22px;font-size:15px;display:inline-flex;align-items:center;gap:10px}
+.nq-wb .nq-wa .btn .ic{width:18px;height:18px}
+.nq-wel .nq-chk{margin:10px 0 0}
+@media (max-width:640px){
+  .nq-wel-w{align-items:center;padding:8px}
+  .nq-wel{padding:10px}
+  .nq-wel .nq-vid{width:100%;margin-bottom:10px}
+  .nq-wb .nq-wa,.nq-wb .nq-wa .btn{width:100%;justify-content:center}
+}
