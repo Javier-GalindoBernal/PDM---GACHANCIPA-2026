@@ -300,6 +300,8 @@
     safe(function () { sessionStorage.setItem(K_SES, "1"); });
     fondoInerte(true); S.fab.setAttribute("inert", "");
     var b = $("#nq-wel-chat"); b && b.focus();
+    /* reproduce el video al abrirse; si el navegador exige un gesto de la persona, queda listo con su botón de play */
+    var vv = $("#nq-video"); if (vv) safe(function () { if (vv.ended || (vv.duration && vv.currentTime >= vv.duration - 0.2)) vv.currentTime = 0; var pr = vv.play(); if (pr && pr.catch) pr.catch(function () { }); });
   }
   function cerrarBienvenida(devolverFoco) {
     try { pararVoz(); var _v = document.getElementById('nq-video'); if (_v && !_v.paused) _v.pause(); } catch (e) {}
@@ -400,6 +402,7 @@
     /* bienvenida */
     var v = $("#nq-video");
     $("#nq-wel-x").addEventListener("click", function () { cerrarBienvenida(); });
+    var bv = doc.getElementById("nqVideoBtn"); if (bv) bv.addEventListener("click", function () { if (S.abierto) cerrar(); abrirBienvenida(); });
     $("#nq-wel-chat").addEventListener("click", function () { cerrarBienvenida(false); abrir({ desde: S.fab }); });
     $("#nq-wel-ex").addEventListener("click", function () { cerrarBienvenida(); anunciar("Puedes explorar el tablero. El asistente queda disponible en el botón inferior derecho."); var m = $("#main"); m && m.focus(); });
     $("#nq-v-play").addEventListener("click", function () { safe(function () { if (v.paused) v.play(); else v.pause(); }); });
@@ -487,8 +490,9 @@
     try {
       if (!W.PDM) return;
       construir(); cargarHist(); enlazar(); actualizarContexto();
-      var visto = safe(function () { return sessionStorage.getItem(K_SES); }), no = safe(function () { return localStorage.getItem(K_BIEN); });
-      if (no !== "no" && !visto && !/print/.test(location.search)) setTimeout(function () { if (!S.abierto) abrirBienvenida(); }, 1200);
+      var no = safe(function () { return localStorage.getItem(K_BIEN); }), h0 = (location.hash || "").replace(/^#\/?/, "").split("?")[0].split("/")[0];
+      /* el video se abre en la pantalla de inicio en cada visita (salvo que se marque «No volver a mostrar»); en cualquier momento se abre con el botón «Video de NEMEQUI» */
+      if (no !== "no" && (h0 === "" || h0 === "resumen") && !/print/.test(location.search)) setTimeout(function () { if (!S.abierto && !S.bienvenida) abrirBienvenida(); }, 700);
     } catch (e) { if (W.console) console.error("NEMEQUI no pudo iniciar", e); }
   }
   if (doc.readyState === "loading") doc.addEventListener("DOMContentLoaded", iniciar); else iniciar();
