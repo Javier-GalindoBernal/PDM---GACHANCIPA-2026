@@ -112,6 +112,8 @@
   function guardarF() { try { sessionStorage.setItem(FK, JSON.stringify(F)); } catch (e) { } }
   function hay() { return !!(F.sec || F.eje || F.est); }
   function filtradasG() { return D.metas.filter(function (m) { return (!F.sec || m.car === F.sec) && (!F.eje || String(m.eje) === F.eje) && (!F.est || m.s === F.est); }); }
+  /* conteos por estado: ignoran el filtro de Estado (si no, al filtrar por «cumplidas» los demás estados aparecerían en cero) */
+  function filtradasSinEst() { return D.metas.filter(function (m) { return (!F.sec || m.car === F.sec) && (!F.eje || String(m.eje) === F.eje); }); }
   /* enlace al explorador con los filtros vigentes, sobreescribiendo los indicados */
   function hrefEx(over) {
     var f = { sec: F.sec, eje: F.eje, est: F.est }, p = [], k;
@@ -204,10 +206,10 @@
     return { ind: I.ind, a25: I.a2025, a26: I.a2026, t: "institucional", n: "Media simple de las " + I.n_sec + " secretarías" };
   }
   P.resumen = function () {
-    var I = D.inst, M = filtradasG(), C = cuenta(M), tot = M.length, hi = F.eje ? F.eje - 1 : undefined;
+    var I = D.inst, M = filtradasG(), MS = filtradasSinEst(), C = cuenta(MS), tot = MS.length, hi = F.eje ? F.eje - 1 : undefined;
     var ban = banner("Centro de mando del Plan de Desarrollo Municipal", I.metas + " metas · " + I.n_sec + " secretarías · " + D.ejes.length + " ejes estratégicos. Las metas no programadas al corte no penalizan el indicador.");
     var base = { title: "Resumen ejecutivo", crumbs: [["Inicio", null]], filtros: true };
-    if (!tot) { base.html = ban + vacioFiltros(); return base; }
+    if (!M.length && !tot) { base.html = ban + vacioFiltros(); return base; }
     var of = oficial(), etq = of ? of.t : "";
     /* minigráfico de columnas: una columna por eje (categorías, no tiempo) con rótulo visible; el eje filtrado queda resaltado */
     var spCap = function (n) { return '<span class="sp-cap">Una columna por eje, del 1 al ' + n + (hi != null ? " · resaltado: eje " + (hi + 1) : "") + "</span>"; };
@@ -220,7 +222,7 @@
     var k3 = kpi2({ href: "#/ejes", ic: "check", l: "Avance " + CORTE.vigencia + " al corte", v: of ? U.p(of.a26) : "—", ring: of ? of.a26 : null, rk: "b2", n: h(CORTE.trimestre) + " · " + h(CORTE.texto) + (dv ? ' <span class="delta" role="img" aria-label="' + h(dv.w + " frente a " + CORTE.anterior) + '">' + dv.ar + " " + dv.t + " frente a " + CORTE.anterior + "</span>" : ""), sp: sparkE(D.ejes.map(function (e) { return e.a2026; }), "Avance " + CORTE.vigencia + " al corte") });
     var ST = { cumplida: ["check", "k-cum", "al 100 % o más"], en_avance: ["trend", "k-ava", "entre 20 % y 99 %"], rezagada: ["alert", "k-rez", "para acompañar con las secretarías"], no_programada: ["pause", "k-np", "sin programación al corte; no penalizan"] };
     var ks = U.SEMORD.map(function (k) {
-      return kpi2({ href: hrefEx({ est: k }), ic: ST[k][0], k: ST[k][1], l: { cumplida: "Metas cumplidas", en_avance: "Metas en avance", rezagada: "Metas rezagadas", no_programada: "Metas no programadas" }[k], v: C[k], ring: 100 * C[k] / tot, rk: U.SEM[k].k, rt: true, n: "de " + tot + '<span class="n-x"> registros · ' + ST[k][2] + "</span>", sp: sparkN(porEje(M, k), "Metas " + U.SEM[k].et.toLowerCase()) });
+      return kpi2({ href: hrefEx({ est: k }), ic: ST[k][0], k: ST[k][1], l: { cumplida: "Metas cumplidas", en_avance: "Metas en avance", rezagada: "Metas rezagadas", no_programada: "Metas no programadas" }[k], v: C[k], ring: 100 * C[k] / tot, rk: U.SEM[k].k, rt: true, n: "de " + tot + '<span class="n-x"> registros · ' + ST[k][2] + "</span>", sp: sparkN(porEje(MS, k), "Metas " + U.SEM[k].et.toLowerCase()) });
     }).join("");
     var kp = '<div class="kpis mt" role="group" aria-label="Indicadores clave del corte">' + k1 + k2 + k3 + ks + "</div>";
 
@@ -235,7 +237,7 @@
 
     var ejs = D.ejes.filter(function (e) { return M.some(function (m) { return m.eje === e.id; }); });
     var hm = '<section class="card ac ac-i"><div class="sec-h"><div><h2>Mapa de calor: ejes por estado</h2><p class="sub">Número de metas. Clic en una celda para verlas.</p></div></div>' +
-      Charts.heat({ cab: "Eje estratégico", aria: "Mapa de calor de metas por eje estratégico y estado", rows: heatRows(ejs.map(function (e) { return { label: ejeCorto(e), filtro: function (m) { return m.eje === e.id; }, href: function (k) { return hrefEx({ eje: String(e.id), est: k }); } }; }), M) }) + "</section>";
+      Charts.heat({ cab: "Eje estratégico", aria: "Mapa de calor de metas por eje estratégico y estado", rows: heatRows(ejs.map(function (e) { return { label: ejeCorto(e), filtro: function (m) { return m.eje === e.id; }, href: function (k) { return hrefEx({ eje: String(e.id), est: k }); } }; }), filtradasSinEst()) }) + "</section>";
     var gb = '<section class="card ac ac-ci"><div class="sec-h"><div><h2>Avance por eje: ' + CORTE.anterior + " y " + CORTE.vigencia + '</h2><p class="sub">Vigencia anterior frente a la actual al corte; el chip de la derecha es la diferencia entre las dos cifras.</p></div></div>' + leyVig() +
       Charts.gbar({ la: String(CORTE.anterior), lb: CORTE.vigencia + " al corte", aria: "Avance por eje, vigencias " + CORTE.anterior + " y " + CORTE.vigencia, items: ejs.map(function (e) { return { label: ejeCorto(e), a: e.a2025, b: e.a2026, href: "#/ejes/" + e.id }; }) }) + "</section>";
 
@@ -304,7 +306,7 @@
       '<div class="grid g2 mt"><section class="card ac ac-t"><h2>' + h(Ss[0].corto) + ' lidera con ' + U.p(Ss[0].ind) + '; ' + h(Ss[Ss.length - 1].corto) + ' cierra con ' + U.p(Ss[Ss.length - 1].ind) + '</h2><p class="sub">Indicador por secretaría, de mayor a menor; la línea punteada marca la meta del 100 %.</p>' + Charts.hbar({ aria: "Indicador por secretaría", items: Ss.map(function (s) { return { label: s.corto, value: s.ind, href: "#/secretarias/" + s.carpeta }; }) }) + "</section>" +
       '<section class="card ac ac-ci"><h2>' + bajan(S) + '</h2><p class="sub">El chip de la derecha es la diferencia entre las dos cifras.</p>' + leyVig() +
       Charts.gbar({ la: String(CORTE.anterior), lb: CORTE.vigencia + " al corte", aria: "Avance por secretaría, vigencias " + CORTE.anterior + " y " + CORTE.vigencia, items: Ss.map(function (s) { return { label: s.corto, a: s.a2025, b: s.a2026, href: "#/secretarias/" + s.carpeta }; }) }) + "</section></div>" +
-      '<section class="card mt ac ac-i"><div class="sec-h"><div><h2>Mapa de calor: dónde se concentran las metas, por secretaría y estado</h2><p class="sub">Número de metas. Clic en una celda para verlas en el explorador.</p></div></div>' + Charts.heat({ cab: "Secretaría", aria: "Mapa de calor de metas por secretaría y estado", rows: heatRows(S.map(function (s) { return { label: s.corto, filtro: function (m) { return m.car === s.carpeta; }, href: function (k) { return hrefEx({ sec: s.carpeta, est: k }); } }; }), M) }) + "</section>" +
+      '<section class="card mt ac ac-i"><div class="sec-h"><div><h2>Mapa de calor: dónde se concentran las metas, por secretaría y estado</h2><p class="sub">Número de metas. Clic en una celda para verlas en el explorador.</p></div></div>' + Charts.heat({ cab: "Secretaría", aria: "Mapa de calor de metas por secretaría y estado", rows: heatRows(S.map(function (s) { return { label: s.corto, filtro: function (m) { return m.car === s.carpeta; }, href: function (k) { return hrefEx({ sec: s.carpeta, est: k }); } }; }), filtradasSinEst()) }) + "</section>" +
       '<div class="grid g-aut mt2">' + cards + "</div>" +
       '<section class="mt2"><div class="tw"><table><caption>Comparativo de secretarías</caption><thead><tr><th scope="col">Secretaría</th><th scope="col" class="n">Metas</th><th scope="col" class="n">2025</th><th scope="col" class="n">2026 al corte</th><th scope="col" class="n">Indicador</th><th scope="col" class="n">Cumpl.</th><th scope="col" class="n">En avance</th><th scope="col" class="n">Rezag.</th><th scope="col" class="n">No prog.</th></tr></thead><tbody>' +
       S.map(function (s) { return '<tr><th scope="row"><a href="#/secretarias/' + s.carpeta + '">' + h(s.nombre) + '</a></th><td class="n">' + s.metas + '</td><td class="n">' + U.p(s.a2025) + '</td><td class="n">' + U.p(s.a2026) + '</td><td class="n"><b>' + U.p(s.ind) + '</b></td><td class="n">' + s.sem.cumplida + '</td><td class="n">' + s.sem.en_avance + '</td><td class="n">' + s.sem.rezagada + '</td><td class="n">' + s.sem.no_programada + "</td></tr>"; }).join("") + "</tbody></table></div></section>";
