@@ -164,6 +164,8 @@
       guardarF();
     }
   };
+  /* con filtros activos los conteos son de las metas filtradas; indicador y avance siguen siendo los oficiales del eje o la secretaría completos */
+  function notaFiltro() { return hay() ? '<p class="nota mt"><b>Filtros activos.</b> Los conteos de metas corresponden a las metas filtradas; el indicador y el avance de 2025 y 2026 son los oficiales del eje o la secretaría completos.</p>' : ""; }
   function vacioFiltros() {
     return '<section class="card vacio"><svg class="ic big" aria-hidden="true"><use href="#i-search"/></svg><h2>Ninguna meta coincide con estos filtros</h2><p>La combinación de secretaría, eje y estado no tiene metas. Pruebe quitar uno de los filtros.</p><p><button class="btn" type="button" id="vf-limpiar">Limpiar filtros</button></p></section>';
   }
@@ -262,17 +264,18 @@
     if (ctx.parts[1]) return ejeDetalle(+ctx.parts[1]);
     var M = filtradasG(), E = D.ejes.filter(function (e) { return M.some(function (m) { return m.eje === e.id; }); });
     if (!E.length) return { title: "Avance por eje estratégico", crumbs: [["Inicio", "#/resumen"], ["Avance por eje", null]], html: vacioFiltros(), filtros: true };
+    var EC = {}; E.forEach(function (e) { var sub = M.filter(function (m) { return m.eje === e.id; }); EC[e.id] = { c: cuenta(sub), n: sub.length }; });
     var cards = E.map(function (e) {
       return '<a class="card lcard c' + ((e.id - 1) % 5 + 1) + '" href="#/ejes/' + e.id + '" aria-label="Eje ' + e.id + ", " + h(e.nombre) + ", indicador " + U.p(e.ind) + '"><div class="row"><span class="eje-n">' + e.id + "</span><h3>" + h(e.nombre) + "</h3></div>" +
-        '<div class="row sb2"><span class="ind num">' + U.p(e.ind) + '</span><span class="mini">' + e.metas + " metas · " + e.secretarias.length + " secretaría" + (e.secretarias.length > 1 ? "s" : "") + "</span></div>" +
-        U.bullet(e.a2025, e.a2026) + bltxt(e.a2025, e.a2026) + stackBar(e.sem) +
-        '<div class="mini">' + e.sem.cumplida + " cumplidas · " + e.sem.en_avance + " en avance · " + e.sem.rezagada + " rezagadas · " + e.sem.no_programada + " no programadas</div></a>";
+        '<div class="row sb2"><span class="ind num">' + U.p(e.ind) + '</span><span class="mini">' + EC[e.id].n + " metas · " + e.secretarias.length + " secretaría" + (e.secretarias.length > 1 ? "s" : "") + "</span></div>" +
+        U.bullet(e.a2025, e.a2026) + bltxt(e.a2025, e.a2026) + stackBar(EC[e.id].c) +
+        '<div class="mini">' + EC[e.id].c.cumplida + " cumplidas · " + EC[e.id].c.en_avance + " en avance · " + EC[e.id].c.rezagada + " rezagadas · " + EC[e.id].c.no_programada + " no programadas</div></a>";
     }).join("");
-    var html = '<p class="muted">Los diez ejes estratégicos del Plan. El indicador del eje es el promedio de los indicadores de sus metas programadas al corte.</p><div class="grid g-aut mt">' + cards + "</div>" +
+    var html = '<p class="muted">Los diez ejes estratégicos del Plan. El indicador del eje es el promedio de los indicadores de sus metas programadas al corte.</p>' + notaFiltro() + '<div class="grid g-aut mt">' + cards + "</div>" +
       '<section class="card mt2 ac ac-ci"><h2>Avance 2025 y 2026 por eje</h2><p class="sub">Avance de la vigencia anterior frente al de la vigencia actual al corte; el chip de la derecha es la diferencia entre las dos cifras.</p>' + leyVig() +
       Charts.gbar({ la: String(CORTE.anterior), lb: CORTE.vigencia + " al corte", aria: "Avance por eje, vigencias " + CORTE.anterior + " y " + CORTE.vigencia, items: E.map(function (e) { return { label: ejeCorto(e), a: e.a2025, b: e.a2026, href: "#/ejes/" + e.id }; }) }) + "</section>" +
       '<section class="mt2"><div class="tw"><table><caption>Resumen por eje estratégico</caption><thead><tr><th scope="col">Eje</th><th scope="col" class="n">Metas</th><th scope="col" class="n">Indicador</th><th scope="col" class="n">2025</th><th scope="col" class="n">2026 al corte</th><th scope="col" class="n">Cumplidas</th><th scope="col" class="n">En avance</th><th scope="col" class="n">Rezagadas</th><th scope="col" class="n">No prog.</th></tr></thead><tbody>' +
-      E.map(function (e) { return '<tr><th scope="row"><a href="#/ejes/' + e.id + '">' + e.id + ". " + h(e.nombre) + '</a></th><td class="n">' + e.metas + '</td><td class="n">' + U.p(e.ind) + '</td><td class="n">' + U.p(e.a2025) + '</td><td class="n">' + U.p(e.a2026) + '</td><td class="n">' + e.sem.cumplida + '</td><td class="n">' + e.sem.en_avance + '</td><td class="n">' + e.sem.rezagada + '</td><td class="n">' + e.sem.no_programada + "</td></tr>"; }).join("") +
+      E.map(function (e) { return '<tr><th scope="row"><a href="#/ejes/' + e.id + '">' + e.id + ". " + h(e.nombre) + '</a></th><td class="n">' + EC[e.id].n + '</td><td class="n">' + U.p(e.ind) + '</td><td class="n">' + U.p(e.a2025) + '</td><td class="n">' + U.p(e.a2026) + '</td><td class="n">' + EC[e.id].c.cumplida + '</td><td class="n">' + EC[e.id].c.en_avance + '</td><td class="n">' + EC[e.id].c.rezagada + '</td><td class="n">' + EC[e.id].c.no_programada + "</td></tr>"; }).join("") +
       "</tbody></table></div></section>";
     return { title: "Avance por eje estratégico", crumbs: [["Inicio", "#/resumen"], ["Avance por eje", null]], html: html, filtros: true };
   };
@@ -297,19 +300,20 @@
     var M = filtradasG(), S = D.secretarias.filter(function (s) { return M.some(function (m) { return m.car === s.carpeta; }); });
     if (!S.length) return { title: "Secretarías", crumbs: [["Inicio", "#/resumen"], ["Secretarías", null]], html: vacioFiltros(), filtros: true };
     var Ss = S.slice().sort(function (a, b) { return b.ind - a.ind; });
+    var SC = {}; S.forEach(function (x) { var sub = M.filter(function (m) { return m.car === x.carpeta; }); SC[x.carpeta] = { c: cuenta(sub), n: sub.length }; });
     var cards = S.map(function (s, i) {
       var c = i % 5 + 1;
-      return '<a class="card lcard c' + c + '" href="#/secretarias/' + s.carpeta + '"><div class="lc-h">' + U.ring(s.ind, { size: 68, sw: 8, k: "b1", text: U.p(s.ind), fs: 13, aria: "Indicador de " + s.corto + ": " + U.p(s.ind) }) + '<div><h3>' + h(s.corto) + '</h3><span class="mini">' + s.metas + " metas</span></div></div>" +
-        stackBar(s.sem) + '<div class="mini">' + s.sem.cumplida + " cumplidas · " + s.sem.en_avance + " en avance · " + s.sem.rezagada + " rezagadas · " + s.sem.no_programada + " no prog.</div></a>";
+      return '<a class="card lcard c' + c + '" href="#/secretarias/' + s.carpeta + '"><div class="lc-h">' + U.ring(s.ind, { size: 68, sw: 8, k: "b1", text: U.p(s.ind), fs: 13, aria: "Indicador de " + s.corto + ": " + U.p(s.ind) }) + '<div><h3>' + h(s.corto) + '</h3><span class="mini">' + SC[s.carpeta].n + " metas</span></div></div>" +
+        stackBar(SC[s.carpeta].c) + '<div class="mini">' + SC[s.carpeta].c.cumplida + " cumplidas · " + SC[s.carpeta].c.en_avance + " en avance · " + SC[s.carpeta].c.rezagada + " rezagadas · " + SC[s.carpeta].c.no_programada + " no prog.</div></a>";
     }).join("");
-    var html = '<p class="muted">Comparativo de las nueve secretarías. Cada una responde por metas distintas; el indicador resume su avance acumulado al corte.</p>' +
+    var html = '<p class="muted">Comparativo de las nueve secretarías. Cada una responde por metas distintas; el indicador resume su avance acumulado al corte.</p>' + notaFiltro() +
       '<div class="grid g2 mt"><section class="card ac ac-t"><h2>' + h(Ss[0].corto) + ' lidera con ' + U.p(Ss[0].ind) + '; ' + h(Ss[Ss.length - 1].corto) + ' cierra con ' + U.p(Ss[Ss.length - 1].ind) + '</h2><p class="sub">Indicador por secretaría, de mayor a menor; la línea punteada marca la meta del 100 %.</p>' + Charts.hbar({ aria: "Indicador por secretaría", items: Ss.map(function (s) { return { label: s.corto, value: s.ind, href: "#/secretarias/" + s.carpeta }; }) }) + "</section>" +
       '<section class="card ac ac-ci"><h2>' + bajan(S) + '</h2><p class="sub">El chip de la derecha es la diferencia entre las dos cifras.</p>' + leyVig() +
       Charts.gbar({ la: String(CORTE.anterior), lb: CORTE.vigencia + " al corte", aria: "Avance por secretaría, vigencias " + CORTE.anterior + " y " + CORTE.vigencia, items: Ss.map(function (s) { return { label: s.corto, a: s.a2025, b: s.a2026, href: "#/secretarias/" + s.carpeta }; }) }) + "</section></div>" +
       '<section class="card mt ac ac-i"><div class="sec-h"><div><h2>Mapa de calor: dónde se concentran las metas, por secretaría y estado</h2><p class="sub">Número de metas. Clic en una celda para verlas en el explorador.</p></div></div>' + Charts.heat({ cab: "Secretaría", aria: "Mapa de calor de metas por secretaría y estado", rows: heatRows(S.map(function (s) { return { label: s.corto, filtro: function (m) { return m.car === s.carpeta; }, href: function (k) { return hrefEx({ sec: s.carpeta, est: k }); } }; }), filtradasSinEst()) }) + "</section>" +
       '<div class="grid g-aut mt2">' + cards + "</div>" +
       '<section class="mt2"><div class="tw"><table><caption>Comparativo de secretarías</caption><thead><tr><th scope="col">Secretaría</th><th scope="col" class="n">Metas</th><th scope="col" class="n">2025</th><th scope="col" class="n">2026 al corte</th><th scope="col" class="n">Indicador</th><th scope="col" class="n">Cumpl.</th><th scope="col" class="n">En avance</th><th scope="col" class="n">Rezag.</th><th scope="col" class="n">No prog.</th></tr></thead><tbody>' +
-      S.map(function (s) { return '<tr><th scope="row"><a href="#/secretarias/' + s.carpeta + '">' + h(s.nombre) + '</a></th><td class="n">' + s.metas + '</td><td class="n">' + U.p(s.a2025) + '</td><td class="n">' + U.p(s.a2026) + '</td><td class="n"><b>' + U.p(s.ind) + '</b></td><td class="n">' + s.sem.cumplida + '</td><td class="n">' + s.sem.en_avance + '</td><td class="n">' + s.sem.rezagada + '</td><td class="n">' + s.sem.no_programada + "</td></tr>"; }).join("") + "</tbody></table></div></section>";
+      S.map(function (s) { return '<tr><th scope="row"><a href="#/secretarias/' + s.carpeta + '">' + h(s.nombre) + '</a></th><td class="n">' + SC[s.carpeta].n + '</td><td class="n">' + U.p(s.a2025) + '</td><td class="n">' + U.p(s.a2026) + '</td><td class="n"><b>' + U.p(s.ind) + '</b></td><td class="n">' + SC[s.carpeta].c.cumplida + '</td><td class="n">' + SC[s.carpeta].c.en_avance + '</td><td class="n">' + SC[s.carpeta].c.rezagada + '</td><td class="n">' + SC[s.carpeta].c.no_programada + "</td></tr>"; }).join("") + "</tbody></table></div></section>";
     return { title: "Secretarías", crumbs: [["Inicio", "#/resumen"], ["Secretarías", null]], html: html, filtros: true };
   };
   function secDetalle(car) {
