@@ -69,7 +69,7 @@
         switch (c) {
           case "cod": v = '<td data-l=""><a class="cod" href="' + hrefMeta(m) + '">' + h(m.cod) + "</a></td>"; break;
           case "meta": v = '<td class="cell-meta" data-l="">' + h(m.m) + marcasHtml(m) + "</td>"; break;
-          case "sec": v = '<td data-l="Secretaría">' + h(secCorto(m.car)) + "</td>"; break;
+          case "sec": v = '<td data-l="Secretaría">' + secChip(m.car, h(secCorto(m.car)), 26) + "</td>"; break;
           case "eje": v = '<td class="n" data-l="Eje"><a href="#/ejes/' + m.eje + '">' + m.eje + "</a></td>"; break;
           case "a25": v = '<td class="n" data-l="Avance 2025">' + (m.p25 > 0 ? U.p(m.a25) : "—") + "</td>"; break;
           case "a26": v = '<td class="n" data-l="Avance 2026 al corte">' + (m.p26 > 0 ? U.p(m.a26) : "—") + "</td>"; break;
@@ -167,6 +167,9 @@
   /* con filtros activos los conteos son de las metas filtradas; indicador y avance siguen siendo los oficiales del eje o la secretaría completos */
   /* ilustración de cada secretaría (SVG propio, decorativa: el nombre ya está en el texto) */
   function ilus(car, cls) { return '<span class="' + cls + '"><img src="assets/sec/' + h(car) + '.svg" alt="" width="480" height="270" loading="lazy" decoding="async"></span>'; }
+  /* miniatura redonda de la secretaría junto a su nombre (decorativa: el nombre va en el texto) */
+  function av(car, px) { px = px || 28; return car && secBy[car] ? '<img class="sec-av" src="assets/sec/' + h(car) + '.svg" alt="" width="' + px + '" height="' + px + '" loading="lazy" decoding="async">' : ""; }
+  function secChip(car, html, px) { return '<span class="sec-l">' + av(car, px) + "<span>" + html + "</span></span>"; }
   function notaFiltro() { return hay() ? '<p class="nota mt"><b>Filtros activos.</b> Los conteos de metas corresponden a las metas filtradas; el indicador y el avance de 2025 y 2026 son los oficiales del eje o la secretaría completos.</p>' : ""; }
   function vacioFiltros() {
     return '<section class="card vacio"><svg class="ic big" aria-hidden="true"><use href="#i-search"/></svg><h2>Ninguna meta coincide con estos filtros</h2><p>La combinación de secretaría, eje y estado no tiene metas. Pruebe quitar uno de los filtros.</p><p><button class="btn" type="button" id="vf-limpiar">Limpiar filtros</button></p></section>';
@@ -181,20 +184,20 @@
   }
   function rank(items) {
     return '<ol class="rank">' + items.map(function (it, i) {
-      return '<li><a href="' + h(it.href) + '" data-tip="' + h(it.label + ": " + U.p(it.value)) + '"><span class="pos">' + (i + 1) + '</span><span class="nm">' + h(it.label) + '</span><span class="bar" aria-hidden="true"><i style="width:' + Math.min(Math.max(it.value, 0), 100) + '%"></i></span><span class="vl num">' + U.p(it.value) + "</span></a></li>";
+      return '<li><a href="' + h(it.href) + '" data-tip="' + h(it.label + ": " + U.p(it.value)) + '"><span class="pos">' + (i + 1) + '</span><span class="nm">' + (it.car ? av(it.car, 30) : "") + "<span>" + h(it.label) + '</span></span><span class="bar" aria-hidden="true"><i style="width:' + Math.min(Math.max(it.value, 0), 100) + '%"></i></span><span class="vl num">' + U.p(it.value) + "</span></a></li>";
     }).join("") + "</ol>";
   }
   function listaMetas(rows, vacio) {
     if (!rows.length) return '<p class="vacio mini">' + vacio + "</p>";
     return '<ul class="mlist">' + rows.map(function (m) {
-      return '<li><a href="' + hrefMeta(m) + '"><span class="cd s-' + m.s + '">' + h(m.cod) + '</span><span class="tx">' + h(trunc(m.m, 118)) + "<small>" + h(secCorto(m.car)) + " · Eje " + m.eje + '</small></span><span class="vl num">' + (m.s === "no_programada" ? "—" : U.p(m.ind)) + "</span></a></li>";
+      return '<li><a href="' + hrefMeta(m) + '"><span class="cd s-' + m.s + '">' + h(m.cod) + '</span><span class="tx">' + h(trunc(m.m, 118)) + "<small>" + secChip(m.car, h(secCorto(m.car)), 18) + " · Eje " + m.eje + '</small></span><span class="vl num">' + (m.s === "no_programada" ? "—" : U.p(m.ind)) + "</span></a></li>";
     }).join("") + "</ul>";
   }
   /* filas del mapa de calor: def = [{label, href: fn(k) -> enlace, filtro: fn(m)}] */
   function heatRows(defs, M) {
     return defs.map(function (d) {
       var sub = M.filter(d.filtro), c = cuenta(sub);
-      return { label: d.label, cells: U.SEMORD.map(function (k) { return { v: c[k], href: d.href(k) }; }) };
+      return { label: d.label, car: d.car, cells: U.SEMORD.map(function (k) { return { v: c[k], href: d.href(k) }; }) };
     });
   }
   function banner(t, extra) {
@@ -237,7 +240,7 @@
       + "</section>";
     var secs = D.secretarias.filter(function (s) { return M.some(function (m) { return m.car === s.carpeta; }); }).sort(function (a, b) { return b.ind - a.ind; });
     var rk = '<section class="card ac ac-t"><div class="sec-h"><div><h2>' + (!F.sec && !F.eje && !F.est && secs.length === D.secretarias.length && secs.length > 1 ? "Ranking de secretarías: " + h(secs[0].corto) + " lidera con " + U.p(secs[0].ind) : "Indicador por secretaría (vista filtrada)") + '</h2><p class="sub">Por indicador al corte; la marca vertical al final de cada barra es la meta del 100 %. Cada secretaría responde por metas distintas.</p></div><a class="lnk" href="#/secretarias">Ver todas</a></div>' +
-      rank(secs.map(function (s) { return { label: s.corto, value: s.ind, href: "#/secretarias/" + s.carpeta }; })) + "</section>";
+      rank(secs.map(function (s) { return { label: s.corto, car: s.carpeta, value: s.ind, href: "#/secretarias/" + s.carpeta }; })) + "</section>";
 
     var ejs = D.ejes.filter(function (e) { return M.some(function (m) { return m.eje === e.id; }); });
     var hm = '<section class="card ac ac-i"><div class="sec-h"><div><h2>Mapa de calor: ejes por estado</h2><p class="sub">Número de metas. Clic en una celda para verlas.</p></div></div>' +
@@ -290,7 +293,7 @@
     var html = '<p class="muted">' + h(e.oficial) + "</p>" +
       '<div class="grid g4 mt">' + kpi(U.p(e.ind), "Indicador del eje", e.prog + " metas programadas al corte", "", e.ind) + kpi(U.p(e.a2025), "Avance " + CORTE.anterior, "", "k-a25", e.a2025) + kpi(U.p(e.a2026), "Avance " + CORTE.vigencia + " al corte", "", "k-a26", e.a2026) + kpi(e.metas, "Metas del eje", e.secretarias.length + " secretaría" + (e.secretarias.length > 1 ? "s" : "")) + "</div>" +
       '<div class="grid g2 mt"><section class="card"><h2>Estado de las metas del eje</h2><div class="donut-wrap"><div style="width:190px">' + Charts.donut({ sem: e.sem, aria: "Semáforo del eje " + id }) + "</div>" + leyenda(e.sem) + '</div></section><section class="card"><h2>Secretarías que concurren</h2><p class="sub">Responsables de las metas del eje.</p><ul style="margin:0;padding-left:18px">' +
-      e.secretarias.map(function (n) { var c = D.secretarias.filter(function (s) { return s.nombre === n || s.corto === n; })[0]; return "<li>" + (c ? '<a href="#/secretarias/' + c.carpeta + '">' + h(n) + "</a>" : h(n)) + "</li>"; }).join("") + "</ul></section></div>" + rez +
+      e.secretarias.map(function (n) { var c = D.secretarias.filter(function (s) { return s.nombre === n || s.corto === n; })[0]; return '<li class="sec-li">' + (c ? '<a href="#/secretarias/' + c.carpeta + '">' + secChip(c.carpeta, h(n), 28) + "</a>" : h(n)) + "</li>"; }).join("") + "</ul></section></div>" + rez +
       '<section class="mt2"><h2>Metas del eje</h2><p class="muted">Cada fila lleva al detalle de la meta.</p>' + tablaMetas(rows, ["cod", "meta", "sec", "a25", "a26", "ind", "est"], "Metas del eje " + id + ": " + e.nombre) + "</section>" +
       '<nav class="row sb2 mt2" aria-label="Eje anterior y siguiente">' + (ant ? '<a class="btn sec" href="#/ejes/' + ant.id + '">« Eje ' + ant.id + "</a>" : "<span></span>") + (sig ? '<a class="btn sec" href="#/ejes/' + sig.id + '">Eje ' + sig.id + " »</a>" : "") + "</nav>";
     return { title: "Eje " + id + ". " + e.nombre, crumbs: [["Inicio", "#/resumen"], ["Avance por eje", "#/ejes"], ["Eje " + id, null]], html: html };
@@ -309,13 +312,13 @@
         stackBar(SC[s.carpeta].c) + '<div class="mini">' + SC[s.carpeta].c.cumplida + " cumplidas · " + SC[s.carpeta].c.en_avance + " en avance · " + SC[s.carpeta].c.rezagada + " rezagadas · " + SC[s.carpeta].c.no_programada + " no prog.</div></a>";
     }).join("");
     var html = '<p class="muted">Comparativo de las nueve secretarías. Cada una responde por metas distintas; el indicador resume su avance acumulado al corte.</p>' + notaFiltro() +
-      '<div class="grid g2 mt"><section class="card ac ac-t"><h2>' + h(Ss[0].corto) + ' lidera con ' + U.p(Ss[0].ind) + '; ' + h(Ss[Ss.length - 1].corto) + ' cierra con ' + U.p(Ss[Ss.length - 1].ind) + '</h2><p class="sub">Indicador por secretaría, de mayor a menor; la línea punteada marca la meta del 100 %.</p>' + Charts.hbar({ aria: "Indicador por secretaría", items: Ss.map(function (s) { return { label: s.corto, value: s.ind, href: "#/secretarias/" + s.carpeta }; }) }) + "</section>" +
+      '<div class="grid g2 mt"><section class="card ac ac-t"><h2>' + h(Ss[0].corto) + ' lidera con ' + U.p(Ss[0].ind) + '; ' + h(Ss[Ss.length - 1].corto) + ' cierra con ' + U.p(Ss[Ss.length - 1].ind) + '</h2><p class="sub">Indicador por secretaría, de mayor a menor; la línea punteada marca la meta del 100 %.</p>' + Charts.hbar({ aria: "Indicador por secretaría", items: Ss.map(function (s) { return { label: s.corto, car: s.carpeta, value: s.ind, href: "#/secretarias/" + s.carpeta }; }) }) + "</section>" +
       '<section class="card ac ac-ci"><h2>' + bajan(S) + '</h2><p class="sub">El chip de la derecha es la diferencia entre las dos cifras.</p>' + leyVig() +
-      Charts.gbar({ la: String(CORTE.anterior), lb: CORTE.vigencia + " al corte", aria: "Avance por secretaría, vigencias " + CORTE.anterior + " y " + CORTE.vigencia, items: Ss.map(function (s) { return { label: s.corto, a: s.a2025, b: s.a2026, href: "#/secretarias/" + s.carpeta }; }) }) + "</section></div>" +
-      '<section class="card mt ac ac-i"><div class="sec-h"><div><h2>Mapa de calor: dónde se concentran las metas, por secretaría y estado</h2><p class="sub">Número de metas. Clic en una celda para verlas en el explorador.</p></div></div>' + Charts.heat({ cab: "Secretaría", aria: "Mapa de calor de metas por secretaría y estado", rows: heatRows(S.map(function (s) { return { label: s.corto, filtro: function (m) { return m.car === s.carpeta; }, href: function (k) { return hrefEx({ sec: s.carpeta, est: k }); } }; }), filtradasSinEst()) }) + "</section>" +
+      Charts.gbar({ la: String(CORTE.anterior), lb: CORTE.vigencia + " al corte", aria: "Avance por secretaría, vigencias " + CORTE.anterior + " y " + CORTE.vigencia, items: Ss.map(function (s) { return { label: s.corto, car: s.carpeta, a: s.a2025, b: s.a2026, href: "#/secretarias/" + s.carpeta }; }) }) + "</section></div>" +
+      '<section class="card mt ac ac-i"><div class="sec-h"><div><h2>Mapa de calor: dónde se concentran las metas, por secretaría y estado</h2><p class="sub">Número de metas. Clic en una celda para verlas en el explorador.</p></div></div>' + Charts.heat({ cab: "Secretaría", aria: "Mapa de calor de metas por secretaría y estado", rows: heatRows(S.map(function (s) { return { label: s.corto, car: s.carpeta, filtro: function (m) { return m.car === s.carpeta; }, href: function (k) { return hrefEx({ sec: s.carpeta, est: k }); } }; }), filtradasSinEst()) }) + "</section>" +
       '<div class="grid g-aut mt2">' + cards + "</div>" +
       '<section class="mt2"><div class="tw"><table><caption>Comparativo de secretarías</caption><thead><tr><th scope="col">Secretaría</th><th scope="col" class="n">Metas</th><th scope="col" class="n">2025</th><th scope="col" class="n">2026 al corte</th><th scope="col" class="n">Indicador</th><th scope="col" class="n">Cumpl.</th><th scope="col" class="n">En avance</th><th scope="col" class="n">Rezag.</th><th scope="col" class="n">No prog.</th></tr></thead><tbody>' +
-      S.map(function (s) { return '<tr><th scope="row"><a href="#/secretarias/' + s.carpeta + '">' + h(s.nombre) + '</a></th><td class="n">' + SC[s.carpeta].n + '</td><td class="n">' + U.p(s.a2025) + '</td><td class="n">' + U.p(s.a2026) + '</td><td class="n"><b>' + U.p(s.ind) + '</b></td><td class="n">' + SC[s.carpeta].c.cumplida + '</td><td class="n">' + SC[s.carpeta].c.en_avance + '</td><td class="n">' + SC[s.carpeta].c.rezagada + '</td><td class="n">' + SC[s.carpeta].c.no_programada + "</td></tr>"; }).join("") + "</tbody></table></div></section>";
+      S.map(function (s) { return '<tr><th scope="row"><a href="#/secretarias/' + s.carpeta + '">' + secChip(s.carpeta, h(s.nombre), 28) + '</a></th><td class="n">' + SC[s.carpeta].n + '</td><td class="n">' + U.p(s.a2025) + '</td><td class="n">' + U.p(s.a2026) + '</td><td class="n"><b>' + U.p(s.ind) + '</b></td><td class="n">' + SC[s.carpeta].c.cumplida + '</td><td class="n">' + SC[s.carpeta].c.en_avance + '</td><td class="n">' + SC[s.carpeta].c.rezagada + '</td><td class="n">' + SC[s.carpeta].c.no_programada + "</td></tr>"; }).join("") + "</tbody></table></div></section>";
     return { title: "Secretarías", crumbs: [["Inicio", "#/resumen"], ["Secretarías", null]], html: html, filtros: true };
   };
   function secDetalle(car) {
@@ -395,7 +398,7 @@
           s += "</tr></thead><tbody>";
           if (!vis.length) s += '<tr><td colspan="8" class="vacio">Ninguna meta coincide con los filtros. Pruebe con otro texto o limpie los filtros.</td></tr>';
           vis.forEach(function (m) {
-            s += '<tr><td data-l=""><a class="cod" href="' + hrefMeta(m) + '">' + h(m.cod) + '</a></td><td class="cell-meta" data-l="">' + h(m.m) + marcasHtml(m) + '</td><td data-l="Secretaría">' + h(secCorto(m.car)) + '</td><td class="n" data-l="Eje"><a href="#/ejes/' + m.eje + '">' + m.eje + '</a></td><td class="n" data-l="Avance 2025">' + (m.p25 > 0 ? U.p(m.a25) : "—") + '</td><td class="n" data-l="Avance 2026 al corte">' + (m.p26 > 0 ? U.p(m.a26) : "—") + '</td><td class="n" data-l="Indicador">' + mbar(m) + (m.s === "no_programada" ? "—" : U.p(m.ind)) + '</td><td data-l="Estado">' + U.chip(m.s) + "</td></tr>";
+            s += '<tr><td data-l=""><a class="cod" href="' + hrefMeta(m) + '">' + h(m.cod) + '</a></td><td class="cell-meta" data-l="">' + h(m.m) + marcasHtml(m) + '</td><td data-l="Secretaría">' + secChip(m.car, h(secCorto(m.car)), 26) + '</td><td class="n" data-l="Eje"><a href="#/ejes/' + m.eje + '">' + m.eje + '</a></td><td class="n" data-l="Avance 2025">' + (m.p25 > 0 ? U.p(m.a25) : "—") + '</td><td class="n" data-l="Avance 2026 al corte">' + (m.p26 > 0 ? U.p(m.a26) : "—") + '</td><td class="n" data-l="Indicador">' + mbar(m) + (m.s === "no_programada" ? "—" : U.p(m.ind)) + '</td><td data-l="Estado">' + U.chip(m.s) + "</td></tr>";
           });
           s += "</tbody></table></div>";
           s += '<nav class="pag" aria-label="Paginación"><span class="muted">' + (tot ? "Mostrando " + (ini + 1) + "–" + (ini + vis.length) + " de " + tot : "Sin resultados") + '</span><span class="row"><button class="btn sec" type="button" data-p="-1"' + (EX.page <= 1 ? " disabled" : "") + '>« Anterior</button><span>Página ' + EX.page + " de " + pags + '</span><button class="btn sec" type="button" data-p="1"' + (EX.page >= pags ? " disabled" : "") + ">Siguiente »</button></span></nav>";
@@ -437,7 +440,7 @@
     var formula = m.s === "no_programada" ? "Sin programación acumulada al corte: la meta no entra en el promedio ni penaliza el indicador." : "Indicador = ejecutado acumulado ÷ programado acumulado = " + U.n(m.ea) + " ÷ " + U.n(m.pa) + " = " + U.p(m.ind) + ".";
     var html = '<div class="card"><div class="row sb2"><span class="row">' + U.chip(m.s) + '<span class="tag">Meta ' + h(m.cod) + '</span></span><a class="btn sec" href="#/metas">' + ICON("table") + "Volver al explorador</a></div>" +
       '<h2 style="margin-top:10px;font-size:1.15rem">' + h(m.m) + "</h2>" +
-      '<p class="muted">' + '<a href="#/secretarias/' + m.car + '">' + h(s.nombre) + '</a> · <a href="#/ejes/' + e.id + '">Eje ' + e.id + ". " + h(e.nombre) + "</a></p>" + marcasHtml(m) + "</div>" +
+      '<p class="muted">' + '<a href="#/secretarias/' + m.car + '">' + secChip(m.car, h(s.nombre), 28) + '</a> · <a href="#/ejes/' + e.id + '">Eje ' + e.id + ". " + h(e.nombre) + "</a></p>" + marcasHtml(m) + "</div>" +
       '<section class="card mt"><h2>' + CORTE.anterior + " y " + CORTE.vigencia + " (acumulado al corte)</h2><p class='sub'>" + h(formula) + "</p>" +
       '<dl class="dl"><div><dt>Programado ' + CORTE.anterior + "</dt><dd>" + U.n(m.p25) + "</dd></div><div><dt>Ejecutado " + CORTE.anterior + "</dt><dd>" + U.n(m.e25) + "</dd></div><div><dt>Avance " + CORTE.anterior + "</dt><dd>" + (m.p25 > 0 ? U.p(m.a25) : "—") + "</dd></div>" +
       "<div><dt>Programado " + CORTE.vigencia + " al corte</dt><dd>" + U.n(m.p26) + "</dd></div><div><dt>Ejecutado " + CORTE.vigencia + " al corte</dt><dd>" + U.n(m.e26) + "</dd></div><div><dt>Avance " + CORTE.vigencia + " al corte</dt><dd>" + (m.p26 > 0 ? U.p(m.a26) : "—") + "</dd></div>" +
@@ -447,7 +450,7 @@
     if (m.mk.indexOf("verificacion") >= 0) html += '<p class="nota mt"><b>Dato en verificación.</b> La escala de programación entre vigencias de esta meta se verifica con la secretaría antes de interpretar su indicador.</p>';
     if (m.mk.indexOf("arrastre") >= 0) html += '<p class="nota mt"><b>Lectura de la meta.</b> ' + h(notaArrastre(m)) + "</p>";
     if (otras.length) html += '<section class="card mt"><h2>Meta compartida</h2><p class="sub">Esta meta también figura en otras secretarías; cada una reporta su propio avance.</p><div class="tw"><table><caption class="sr">Valores de la meta compartida por secretaría</caption><thead><tr><th scope="col">Secretaría</th><th scope="col">Estado</th><th scope="col" class="n">Indicador</th></tr></thead><tbody>' +
-      comp.registros.map(function (r) { return "<tr><th scope='row'>" + (r.carpeta === m.car ? "<b>" + h(secCorto(r.carpeta)) + " (esta)</b>" : '<a href="#/meta/' + r.carpeta + "/" + encodeURIComponent(m.cod) + '">' + h(secCorto(r.carpeta)) + "</a>") + "</th><td>" + U.chip(r.semaforo) + '</td><td class="n">' + U.p(r.indicador) + "</td></tr>"; }).join("") + "</tbody></table></div></section>";
+      comp.registros.map(function (r) { return "<tr><th scope='row'>" + (r.carpeta === m.car ? "<b>" + secChip(r.carpeta, h(secCorto(r.carpeta)) + " (esta)", 24) + "</b>" : '<a href="#/meta/' + r.carpeta + "/" + encodeURIComponent(m.cod) + '">' + secChip(r.carpeta, h(secCorto(r.carpeta)), 24) + "</a>") + "</th><td>" + U.chip(r.semaforo) + '</td><td class="n">' + U.p(r.indicador) + "</td></tr>"; }).join("") + "</tbody></table></div></section>";
     return { title: "Meta " + m.cod, crumbs: [["Inicio", "#/resumen"], ["Explorador de metas", "#/metas"], ["Meta " + m.cod, null]], html: html };
   };
 
@@ -519,7 +522,7 @@
       return '<details class="card" style="padding:12px 16px"><summary style="cursor:pointer;min-height:44px;display:flex;align-items:center;gap:10px;flex-wrap:wrap"><b>Meta ' + h(c.codigo) + "</b><span class='muted' style='flex:1;min-width:200px'>" + h(nom(c.codigo)) + "</span>" +
         (c.difiere ? '<span class="tag">Valores distintos por secretaría</span>' : '<span class="tag">Valores iguales</span>') + "</summary>" +
         '<div class="tw mt"><table><caption class="sr">Valores de la meta ' + h(c.codigo) + " por secretaría</caption><thead><tr><th scope='col'>Secretaría</th><th scope='col'>Estado</th><th scope='col' class='n'>Indicador</th><th scope='col' class='n'>Avance 2025</th><th scope='col' class='n'>Avance 2026</th><th scope='col' class='n'>Prog. 2026 al corte</th><th scope='col' class='n'>Ejec. 2026 al corte</th></tr></thead><tbody>" +
-        c.registros.map(function (r) { return "<tr><th scope='row'><a href='#/meta/" + r.carpeta + "/" + encodeURIComponent(c.codigo) + "'>" + h(secCorto(r.carpeta)) + "</a></th><td>" + U.chip(r.semaforo) + "</td><td class='n'>" + U.p(r.indicador) + "</td><td class='n'>" + U.p(r.avance_2025) + "</td><td class='n'>" + U.p(r.avance_2026) + "</td><td class='n'>" + U.n(r.prog_2026_corte) + "</td><td class='n'>" + U.n(r.ejec_2026_corte) + "</td></tr>"; }).join("") +
+        c.registros.map(function (r) { return "<tr><th scope='row'><a href='#/meta/" + r.carpeta + "/" + encodeURIComponent(c.codigo) + "'>" + secChip(r.carpeta, h(secCorto(r.carpeta)), 24) + "</a></th><td>" + U.chip(r.semaforo) + "</td><td class='n'>" + U.p(r.indicador) + "</td><td class='n'>" + U.p(r.avance_2025) + "</td><td class='n'>" + U.p(r.avance_2026) + "</td><td class='n'>" + U.n(r.prog_2026_corte) + "</td><td class='n'>" + U.n(r.ejec_2026_corte) + "</td></tr>"; }).join("") +
         "</tbody></table></div>" + (c.difiere ? '<p class="mini mt">Cada secretaría reporta el avance de su propia parte; la diferencia entre valores se verifica con las secretarías para confirmar si corresponde a aportes distintos.</p>' : "") + "</details>";
     }).join("");
     var ver = Q.verificacion.map(function (v) {
@@ -533,7 +536,7 @@
       '<section class="mt2"><h2>Meta en verificación</h2>' + ver + "</section>" +
       '<section class="mt2"><h2>Arrastre de 2025 (' + arr.length + ')</h2><p class="muted">Metas sin programación ' + CORTE.vigencia + ' al corte. Algunas se cumplieron con lo registrado en ' + CORTE.anterior + ' y su programación restante está en ' + h(CORTE.posteriores) + '; otras no tienen programación posterior y su resultado corresponde a lo registrado en ' + CORTE.anterior + ', o registran ejecución sin programación. La columna «Lectura» indica cada caso; se listan para que su lectura sea transparente.</p>' +
       '<div class="tw"><table><caption class="sr">Metas con arrastre de 2025</caption><thead><tr><th scope="col">Código</th><th scope="col">Meta</th><th scope="col">Secretaría</th><th scope="col">Lectura</th><th scope="col" class="n">Indicador</th><th scope="col">Estado</th></tr></thead><tbody>' +
-      arr.map(function (m) { return '<tr><td><a class="cod" href="' + hrefMeta(m) + '">' + h(m.cod) + '</a></td><td class="cell-meta">' + h(m.m) + "</td><td>" + h(secCorto(m.car)) + "</td><td>" + h(m._t) + '</td><td class="n">' + U.p(m.ind) + "</td><td>" + U.chip(m.s) + "</td></tr>"; }).join("") + "</tbody></table></div></section>" +
+      arr.map(function (m) { return '<tr><td><a class="cod" href="' + hrefMeta(m) + '">' + h(m.cod) + '</a></td><td class="cell-meta">' + h(m.m) + "</td><td>" + secChip(m.car, h(secCorto(m.car)), 26) + "</td><td>" + h(m._t) + '</td><td class="n">' + U.p(m.ind) + "</td><td>" + U.chip(m.s) + "</td></tr>"; }).join("") + "</tbody></table></div></section>" +
       '<section class="mt2"><h2>Otras observaciones de dato</h2><ul>' +
       "<li><b>Ejecución superior a lo programado (" + Q.sobreejecucion.length + "):</b> " + Q.sobreejecucion.map(function (s) { return '<a href="#/meta/' + s.carpeta + "/" + encodeURIComponent(s.codigo) + '">meta ' + h(s.codigo) + "</a> (" + h(secCorto(s.carpeta)) + ")"; }).join(", ") + ". Se verifica con la secretaría que el ejecutado corresponda al período.</li>" +
       "<li><b>Valores fraccionarios en el Plan Indicativo (" + Q.fraccionarios.length + "):</b> metas " + Q.fraccionarios.map(function (f) { return h(f.codigo); }).join(" y ") + ". Se confirma la escala de registro con la secretaría.</li>" +
@@ -552,7 +555,7 @@
     var html = '<p class="muted">Descargue los informes en Word o PDF. Corte ' + h(CORTE.texto) + ".</p>" +
       '<section class="card mt"><div class="row sb2"><h2>Informes generales</h2><div class="seg" role="group" aria-label="Año del informe general">' + anios.map(function (a) { return '<button type="button" data-a="' + a + '" aria-pressed="' + (a === ANIO ? "true" : "false") + '">' + a + "</button>"; }).join("") + '</div></div><div id="inf-gen" class="mt"></div></section>' +
       '<section class="card mt"><h2>Informes por secretaría</h2><p class="sub">Informe de seguimiento de cada secretaría, vigencia ' + CORTE.vigencia + ".</p>" +
-      D.secretarias.map(function (s) { var a = s.informe || {}; return '<div class="dl-item"><div class="tt"><b>' + h(s.nombre) + '</b><span class="mini">Indicador ' + U.p(s.ind) + " · " + s.metas + ' metas · <a href="#/secretarias/' + s.carpeta + '">ver ficha</a></span></div><div class="row">' + btnInf(a.docx, "docx", "Word") + btnInf(a.pdf, "pdf", "PDF") + "</div></div>"; }).join("") + "</section>";
+      D.secretarias.map(function (s) { var a = s.informe || {}; return '<div class="dl-item"><div class="tt"><b>' + secChip(s.carpeta, h(s.nombre), 36) + '</b><span class="mini">Indicador ' + U.p(s.ind) + " · " + s.metas + ' metas · <a href="#/secretarias/' + s.carpeta + '">ver ficha</a></span></div><div class="row">' + btnInf(a.docx, "docx", "Word") + btnInf(a.pdf, "pdf", "PDF") + "</div></div>"; }).join("") + "</section>";
     return {
       title: "Informes", crumbs: [["Inicio", "#/resumen"], ["Informes", null]], html: html, init: function (root) {
         function pintar() {

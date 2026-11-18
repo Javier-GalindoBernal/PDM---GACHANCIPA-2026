@@ -609,3 +609,18 @@ body.menu-open .sb{box-shadow:6px 0 24px rgba(4,16,18,.45)}
 .sec-hero-img img{width:100%;height:100%;object-fit:cover;display:block}
 @media (max-width:720px){.sec-hero{grid-template-columns:1fr}.sec-hero-img{order:-1;min-height:0;aspect-ratio:16/9}.sec-hero-tx{padding:18px}}
 @media (prefers-reduced-motion:reduce){.lcard .lc-img img{transition:none}.lcard:hover .lc-img img{transform:none}}
+
+/* miniaturas de secretaría junto al nombre */
+.sec-l{display:inline-flex;align-items:center;gap:8px;vertical-align:middle;min-width:0}
+.sec-l>span{min-width:0}
+.sec-av{flex:none;border-radius:50%;object-fit:cover;object-position:62% 50%;display:block;background:var(--azul-l);box-shadow:0 0 0 2px var(--surf),0 0 0 3px var(--line)}
+.rank .nm{display:flex;align-items:center;gap:10px;min-width:0}
+.rank .nm>span{min-width:0}
+.mlist small .sec-l{gap:5px}
+.dl-item .tt b .sec-l{gap:12px}
+.sec-li{list-style:none;margin-left:-18px;padding:4px 0}
+.sec-li a{text-decoration:none;font-weight:600}
+.sec-li a:hover .sec-l>span{text-decoration:underline}
+td .sec-l{white-space:nowrap}
+@media (max-width:720px){.rank .nm .sec-av{width:26px;height:26px}}
+@media print{.sec-av{box-shadow:none}}

@@ -113,6 +113,15 @@
   var reg = [];
   var NS = "http://www.w3.org/2000/svg";
 
+  /* miniatura circular de la ilustración de una secretaría dentro de un gráfico SVG.
+     Se recorta a mano (imagen más ancha que la caja, centrada hacia el protagonista) y se enmascara con un círculo propio,
+     porque el navegador ignora el recorte automático de las imágenes SVG. */
+  function avImg(clip, car, x, y, sz) {
+    var cid = clip + "-" + Math.round(x) + "-" + Math.round(y), iw = sz * 480 / 270, ix = x - (iw - sz) * 0.6;
+    return '<clipPath id="' + cid + '"><circle cx="' + (x + sz / 2) + '" cy="' + (y + sz / 2) + '" r="' + (sz / 2) + '"/></clipPath>' +
+      '<g clip-path="url(#' + cid + ')"><rect x="' + x + '" y="' + y + '" width="' + sz + '" height="' + sz + '" fill="var(--azul-l)"/><image href="assets/sec/' + U.esc(car) + '.svg" x="' + ix.toFixed(1) + '" y="' + y + '" width="' + iw.toFixed(1) + '" height="' + sz + '"/></g>' +
+      '<circle cx="' + (x + sz / 2) + '" cy="' + (y + sz / 2) + '" r="' + (sz / 2) + '" fill="none" stroke="var(--line)" stroke-width="1.5"/>';
+  }
   function trunc(s, max) { s = String(s); return s.length > max ? s.slice(0, max - 1) + "…" : s; }
 
   /* parte una etiqueta en hasta 2 líneas por palabras (sin recortar a pocos caracteres); si aún no cabe, recorta solo el final de la 2.ª */
@@ -205,12 +214,13 @@
   }
 
   function dibujar(kind, spec, w) {
-    var h, s, g = "", id = uid(), used = {};
-    function defs() { return "<defs>" + Object.keys(used).map(function (k) { return grad(id, k); }).join("") + "</defs>"; }
+    var h, s, g = "", id = uid(), used = {}, avd = "";
+    function defs() { return "<defs>" + Object.keys(used).map(function (k) { return grad(id, k); }).join("") + avd + "</defs>"; }
     if (kind === "hbar" || kind === "gbar" || kind === "stack") {
       var wide = w >= 560, lblW = wide ? Math.min(250, Math.round(w * 0.34)) : 0, padR = kind === "stack" ? 72 : kind === "gbar" ? (wide ? 152 : 66) : (spec.items.some(function (i) { return i.et; }) && wide ? 150 : 66);
       var bw = Math.max(80, w - lblW - padR), x0 = lblW, top = 28, n = spec.items.length;
-      var LH = 14, mcw = wide ? Math.floor(lblW / 6.2) : Math.floor(w / 6.4), maxL = 1;
+      var hasAv = spec.items.some(function (i) { return i.car; }), avx = hasAv ? (wide ? 46 : 32) : 0, avc = id + "-av";
+      var LH = 14, mcw = wide ? Math.floor((lblW - avx) / 6.2) : Math.floor((w - avx) / 6.4), maxL = 1;
       if (kind === "hbar") spec.items.forEach(function (it) { it._e = etqLineas(it.label, mcw); if (it._e.ls.length > maxL) maxL = it._e.ls.length; });
       var rowH = kind === "hbar" ? (wide ? Math.max(46, LH * maxL + 18) : Math.max(54, LH * maxL + 32)) : wide ? (kind === "gbar" ? 54 : 46) : (kind === "gbar" ? 68 : 54);
       h = top + n * rowH + 6;
@@ -220,13 +230,14 @@
       if (kind !== "stack") g += axis(x0, bw, top, h - 4, max, max === 100 ? [0, 25, 50, 75, 100] : [0, 50, 100, 150, 200]);
       spec.items.forEach(function (it, idx) {
         var y0 = top + idx * rowH, d = Math.min(idx * 40, 600), dl = it.a != null && it.b != null ? U.delta(it.a, it.b) : null, cw = dl ? Math.round((dl.ar + " " + dl.t).length * 6.6 + 20) : 0;
-        var maxc = wide ? Math.floor(lblW / 6.2) : Math.floor((w - (kind === "gbar" ? cw + 12 : it.et ? 96 : 0)) / 6.4), inner = "";
+        var maxc = wide ? Math.floor((lblW - avx) / 6.2) : Math.floor((w - avx - (kind === "gbar" ? cw + 12 : it.et ? 96 : 0)) / 6.4), inner = "";
+        if (it.car) inner += wide ? avImg(avc, it.car, 0, y0 + rowH / 2 - 18, 36) : avImg(avc, it.car, 0, y0 - 2, 26);
         var cy = wide ? y0 + rowH / 2 : y0 + (kind === "gbar" ? 34 : 36);
         if (kind === "hbar") {
           var ls = it._e.ls, y1 = wide ? cy - ls.length * LH / 2 + 11 : y0 + 12;
           if (!wide) cy = y0 + ls.length * LH + 14;
-          inner += '<text class="lbl" x="0" y="' + y1.toFixed(1) + '">' + ls.map(function (t, i) { return '<tspan x="0"' + (i ? ' dy="' + LH + '"' : "") + (i === 0 && it._e.cod ? ' font-weight="700"' : "") + ">" + U.esc(t) + "</tspan>"; }).join("") + "</text>";
-        } else inner += '<text class="lbl" x="0" y="' + (wide ? y0 + rowH / 2 + 4 : y0 + 14) + '">' + U.esc(trunc(it.label, maxc)) + "</text>";
+          inner += '<text class="lbl" x="' + (it.car ? avx : 0) + '" y="' + y1.toFixed(1) + '">' + ls.map(function (t, i) { return '<tspan x="' + (it.car ? avx : 0) + '"' + (i ? ' dy="' + LH + '"' : "") + (i === 0 && it._e.cod ? ' font-weight="700"' : "") + ">" + U.esc(t) + "</tspan>"; }).join("") + "</text>";
+        } else inner += '<text class="lbl" x="' + (it.car ? avx : 0) + '" y="' + (wide ? y0 + rowH / 2 + 4 : y0 + 14) + '">' + U.esc(trunc(it.label, maxc)) + "</text>";
         var delay = "--d:" + d + "ms", tx;
         if (kind === "hbar") {
           var k = it.k || (it.value >= 100 ? "cum" : "b1"), wv = Math.max(3, bw * Math.min(Math.max(it.value, 0), max) / max); used[k] = 1;
@@ -270,6 +281,7 @@
       var wide2 = w >= 420, lw = wide2 ? Math.min(300, Math.round(w * 0.42)) : 0, lh = wide2 ? 0 : 17;
       var gap = 5, cw2 = (w - lw - gap * 3) / 4, rh = 44, th = 30, mxs = [1, 1, 1, 1];
       spec.rows.forEach(function (r) { r.cells.forEach(function (c, ci) { if (c.v > mxs[ci]) mxs[ci] = c.v; }); });
+      var hav = spec.rows.some(function (r) { return r.car; }), havc = id + "-av", hax = hav ? (wide2 ? 48 : 30) : 0;
       h = th + spec.rows.length * (rh + lh + gap) + 2;
       U.SEMORD.forEach(function (k, ci) {
         g += '<text class="mut" x="' + (lw + ci * (cw2 + gap) + cw2 / 2) + '" y="' + (th - 10) + '" text-anchor="middle" font-size="11.5" font-weight="600">' + (cw2 >= 76 ? U.SEM[k].et : ({ cumplida: "Cumpl.", en_avance: "Avance", rezagada: "Rezag.", no_programada: "No prog." })[k]) + "</text>";
@@ -277,10 +289,12 @@
       spec.rows.forEach(function (r, ri) {
         var y0 = th + ri * (rh + lh + gap), yc = y0 + lh;
         if (wide2) {
-          var ls = partir(r.label, Math.floor(lw / 6.3)), yb = yc + rh / 2 + (ls.length > 1 ? -2 : 4);
-          g += '<text class="lbl" x="0" y="' + yb + '">' + ls.map(function (t, i) { return '<tspan x="0"' + (i ? ' dy="14"' : "") + ">" + U.esc(t) + "</tspan>"; }).join("") + "</text>";
+          var ls = partir(r.label, Math.floor((lw - hax) / 6.3)), yb = yc + rh / 2 + (ls.length > 1 ? -2 : 4);
+          if (r.car) g += avImg(havc, r.car, 0, yc + rh / 2 - 18, 36);
+          g += '<text class="lbl" x="' + (r.car ? hax : 0) + '" y="' + yb + '">' + ls.map(function (t, i) { return '<tspan x="' + (r.car ? hax : 0) + '"' + (i ? ' dy="14"' : "") + ">" + U.esc(t) + "</tspan>"; }).join("") + "</text>";
         } else {
-          g += '<text class="lbl" x="0" y="' + (y0 + 12) + '">' + U.esc(trunc(r.label, Math.floor(w / 6.1))) + "</text>";
+          if (r.car) g += avImg(havc, r.car, 0, y0 - 4, 24);
+          g += '<text class="lbl" x="' + (r.car ? hax : 0) + '" y="' + (y0 + 12) + '">' + U.esc(trunc(r.label, Math.floor((w - hax) / 6.1))) + "</text>";
         }
         r.cells.forEach(function (c, ci) {
           var x0 = lw + ci * (cw2 + gap), k = U.SEM[U.SEMORD[ci]].k, st = "--d:" + Math.min(ri * 40 + ci * 30, 600) + "ms";
