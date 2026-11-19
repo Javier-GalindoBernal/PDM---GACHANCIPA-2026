@@ -572,7 +572,7 @@
     };
 
     function marcasTxt(m) {
-      var MARCA = { compartida: "meta compartida", verificacion: "en verificación con la secretaría", arrastre: "sin programación " + CORTE.vigencia + " al corte (arrastre " + CORTE.anterior + ")", sobreejecucion: "ejecución superior a lo programado", fraccionaria: "escala del Plan Indicativo en verificación" };
+      var MARCA = { compartida: "meta compartida", verificacion: "en verificación con la secretaría", arrastre: "sin programación " + CORTE.vigencia + " al corte (arrastre " + CORTE.anterior + ")", sobreejecucion: "ejecución superior a lo programado", ajuste25: "2025 tomado como 100 % por estar cumplida en 2026", fraccionaria: "escala del Plan Indicativo en verificación" };
       return (m.mk || []).map(function (k) { return MARCA[k] || k; });
     }
     function detalleMeta(m) {

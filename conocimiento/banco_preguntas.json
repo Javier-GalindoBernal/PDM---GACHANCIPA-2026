@@ -1732,6 +1732,34 @@
    "req": null
   },
   {
+   "id": "regla_2025_cumplida",
+   "categoria": "comprender",
+   "tipo": "info",
+   "formulaciones": [
+    "¿Por qué el 2025 de una meta aparece en 100%?",
+    "por qué una meta tiene 2025 al 100 si no lo ejecutó",
+    "qué es el ajuste de 2025",
+    "qué pasa con 2025 si la meta se cumple en 2026",
+    "regla de cumplimiento 2026",
+    "por qué se cambia el 2025 cuando se cumple en 2026",
+    "cómo se trata 2025 cuando la meta está cumplida"
+   ],
+   "respuesta": "Cuando una meta alcanza el 100% en 2026, su 2025 también se cuenta como 100%: se entiende que la meta quedó cumplida y el rezago de 2025 se cerró. Es una regla definida por la administración; el valor original del Plan Indicativo se conserva como dato informativo.",
+   "enlaces": [
+    {
+     "texto": "Metas compartidas y calidad de dato",
+     "hash": "#/compartidas"
+    }
+   ],
+   "sugerencias": [
+    "mayor_100",
+    "que_es_cumplida"
+   ],
+   "handler": null,
+   "acciones": [],
+   "req": null
+  },
+  {
    "id": "ambas_distinto",
    "categoria": "comprender",
    "tipo": "info",
