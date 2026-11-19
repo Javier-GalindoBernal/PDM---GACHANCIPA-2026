@@ -1715,7 +1715,7 @@
     "sobreejecución qué es",
     "puede una meta pasar de 100 por ciento"
    ],
-   "respuesta": "Ninguna meta muestra más de 100%: el indicador de cada meta se topa en 100%, porque una meta cumplida está cumplida aunque se haya ejecutado más de lo programado. Hay {{n.sobre}} metas con ejecución superior a lo programado (o ejecución sin programación); se muestran como 100%, cuentan como cumplidas y se verifican con la secretaría para confirmar que el ejecutado corresponda al período.",
+   "respuesta": "Ninguna meta muestra más de 100%: el indicador de cada meta se topa en 100%, porque una meta cumplida está cumplida aunque se haya ejecutado más de lo programado. Hay {{n.sobre}} metas con ejecución superior a lo programado (o ejecución sin programación); se muestran como 100%, cuentan como cumplidas.",
    "enlaces": [
     {
      "texto": "Metas compartidas y calidad de dato",

@@ -723,7 +723,7 @@
     };
     H.sobre = function () {
       var Q = D.calidad.sobreejecucion;
-      return resp("Hay " + Q.length + " metas con ejecución superior a lo programado: " + Q.map(function (s) { return s.codigo + " (" + secCorto(s.carpeta) + ", " + p1(s.indicador) + ")"; }).join("; ") + ". Se verifica con la secretaría que el ejecutado corresponda al período; siguen contando como cumplidas.",
+      return resp("Hay " + Q.length + " metas con ejecución superior a lo programado: " + Q.map(function (s) { return s.codigo + " (" + secCorto(s.carpeta) + ", " + p1(s.indicador) + ")"; }).join("; ") + ". Siguen contando como cumplidas.",
         { datos: { total: Q.length, codigos: Q.map(function (s) { return s.codigo; }) }, enlaces: [{ texto: "Metas compartidas y calidad de dato", hash: "#/compartidas" }], sugerencias: ["¿Por qué hay valores mayores a 100%?"] });
     };
     H.arrastre = function () {
