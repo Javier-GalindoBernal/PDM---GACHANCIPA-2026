@@ -6,7 +6,7 @@
   "use strict";
   var W = window, D = document, N = W.navigator;
   /* La dirección se completa al publicar el script de Google (ver 03_scripts/visitas/LEEME.md). */
-  var CFG = W.PDM_VISITAS = W.PDM_VISITAS || { url: "", k: "pdm-gachancipa-2026-visitas-7f3a9c" };
+  var CFG = W.PDM_VISITAS = W.PDM_VISITAS || { url: "https://script.google.com/macros/s/AKfycbyEgmW2OtTDLUV-XqrWBQms120PiGmWhpbwlqGpL3Kih0O9zzyAgeWKX6hlY2JsG1yB/exec", k: "pdm-gachancipa-2026-visitas-7f3a9c" };
   var K_ID = "pdm_vid";
 
   function dispositivo(ua, ancho, tactil) {
