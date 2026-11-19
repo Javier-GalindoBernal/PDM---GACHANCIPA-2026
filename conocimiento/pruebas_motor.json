@@ -22,7 +22,7 @@
    "pregunta": "¿Cuál es el indicador institucional?",
    "intencion": "ind_inst",
    "datos": {
-    "indicador": 75.8,
+    "indicador": 75.3,
     "avance_2025": 88.3,
     "avance_2026": 71.2
    }
@@ -33,7 +33,7 @@
    "pregunta": "cómo va el plan de desarrollo en general",
    "intencion": "ind_inst",
    "datos": {
-    "indicador": 75.8,
+    "indicador": 75.3,
     "avance_2025": 88.3,
     "avance_2026": 71.2
    }
@@ -44,7 +44,7 @@
    "pregunta": "dame el porcentaje de avance del PDM",
    "intencion": "ind_inst",
    "datos": {
-    "indicador": 75.8,
+    "indicador": 75.3,
     "avance_2025": 88.3,
     "avance_2026": 71.2
    }
@@ -55,7 +55,7 @@
    "pregunta": "que tan avanzado va el plan",
    "intencion": "ind_inst",
    "datos": {
-    "indicador": 75.8,
+    "indicador": 75.3,
     "avance_2025": 88.3,
     "avance_2026": 71.2
    }
@@ -66,7 +66,7 @@
    "pregunta": "indicador general de la alcaldía",
    "intencion": "ind_inst",
    "datos": {
-    "indicador": 75.8,
+    "indicador": 75.3,
     "avance_2025": 88.3,
     "avance_2026": 71.2
    }
@@ -185,7 +185,7 @@
    "pregunta": "¿Cuál es el indicador de la Secretaría de Desarrollo Social?",
    "intencion": "ind_sec",
    "datos": {
-    "indicador": 91.4,
+    "indicador": 88.9,
     "avance_2025": 94.6,
     "avance_2026": 82.7,
     "metas": 42
@@ -200,7 +200,7 @@
     "ficha_sec"
    ],
    "datos": {
-    "indicador": 91.4,
+    "indicador": 88.9,
     "avance_2025": 94.6,
     "avance_2026": 82.7,
     "metas": 42
@@ -215,7 +215,7 @@
     "ficha_sec"
    ],
    "datos": {
-    "indicador": 91.4
+    "indicador": 88.9
    }
   },
   {
@@ -224,7 +224,7 @@
    "pregunta": "¿Cuál es el indicador de la Secretaría de Educación?",
    "intencion": "ind_sec",
    "datos": {
-    "indicador": 77.0,
+    "indicador": 74.8,
     "avance_2025": 93.3,
     "avance_2026": 61.0,
     "metas": 49
@@ -239,7 +239,7 @@
     "ficha_sec"
    ],
    "datos": {
-    "indicador": 77.0,
+    "indicador": 74.8,
     "avance_2025": 93.3,
     "avance_2026": 61.0,
     "metas": 49
@@ -254,7 +254,7 @@
     "ficha_sec"
    ],
    "datos": {
-    "indicador": 77.0
+    "indicador": 74.8
    }
   },
   {
@@ -483,7 +483,7 @@
    "pregunta": "¿Cuál es el indicador del eje 2?",
    "intencion": "ind_eje",
    "datos": {
-    "indicador": 84.5,
+    "indicador": 81.8,
     "avance_2025": 94.8,
     "avance_2026": 71.6,
     "metas": 79,
@@ -499,7 +499,7 @@
     "ficha_eje"
    ],
    "datos": {
-    "indicador": 84.5
+    "indicador": 81.8
    }
   },
   {
@@ -1598,7 +1598,7 @@
    "pregunta": "¿Qué secretaría tiene el mayor indicador?",
    "intencion": "mayor_sec",
    "datos": {
-    "indicador": 91.4
+    "indicador": 88.9
    }
   },
   {
@@ -1609,7 +1609,7 @@
     "mayor_sec"
    ],
    "datos": {
-    "indicador": 91.4
+    "indicador": 88.9
    }
   },
   {
@@ -1681,11 +1681,11 @@
    "intencion": "ranking_sec",
    "datos": {
     "orden": [
-     91.4,
+     88.9,
      87.4,
      83.7,
      77.9,
-     77.0,
+     74.8,
      73.0,
      70.0,
      63.5,
@@ -1703,11 +1703,11 @@
    ],
    "datos": {
     "orden": [
-     91.4,
+     88.9,
      87.4,
      83.7,
      77.9,
-     77.0,
+     74.8,
      73.0,
      70.0,
      63.5,
@@ -1729,7 +1729,7 @@
      87.8,
      84.9,
      84.8,
-     84.5,
+     81.8,
      80.6,
      70.9,
      67.8
@@ -1752,7 +1752,7 @@
      87.8,
      84.9,
      84.8,
-     84.5,
+     81.8,
      80.6,
      70.9,
      67.8
@@ -1986,7 +1986,7 @@
     "estado": "cumplida",
     "eje": 2,
     "existe": true,
-    "indicador": 200.0,
+    "indicador": 100.0,
     "programado_acumulado": 100.0,
     "ejecutado_acumulado": 200.0
    }
@@ -2836,12 +2836,8 @@
    "pregunta": "¿Cuáles metas superan el 100%?",
    "intencion": "sobreejecucion_datos",
    "datos": {
-    "total": 3,
-    "codigos": [
-     "24",
-     "26",
-     "73"
-    ]
+    "total": 0,
+    "codigos": []
    }
   },
   {
@@ -2891,8 +2887,8 @@
    ],
    "datos": {
     "indicador": 70.0,
-    "institucional": 75.8,
-    "diferencia": 5.8
+    "institucional": 75.3,
+    "diferencia": 5.3
    }
   },
   {
@@ -2904,9 +2900,9 @@
     "comparar"
    ],
    "datos": {
-    "indicador": 91.4,
-    "institucional": 75.8,
-    "diferencia": 15.6
+    "indicador": 88.9,
+    "institucional": 75.3,
+    "diferencia": 13.6
    }
   },
   {
@@ -2919,8 +2915,8 @@
    ],
    "datos": {
     "indicador": 83.7,
-    "institucional": 75.8,
-    "diferencia": 7.9
+    "institucional": 75.3,
+    "diferencia": 8.4
    }
   },
   {
@@ -2938,7 +2934,7 @@
    "pregunta": "compara Educación y Cultura con la Secretaría de Obras Públicas",
    "intencion": "comparar",
    "datos": {
-    "diferencia": 0.9
+    "diferencia": 3.1
    }
   },
   {
@@ -2947,7 +2943,7 @@
    "pregunta": "compara Desarrollo Social con la Secretaría de Planeación",
    "intencion": "comparar",
    "datos": {
-    "diferencia": 18.4
+    "diferencia": 15.9
    }
   },
   {
@@ -2965,7 +2961,7 @@
    "pregunta": "qué diferencia hay entre Hacienda y Desarrollo Social",
    "intencion": "comparar",
    "datos": {
-    "diferencia": 21.4
+    "diferencia": 18.9
    }
   },
   {
@@ -2974,7 +2970,7 @@
    "pregunta": "compara el eje 2 y el eje 3",
    "intencion": "comparar",
    "datos": {
-    "diferencia": 3.9
+    "diferencia": 1.2
    }
   },
   {
@@ -2992,8 +2988,8 @@
    "pregunta": "¿Qué secretarías están por encima del indicador institucional?",
    "intencion": "sobre_inst",
    "datos": {
-    "por_encima": 5,
-    "por_debajo": 4
+    "por_encima": 4,
+    "por_debajo": 5
    }
   },
   {
@@ -3071,7 +3067,7 @@
    "pregunta": "cuál es la meta con mayor indicador",
    "intencion": "meta_extremo",
    "datos": {
-    "indicador": 200.0
+    "indicador": 100.0
    }
   },
   {
@@ -3098,7 +3094,7 @@
    "pregunta": "dame un resumen del corte",
    "intencion": "resumen_general",
    "datos": {
-    "indicador": 75.8,
+    "indicador": 75.3,
     "rezagada": 5
    }
   },
@@ -3242,7 +3238,7 @@
     "Compara Gobierno con Hacienda"
    ],
    "datos": {
-    "diferencia": 0.9
+    "diferencia": 3.1
    }
   },
   {
@@ -5468,7 +5464,7 @@
    "contiene_alguno": [
     "No puedo",
     "No coincide",
-    "75.8%"
+    "75.3%"
    ]
   },
   {
@@ -5566,7 +5562,7 @@
    "descripcion": "cifra falsa de eje",
    "adversarial": true,
    "contiene": [
-    "84.5%"
+    "81.8%"
    ],
    "no_contiene": [
     "70%"
@@ -5768,7 +5764,7 @@
     "calculo_institucional"
    ],
    "datos": {
-    "indicador": 75.8
+    "indicador": 75.3
    }
   },
   {
@@ -6065,7 +6061,7 @@
     "ficha_sec"
    ],
    "datos": {
-    "indicador": 77.0
+    "indicador": 74.8
    }
   },
   {
@@ -6230,7 +6226,7 @@
    ],
    "datos": {
     "indicador": 70.0,
-    "institucional": 75.8
+    "institucional": 75.3
    }
   },
   {
@@ -6313,7 +6309,7 @@
     "sobre_inst"
    ],
    "datos": {
-    "por_debajo": 4
+    "por_debajo": 5
    }
   },
   {
@@ -7199,11 +7195,11 @@
    "pregunta": "compara hacienda y social",
    "intencion": "comparar",
    "datos": {
-    "diferencia": 21.4
+    "diferencia": 18.9
    },
    "contiene": [
     "70.0%",
-    "91.4%"
+    "88.9%"
    ]
   },
   {
@@ -7212,10 +7208,10 @@
    "pregunta": "compara social con agropecuario",
    "intencion": "comparar",
    "datos": {
-    "diferencia": 4.0
+    "diferencia": 1.5
    },
    "contiene": [
-    "91.4%",
+    "88.9%",
     "87.4%"
    ]
   },
@@ -7225,10 +7221,10 @@
    "pregunta": "Compara Educación con Gobierno",
    "intencion": "comparar",
    "datos": {
-    "diferencia": 6.7
+    "diferencia": 8.9
    },
    "contiene": [
-    "77.0%",
+    "74.8%",
     "83.7%"
    ]
   },

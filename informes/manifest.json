@@ -1,7 +1,7 @@
 {
  "corte": "2026-10-30",
  "vigencia": 2026,
- "generado": "2026-11-19T10:39:51",
+ "generado": "2026-11-19T10:54:36",
  "secretarias": [
   {
    "carpeta": "secretaria-desarrollo-agropecuario",
@@ -18,7 +18,7 @@
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Desarrollo_Agropecuario_2026.pdf",
      "kb": 292,
-     "huella": "bf3a1cc2"
+     "huella": "8f6cab22"
     }
    }
   },
@@ -37,7 +37,7 @@
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Desarrollo_Institucional_2026.pdf",
      "kb": 116,
-     "huella": "7060bca0"
+     "huella": "e8556bdc"
     }
    }
   },
@@ -45,18 +45,18 @@
    "carpeta": "secretaria-desarrollo-social",
    "nombre": "Secretaría de Desarrollo Social",
    "corto": "Desarrollo Social",
-   "indicador": 91.4,
+   "indicador": 88.9,
    "metas": 42,
    "archivos": {
     "docx": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Desarrollo_Social_2026.docx",
      "kb": 109,
-     "huella": "b94b5518"
+     "huella": "f2864ce6"
     },
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Desarrollo_Social_2026.pdf",
-     "kb": 309,
-     "huella": "141a2754"
+     "kb": 307,
+     "huella": "0bec5daf"
     }
    }
   },
@@ -64,18 +64,18 @@
    "carpeta": "secretaria-educacion",
    "nombre": "Secretaría de Educación, Cultura, Recreación y Deporte",
    "corto": "Educación y Cultura",
-   "indicador": 77.0,
+   "indicador": 74.8,
    "metas": 49,
    "archivos": {
     "docx": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Educacion_y_Cultura_2026.docx",
-     "kb": 122,
-     "huella": "d450b6e9"
+     "kb": 121,
+     "huella": "e297a123"
     },
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Educacion_y_Cultura_2026.pdf",
-     "kb": 337,
-     "huella": "f11a4a60"
+     "kb": 338,
+     "huella": "1644aa65"
     }
    }
   },
@@ -94,7 +94,7 @@
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Secretaria_General_2026.pdf",
      "kb": 194,
-     "huella": "c0b70ba3"
+     "huella": "3e15dc0f"
     }
    }
   },
@@ -113,7 +113,7 @@
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Gobierno_2026.pdf",
      "kb": 273,
-     "huella": "3253e63e"
+     "huella": "6f74473e"
     }
    }
   },
@@ -132,7 +132,7 @@
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Hacienda_2026.pdf",
      "kb": 116,
-     "huella": "2b794ac3"
+     "huella": "668c9fa8"
     }
    }
   },
@@ -151,7 +151,7 @@
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Obras_Publicas_2026.pdf",
      "kb": 226,
-     "huella": "bd5c7bb8"
+     "huella": "4b422a8e"
     }
    }
   },
@@ -170,7 +170,7 @@
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Planeacion_y_Servicios_Publicos_2026.pdf",
      "kb": 283,
-     "huella": "025398e1"
+     "huella": "0ac907b6"
     }
    }
   }
@@ -187,12 +187,12 @@
       "docx": {
        "ruta": "informes/general/Informe_de_Gestion_2026.docx",
        "kb": 1894,
-       "huella": "e1fb7e4c"
+       "huella": "8d14083a"
       },
       "pdf": {
        "ruta": "informes/general/Informe_de_Gestion_2026.pdf",
        "kb": 1127,
-       "huella": "39b68103"
+       "huella": "21c2c79e"
       }
      }
     },
@@ -203,12 +203,12 @@
       "docx": {
        "ruta": "informes/general/Informe_Consolidado_General_PDM_corte_2026-10-30.docx",
        "kb": 246,
-       "huella": "f8254eac"
+       "huella": "7aa90655"
       },
       "pdf": {
        "ruta": "informes/general/Informe_Consolidado_General_PDM_corte_2026-10-30.pdf",
-       "kb": 964,
-       "huella": "da12ec55"
+       "kb": 966,
+       "huella": "d62f2e69"
       }
      }
     }

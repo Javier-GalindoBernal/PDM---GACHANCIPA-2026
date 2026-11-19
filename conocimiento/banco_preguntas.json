@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generado": "2026-11-16",
+ "generado": "2026-11-19",
  "nota": "Conocimiento de NEMEQUI. Sin cifras: el motor las calcula desde window.PDM. Marcadores {{ruta|fmt}}.",
  "categorias": [
   "comprender",
@@ -1318,7 +1318,7 @@
     "qué es estar en verde",
     "qué es una meta al 100"
    ],
-   "respuesta": "Una meta cumplida tiene un indicador de 100% o más: lo ejecutado alcanzó lo programado al corte. Hoy hay {{inst.cumplida}} metas en ese estado.",
+   "respuesta": "Una meta cumplida tiene un indicador de 100%: lo ejecutado alcanzó o superó lo programado al corte (el indicador de una meta se topa en 100%). Hoy hay {{inst.cumplida}} metas en ese estado.",
    "enlaces": [
     {
      "texto": "Logros y metas cumplidas",
@@ -1688,7 +1688,7 @@
     "cumplida versus certificable",
     "qué distingue una meta cumplida de una certificable"
    ],
-   "respuesta": "Cumplida es un estado al corte (indicador de 100% o más). Certificable es una cumplida sin programación posterior. Hoy hay {{inst.cumplida}} cumplidas, de las cuales {{n.cert}} son certificables y el resto aún tiene programación en {{corte.posteriores}}.",
+   "respuesta": "Cumplida es un estado al corte (indicador de 100%). Certificable es una cumplida sin programación posterior. Hoy hay {{inst.cumplida}} cumplidas, de las cuales {{n.cert}} son certificables y el resto aún tiene programación en {{corte.posteriores}}.",
    "enlaces": [
     {
      "texto": "Logros y metas cumplidas",
@@ -1716,7 +1716,7 @@
     "sobreejecución qué es",
     "puede una meta pasar de 100 por ciento"
    ],
-   "respuesta": "Un indicador mayor a 100% indica que se ejecutó más de lo programado al corte (o que hubo ejecución sin programación). Son {{n.sobre}} casos; se verifican con la secretaría para confirmar que el ejecutado corresponda al período. Siguen contando como cumplidas.",
+   "respuesta": "Ninguna meta muestra más de 100%: el indicador de cada meta se topa en 100%, porque una meta cumplida está cumplida aunque se haya ejecutado más de lo programado. Hay {{n.sobre}} metas con ejecución superior a lo programado (o ejecución sin programación); se muestran como 100%, cuentan como cumplidas y se verifican con la secretaría para confirmar que el ejecutado corresponda al período.",
    "enlaces": [
     {
      "texto": "Metas compartidas y calidad de dato",

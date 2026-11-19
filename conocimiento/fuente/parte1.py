@@ -88,7 +88,7 @@ I("umbrales", C, "¿Cuáles son los umbrales del semáforo?|a partir de cuánto 
   "Estados oficiales: cumplida, indicador de 100% o más; en avance, de 20% a 99%; rezagada, menos de 20% (solo si la meta tiene programación al corte); no programada, sin programación al corte, que no entra en el promedio.",
   "Metodología|#/metodologia", "colores_semaforo,que_es_rezagada")
 I("que_es_cumplida", C, "¿Qué es una meta cumplida?|qué significa cumplida|cuándo una meta se considera cumplida|meta cumplida qué quiere decir|qué es estar en verde|qué es una meta al 100",
-  "Una meta cumplida tiene un indicador de 100% o más: lo ejecutado alcanzó lo programado al corte. Hoy hay {{inst.cumplida}} metas en ese estado.",
+  "Una meta cumplida tiene un indicador de 100%: lo ejecutado alcanzó o superó lo programado al corte (el indicador de una meta se topa en 100%). Hoy hay {{inst.cumplida}} metas en ese estado.",
   "Logros y metas cumplidas|#/logros", "cumplida_vs_certificable,mayor_100")
 I("que_es_en_avance", C, "¿Qué es una meta en avance?|qué significa en avance|cuándo una meta está en avance|meta en avance qué quiere decir|qué es estar en ámbar|qué es una meta amarilla",
   "Una meta en avance tiene programación al corte y un indicador entre 20% y 99%: va ejecutándose, aunque aún no alcanza lo programado. Hoy hay {{inst.en_avance}} metas en ese estado.",
@@ -130,10 +130,10 @@ I("t4_pendiente", C, "¿Qué es una meta con T4 pendiente?|qué significa con pr
   "Son metas que van al 100% al corte, pero todavía tienen programación en {{corte.posteriores}}: se certifican cuando concluya ese período. Hoy son {{n.pend}} metas únicas ({{n.pend_reg}} filas).",
   "Logros y metas cumplidas|#/logros", "meta_certificable,pendientes_t4")
 I("cumplida_vs_certificable", C, "¿Cuál es la diferencia entre cumplida y certificable?|una meta cumplida es certificable|por qué no todas las cumplidas son certificables|cumplida versus certificable|qué distingue una meta cumplida de una certificable",
-  "Cumplida es un estado al corte (indicador de 100% o más). Certificable es una cumplida sin programación posterior. Hoy hay {{inst.cumplida}} cumplidas, de las cuales {{n.cert}} son certificables y el resto aún tiene programación en {{corte.posteriores}}.",
+  "Cumplida es un estado al corte (indicador de 100%). Certificable es una cumplida sin programación posterior. Hoy hay {{inst.cumplida}} cumplidas, de las cuales {{n.cert}} son certificables y el resto aún tiene programación en {{corte.posteriores}}.",
   "Logros y metas cumplidas|#/logros", "meta_certificable,t4_pendiente")
 I("mayor_100", C, "¿Por qué hay valores mayores a 100%?|qué significa un indicador de 200|ejecución superior a lo programado|por qué una meta tiene más de 100|es un error pasar del 100|sobreejecución qué es|puede una meta pasar de 100 por ciento",
-  "Un indicador mayor a 100% indica que se ejecutó más de lo programado al corte (o que hubo ejecución sin programación). Son {{n.sobre}} casos; se verifican con la secretaría para confirmar que el ejecutado corresponda al período. Siguen contando como cumplidas.",
+  "Ninguna meta muestra más de 100%: el indicador de cada meta se topa en 100%, porque una meta cumplida está cumplida aunque se haya ejecutado más de lo programado. Hay {{n.sobre}} metas con ejecución superior a lo programado (o ejecución sin programación); se muestran como 100%, cuentan como cumplidas y se verifican con la secretaría para confirmar que el ejecutado corresponda al período.",
   "Metas compartidas y calidad de dato|#/compartidas", "sobreejecucion_datos,que_es_cumplida")
 I("ambas_distinto", C, "¿Por qué «Ambas» da un valor distinto al promedio?|qué significa Ambas|ambas 2025 2026 qué es|por qué el indicador no es el promedio de 2025 y 2026|el indicador no es el promedio de las dos vigencias|por qué no coincide con el promedio de los dos años|qué significa ambas en el tablero",
   "Con «Ambas» (2025–2026) al corte, el indicador se calcula sobre la suma de las dos vigencias en cada meta, no promediando los dos porcentajes. Por eso puede diferir del promedio simple de {{inst.a2025|p}} y {{inst.a2026|p}}. Esta opción aparece en el tablero de control de una sola página.",
