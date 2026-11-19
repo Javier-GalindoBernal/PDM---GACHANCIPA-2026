@@ -22,9 +22,9 @@
    "pregunta": "¿Cuál es el indicador institucional?",
    "intencion": "ind_inst",
    "datos": {
-    "indicador": 71.2,
+    "indicador": 75.8,
     "avance_2025": 88.3,
-    "avance_2026": 64.9
+    "avance_2026": 71.2
    }
   },
   {
@@ -33,9 +33,9 @@
    "pregunta": "cómo va el plan de desarrollo en general",
    "intencion": "ind_inst",
    "datos": {
-    "indicador": 71.2,
+    "indicador": 75.8,
     "avance_2025": 88.3,
-    "avance_2026": 64.9
+    "avance_2026": 71.2
    }
   },
   {
@@ -44,9 +44,9 @@
    "pregunta": "dame el porcentaje de avance del PDM",
    "intencion": "ind_inst",
    "datos": {
-    "indicador": 71.2,
+    "indicador": 75.8,
     "avance_2025": 88.3,
-    "avance_2026": 64.9
+    "avance_2026": 71.2
    }
   },
   {
@@ -55,9 +55,9 @@
    "pregunta": "que tan avanzado va el plan",
    "intencion": "ind_inst",
    "datos": {
-    "indicador": 71.2,
+    "indicador": 75.8,
     "avance_2025": 88.3,
-    "avance_2026": 64.9
+    "avance_2026": 71.2
    }
   },
   {
@@ -66,9 +66,9 @@
    "pregunta": "indicador general de la alcaldía",
    "intencion": "ind_inst",
    "datos": {
-    "indicador": 71.2,
+    "indicador": 75.8,
     "avance_2025": 88.3,
-    "avance_2026": 64.9
+    "avance_2026": 71.2
    }
   },
   {
@@ -95,10 +95,10 @@
     "ind_vigencia"
    ],
    "datos": {
-    "avance_2026": 64.9
+    "avance_2026": 71.2
    },
    "contiene": [
-    "64.9%"
+    "71.2%"
    ]
   },
   {
@@ -146,9 +146,9 @@
    "pregunta": "¿Cuál es el indicador de Desarrollo Institucional?",
    "intencion": "ind_sec",
    "datos": {
-    "indicador": 41.7,
+    "indicador": 58.3,
     "avance_2025": 52.5,
-    "avance_2026": 31.9,
+    "avance_2026": 63.7,
     "metas": 2
    }
   },
@@ -161,9 +161,9 @@
     "ficha_sec"
    ],
    "datos": {
-    "indicador": 41.7,
+    "indicador": 58.3,
     "avance_2025": 52.5,
-    "avance_2026": 31.9,
+    "avance_2026": 63.7,
     "metas": 2
    }
   },
@@ -176,7 +176,7 @@
     "ficha_sec"
    ],
    "datos": {
-    "indicador": 41.7
+    "indicador": 58.3
    }
   },
   {
@@ -341,9 +341,9 @@
    "pregunta": "¿Cuál es el indicador de la Secretaría de Hacienda?",
    "intencion": "ind_sec",
    "datos": {
-    "indicador": 45.0,
+    "indicador": 70.0,
     "avance_2025": 100.0,
-    "avance_2026": 45.0,
+    "avance_2026": 70.0,
     "metas": 2
    }
   },
@@ -356,9 +356,9 @@
     "ficha_sec"
    ],
    "datos": {
-    "indicador": 45.0,
+    "indicador": 70.0,
     "avance_2025": 100.0,
-    "avance_2026": 45.0,
+    "avance_2026": 70.0,
     "metas": 2
    }
   },
@@ -371,7 +371,7 @@
     "ficha_sec"
    ],
    "datos": {
-    "indicador": 45.0
+    "indicador": 70.0
    }
   },
   {
@@ -658,9 +658,9 @@
    "pregunta": "¿Cuál es el indicador del eje 9?",
    "intencion": "ind_eje",
    "datos": {
-    "indicador": 63.7,
+    "indicador": 67.8,
     "avance_2025": 84.1,
-    "avance_2026": 56.2,
+    "avance_2026": 62.5,
     "metas": 16,
     "programadas": 14
    }
@@ -674,7 +674,7 @@
     "ficha_eje"
    ],
    "datos": {
-    "indicador": 63.7
+    "indicador": 67.8
    }
   },
   {
@@ -1618,7 +1618,7 @@
    "pregunta": "¿Qué secretaría tiene el menor indicador?",
    "intencion": "menor_sec",
    "datos": {
-    "indicador": 41.7
+    "indicador": 58.3
    }
   },
   {
@@ -1629,7 +1629,7 @@
     "menor_sec"
    ],
    "datos": {
-    "indicador": 41.7
+    "indicador": 58.3
    }
   },
   {
@@ -1659,7 +1659,7 @@
    "pregunta": "¿Qué eje tiene el menor indicador?",
    "intencion": "menor_eje",
    "datos": {
-    "indicador": 63.7,
+    "indicador": 67.8,
     "eje": 9
    }
   },
@@ -1687,9 +1687,9 @@
      77.9,
      77.0,
      73.0,
+     70.0,
      63.5,
-     45.0,
-     41.7
+     58.3
     ]
    },
    "orden_clave": "indicador"
@@ -1709,9 +1709,9 @@
      77.9,
      77.0,
      73.0,
+     70.0,
      63.5,
-     45.0,
-     41.7
+     58.3
     ]
    },
    "orden_clave": "indicador"
@@ -1732,7 +1732,7 @@
      84.5,
      80.6,
      70.9,
-     63.7
+     67.8
     ]
    },
    "orden_clave": "indicador"
@@ -1755,7 +1755,7 @@
      84.5,
      80.6,
      70.9,
-     63.7
+     67.8
     ]
    },
    "orden_clave": "indicador"
@@ -2764,14 +2764,14 @@
    "intencion": "cambio_anios",
    "datos": {
     "avance_2025": 88.3,
-    "avance_2026": 64.9,
-    "diferencia": -23.4
+    "avance_2026": 71.2,
+    "diferencia": -17.1
    },
    "datos_no_texto": [
     "diferencia"
    ],
    "contiene": [
-    "23.4"
+    "17.1"
    ]
   },
   {
@@ -2890,9 +2890,9 @@
     "comparar"
    ],
    "datos": {
-    "indicador": 45.0,
-    "institucional": 71.2,
-    "diferencia": 26.2
+    "indicador": 70.0,
+    "institucional": 75.8,
+    "diferencia": 5.8
    }
   },
   {
@@ -2905,8 +2905,8 @@
    ],
    "datos": {
     "indicador": 91.4,
-    "institucional": 71.2,
-    "diferencia": 20.2
+    "institucional": 75.8,
+    "diferencia": 15.6
    }
   },
   {
@@ -2919,8 +2919,8 @@
    ],
    "datos": {
     "indicador": 83.7,
-    "institucional": 71.2,
-    "diferencia": 12.5
+    "institucional": 75.8,
+    "diferencia": 7.9
    }
   },
   {
@@ -2929,7 +2929,7 @@
    "pregunta": "compara Gobierno con Hacienda",
    "intencion": "comparar",
    "datos": {
-    "diferencia": 38.7
+    "diferencia": 13.7
    }
   },
   {
@@ -2965,7 +2965,7 @@
    "pregunta": "qué diferencia hay entre Hacienda y Desarrollo Social",
    "intencion": "comparar",
    "datos": {
-    "diferencia": 46.4
+    "diferencia": 21.4
    }
   },
   {
@@ -2983,7 +2983,7 @@
    "pregunta": "eje 5 vs eje 9",
    "intencion": "comparar",
    "datos": {
-    "diferencia": 28.8
+    "diferencia": 24.7
    }
   },
   {
@@ -2992,8 +2992,8 @@
    "pregunta": "¿Qué secretarías están por encima del indicador institucional?",
    "intencion": "sobre_inst",
    "datos": {
-    "por_encima": 6,
-    "por_debajo": 3
+    "por_encima": 5,
+    "por_debajo": 4
    }
   },
   {
@@ -3098,7 +3098,7 @@
    "pregunta": "dame un resumen del corte",
    "intencion": "resumen_general",
    "datos": {
-    "indicador": 71.2,
+    "indicador": 75.8,
     "rezagada": 5
    }
   },
@@ -5423,7 +5423,7 @@
    "descripcion": "cifra falsa: debe corregir con el dato real",
    "adversarial": true,
    "contiene": [
-    "45.0%"
+    "70.0%"
    ],
    "no_contiene": [
     "12.3"
@@ -5468,7 +5468,7 @@
    "contiene_alguno": [
     "No puedo",
     "No coincide",
-    "71.2%"
+    "75.8%"
    ]
   },
   {
@@ -5600,7 +5600,7 @@
    "adversarial": true,
    "tipo": "limite",
    "contiene": [
-    "45.0%",
+    "70.0%",
     "no contiene información presupuestal"
    ]
   },
@@ -5653,7 +5653,7 @@
    "adversarial": true,
    "tipo": "limite",
    "contiene": [
-    "45.0%"
+    "70.0%"
    ]
   },
   {
@@ -5768,7 +5768,7 @@
     "calculo_institucional"
    ],
    "datos": {
-    "indicador": 71.2
+    "indicador": 75.8
    }
   },
   {
@@ -5893,7 +5893,7 @@
     "ficha_sec"
    ],
    "datos": {
-    "indicador": 45.0
+    "indicador": 70.0
    }
   },
   {
@@ -6169,7 +6169,7 @@
     "menor_sec"
    ],
    "datos": {
-    "indicador": 41.7
+    "indicador": 58.3
    }
   },
   {
@@ -6218,7 +6218,7 @@
     "comparar"
    ],
    "datos": {
-    "diferencia": 38.7
+    "diferencia": 13.7
    }
   },
   {
@@ -6229,8 +6229,8 @@
     "sec_vs_inst"
    ],
    "datos": {
-    "indicador": 45.0,
-    "institucional": 71.2
+    "indicador": 70.0,
+    "institucional": 75.8
    }
   },
   {
@@ -6313,7 +6313,7 @@
     "sobre_inst"
    ],
    "datos": {
-    "por_debajo": 3
+    "por_debajo": 4
    }
   },
   {
@@ -6325,7 +6325,7 @@
     "ind_vigencia"
    ],
    "datos": {
-    "avance_2026": 64.9
+    "avance_2026": 71.2
    }
   },
   {
@@ -6805,10 +6805,10 @@
    "grupo": "revisores",
    "pregunta": "avance 2026 de Secretaría de Desarrollo Institucional",
    "datos": {
-    "avance_2026": 31.9
+    "avance_2026": 63.7
    },
    "contiene": [
-    "31.9%"
+    "63.7%"
    ]
   },
   {
@@ -7070,10 +7070,10 @@
    "grupo": "revisores",
    "pregunta": "avance 2026 de Hacienda",
    "datos": {
-    "avance_2026": 45.0
+    "avance_2026": 70.0
    },
    "contiene": [
-    "45.0%"
+    "70.0%"
    ]
   },
   {
@@ -7199,10 +7199,10 @@
    "pregunta": "compara hacienda y social",
    "intencion": "comparar",
    "datos": {
-    "diferencia": 46.4
+    "diferencia": 21.4
    },
    "contiene": [
-    "45.0%",
+    "70.0%",
     "91.4%"
    ]
   },
@@ -7701,7 +7701,7 @@
    "intencion": "menor_eje",
    "datos": {
     "eje": 9,
-    "indicador": 63.7
+    "indicador": 67.8
    },
    "no_contiene": [
     "indicador más alto es Eje 5"
@@ -7713,7 +7713,7 @@
    "pregunta": "cuál secretaría va peor",
    "intencion": "menor_sec",
    "datos": {
-    "indicador": 41.7
+    "indicador": 58.3
    },
    "no_contiene": [
     "metas más bajas"
