@@ -127,8 +127,11 @@
       '<textarea id="nq-in" rows="1" maxlength="400" placeholder="Escribe tu pregunta…" enterkeyhint="send"></textarea>' +
       '<button type="button" class="nq-mic" id="nq-mic" aria-pressed="false" aria-label="Preguntar con la voz" title="Preguntar con la voz">' + ic("mic") + "</button>" +
       '<button type="submit" class="nq-send" aria-label="Enviar la pregunta">' + ic("send") + "</button></form>" +
-      '<p id="nq-mic-st" class="sr" role="status" aria-live="polite"></p>' +
-      '<p class="nq-note">NEMEQUI responde con los datos oficiales del corte ' + esc(W.PDM.corte.texto) + ". No emite juicios sobre las secretarías." + (RECON ? " Para preguntar hablando, pulsa el micrófono; la transcripción la hace el reconocimiento de voz de tu navegador." : "") + "</p></div>";
+      '<p id="nq-mic-st" class="sr" role="status" aria-live="polite"></p><p id="nq-mic-msg" class="nq-note nq-micmsg" role="status" hidden></p>' +
+      '<p class="nq-note">NEMEQUI responde con los datos oficiales del corte ' + esc(W.PDM.corte.texto) + ". No emite juicios sobre las secretarías." + (RECON ? " Para preguntar hablando, pulsa el micrófono; la transcripción la hace el reconocimiento de voz de tu navegador." : "") + "</p>" + (W.speechSynthesis ? '<details class="nq-vozcfg"><summary>Ajustar la voz</summary>' +
+        '<div class="nq-vozrow"><label for="nq-voz-sel">Voz</label><select id="nq-voz-sel"></select></div>' +
+        '<div class="nq-vozrow"><label for="nq-voz-vel">Velocidad</label><input type="range" id="nq-voz-vel" min="0.8" max="1.3" step="0.05" value="1"><output id="nq-voz-velv" for="nq-voz-vel"></output></div>' +
+        '<button type="button" class="nq-txt" id="nq-voz-prb">Probar la voz</button></details>' : "") + "</div>";
     doc.body.appendChild(panel);
 
     var wel = doc.createElement("div");
@@ -232,25 +235,61 @@
   }
 
   /* ------------------------- voz ------------------------- */
-  function elegirVoz() {
-    var vs = safe(function () { return speechSynthesis.getVoices(); }, []) || [], pref = ["es-CO", "es-419", "es-MX", "es-US", "es-ES"], i, j;
-    for (i = 0; i < pref.length; i++) for (j = 0; j < vs.length; j++) if (vs[j].lang && vs[j].lang.replace("_", "-").toLowerCase() === pref[i].toLowerCase()) return vs[j];
-    for (j = 0; j < vs.length; j++) if (/^es/i.test(vs[j].lang || "")) return vs[j];
-    return null;
+  var K_VOZ = "pdm_nq_voz", K_VEL = "pdm_nq_vel";
+  function puntuarVoz(v) {
+    var l = String(v.lang || "").replace("_", "-").toLowerCase(), n = String(v.name || "") + " " + String(v.voiceURI || "");
+    if (l.indexOf("es") !== 0) return -1;
+    var p = { "es-co": 6, "es-419": 5, "es-mx": 5, "es-us": 4, "es-es": 2 }[l] || 1;
+    if (/premium|enhanced|mejorada|natural|neural|online|siri/i.test(n)) p += 10;
+    if (/paulina|m[oó]nica|juan|soledad|google espa|ang[eé]lica|carlos|jorge|diego|catalina|salom[eé]|gonzalo/i.test(n)) p += 3;
+    if (/compact/i.test(n)) p -= 2;
+    return p;
   }
+  function vocesEs() {
+    var vs = safe(function () { return speechSynthesis.getVoices(); }, []) || [];
+    return vs.filter(function (v) { return puntuarVoz(v) >= 0; }).sort(function (a, b) { return puntuarVoz(b) - puntuarVoz(a); });
+  }
+  function elegirVoz() {
+    var vs = vocesEs(), pref = safe(function () { return localStorage.getItem(K_VOZ); });
+    if (pref) for (var i = 0; i < vs.length; i++) if (vs[i].voiceURI === pref) return vs[i];
+    return vs[0] || null;
+  }
+  function velocidad() { var v = parseFloat(safe(function () { return localStorage.getItem(K_VEL); })); return v >= 0.8 && v <= 1.3 ? v : 1; }
+  var ES_IOS = /iP(hone|ad|od)/.test(W.navigator.userAgent) || (W.navigator.platform === "MacIntel" && W.navigator.maxTouchPoints > 1);
+  var ES_IOS_OTRO = ES_IOS && /CriOS|FxiOS|EdgiOS|OPiOS/.test(W.navigator.userAgent);
+  /* iPhone/iPad: Safari solo deja hablar tras un toque directo; un primer enunciado mudo "desbloquea" la voz para las respuestas posteriores */
+  function desbloquear() {
+    if (S.desb || !W.speechSynthesis) return; S.desb = true;
+    safe(function () { var u = new SpeechSynthesisUtterance(" "); u.volume = 0; speechSynthesis.speak(u); });
+  }
+  function callar() { S.hgen = (S.hgen || 0) + 1; safe(function () { speechSynthesis.cancel(); }); S.hablando = null; }
   function limpiarParaVoz(t) {
     return String(t).replace(/[«»]/g, "").replace(/\s+/g, " ").replace(/\bT([1-4])\b/g, "trimestre $1").replace(/\bPDM\b/g, "P D M").trim();
+  }
+  function trozos(t) {
+    var partes = limpiarParaVoz(t).replace(/([.!?;:])\s+/g, "$1|").split("|"), out = [], cur = "";
+    partes.forEach(function (p) {
+      if (cur && (cur + " " + p).length > 200) { out.push(cur); cur = p; } else cur = cur ? cur + " " + p : p;
+    });
+    if (cur) out.push(cur);
+    return out.length ? out : [limpiarParaVoz(t)];
   }
   function hablar(t, forzar, fin) {
     if ((!S.voz && !forzar) || !W.speechSynthesis) return;
     safe(function () {
       speechSynthesis.cancel();
-      var u = new SpeechSynthesisUtterance(limpiarParaVoz(t));
-      var v = elegirVoz(); u.lang = v ? v.lang : "es-CO"; if (v) u.voice = v; u.rate = 1;
-      S.hablando = String(t);
-      u.onend = u.onerror = function () { S.hablando = null; marcarEscucha(); if (fin) fin(); };
-      speechSynthesis.speak(u);
-      marcarEscucha();
+      var gen = (S.hgen = (S.hgen || 0) + 1), partes = trozos(t);
+      S.hablando = String(t); marcarEscucha();
+      setTimeout(function () {
+        if (gen !== S.hgen) return;
+        var v = elegirVoz();
+        partes.forEach(function (p, i) {
+          var u = new SpeechSynthesisUtterance(p);
+          u.lang = v ? v.lang : "es-CO"; if (v) u.voice = v; u.rate = velocidad();
+          if (i === partes.length - 1) u.onend = u.onerror = function () { if (gen === S.hgen) { S.hablando = null; marcarEscucha(); if (fin) fin(); } };
+          speechSynthesis.speak(u);
+        });
+      }, 70);
     });
   }
   function marcarEscucha() {
@@ -263,11 +302,14 @@
   }
   function escucharMensaje(t) {
     if (!W.speechSynthesis) return;
-    if (S.hablando && S.hablando === String(t)) { safe(function () { speechSynthesis.cancel(); }); S.hablando = null; marcarEscucha(); return; }
+    if (S.hablando && S.hablando === String(t)) { callar(); marcarEscucha(); return; }
     hablar(t, true);
   }
   /* ------------------------- dictado (preguntar con la voz) ------------------------- */
-  function estadoMic(msg) { var s = $("#nq-mic-st"); if (s) s.textContent = msg || ""; if (msg) anunciar(msg); }
+  function estadoMic(msg, visible) {
+    var s = $("#nq-mic-st"); if (s) s.textContent = msg || ""; if (msg) anunciar(msg);
+    var v = $("#nq-mic-msg"); if (v) { v.textContent = visible ? msg : ""; v.hidden = !(visible && msg); }
+  }
   function pararDictado() { if (S.rec) { var r = S.rec; S.rec = null; safe(function () { r.abort(); }); } ponerMic(false); }
   function ponerMic(on) {
     var b = $("#nq-mic"); if (!b) return;
@@ -277,13 +319,19 @@
     var u = b.querySelector("use"); if (u) u.setAttribute("href", on ? "#i-stop" : "#i-mic");
   }
   function dictar() {
-    if (!RECON) return;
+    desbloquear();
+    if (!RECON) {
+      estadoMic(ES_IOS_OTRO ? "Este navegador del iPhone no permite dictar desde la página. Ábrela en Safari, o usa el micrófono del teclado del teléfono."
+        : (ES_IOS ? "Safari no permite dictar en este modo. Usa el micrófono del teclado del iPhone (junto a la barra espaciadora) para dictar tu pregunta."
+          : "Este navegador no permite dictar desde la página. Puedes escribir tu pregunta, o usar el dictado de tu teclado."), true);
+      return;
+    }
     if (S.rec) { pararDictado(); return; }
-    safe(function () { speechSynthesis.cancel(); }); S.hablando = null; marcarEscucha();
+    callar(); marcarEscucha();
     var rec, inp = $("#nq-in"), final = "", interino = "", fallo = false;
     try { rec = new RECON(); } catch (e) { estadoMic("El dictado no está disponible en este navegador."); return; }
     rec.lang = "es-CO"; rec.interimResults = true; rec.continuous = false; rec.maxAlternatives = 1;
-    S.rec = rec; ponerMic(true); estadoMic("Te escucho. Haz tu pregunta.");
+    S.rec = rec; ponerMic(true); estadoMic("Te escucho. Haz tu pregunta.", false);
     rec.onresult = function (e) {
       interino = "";
       for (var i = e.resultIndex; i < e.results.length; i++) {
@@ -294,24 +342,24 @@
     };
     rec.onerror = function (e) {
       fallo = true;
-      var m = { "not-allowed": "No tengo permiso para usar el micrófono. Permítelo en el navegador y vuelve a intentarlo.", "service-not-allowed": "El navegador no permite el dictado en esta página.", "no-speech": "No te escuché. Pulsa el micrófono y vuelve a hablar.", "audio-capture": "No encuentro un micrófono conectado.", "network": "El dictado necesita conexión a internet en este navegador.", "aborted": "" }[e.error];
+      var m = { "not-allowed": ES_IOS ? "Safari necesita permiso para el micrófono y el dictado. Revisa Ajustes > Safari > Micrófono y Ajustes > General > Teclado > Activar dictado." : "No tengo permiso para usar el micrófono. Permítelo en el navegador y vuelve a intentarlo.", "service-not-allowed": ES_IOS ? "El dictado está apagado. Actívalo en Ajustes > General > Teclado > Activar dictado (y Siri en Ajustes > Siri)." : "El navegador no permite el dictado en esta página.", "no-speech": "No te escuché. Pulsa el micrófono y vuelve a hablar.", "audio-capture": "No encuentro un micrófono disponible.", "network": "El dictado necesita conexión a internet en este navegador.", "aborted": "" }[e.error];
       if (m === undefined) m = "No pude entender el audio. Intenta de nuevo o escribe tu pregunta.";
-      if (m) estadoMic(m);
+      if (m) estadoMic(m, true);
     };
     rec.onend = function () {
       var activo = S.rec === rec; S.rec = null; ponerMic(false);
       var t = (final || interino).replace(/\s+/g, " ").trim();
       if (activo && !fallo && t) { estadoMic("Pregunta recibida."); S.vozTemp = true; enviar(t); }
-      else if (activo && !fallo) estadoMic("No te escuché. Pulsa el micrófono y vuelve a hablar.");
+      else if (activo && !fallo) estadoMic("No te escuché. Pulsa el micrófono y vuelve a hablar.", true);
     };
-    try { rec.start(); } catch (e) { S.rec = null; ponerMic(false); estadoMic("No pude iniciar el micrófono."); }
+    try { rec.start(); } catch (e) { S.rec = null; ponerMic(false); estadoMic("No pude iniciar el micrófono.", true); }
   }
   function alternarVoz() {
     S.voz = !S.voz; var b = $("#nq-b-voz");
     b.setAttribute("aria-pressed", String(S.voz));
     b.setAttribute("aria-label", "Leer las respuestas en voz alta (" + (S.voz ? "activado" : "desactivado") + ")");
     b.classList.toggle("on", S.voz);
-    if (!S.voz) safe(function () { speechSynthesis.cancel(); });
+    if (!S.voz) callar();
     anunciar(S.voz ? "Lectura en voz alta activada" : "Lectura en voz alta desactivada");
   }
   function anunciar(t) { if (W.App && App.anunciar) App.anunciar(t); }
@@ -350,7 +398,7 @@
     if (!S.abierto) return;
     S.abierto = false; S.panel.hidden = true; fondoInerte(false);
     S.fab.setAttribute("aria-expanded", "false"); doc.body.classList.remove("nq-open");
-    safe(function () { speechSynthesis.cancel(); }); S.hablando = null; pararDictado();
+    callar(); pararDictado();
     if (!sinFoco) { var d = (S.ant && doc.contains(S.ant) && S.ant !== doc.body) ? S.ant : S.fab; if (d.offsetParent === null && d !== S.fab) d = S.fab; d.focus(); }
   }
   function abrirBienvenida() {
@@ -393,7 +441,7 @@
     if (b1) { b1.setAttribute("aria-pressed", String(on)); b1.querySelector("span").textContent = on ? "Detener la voz" : "Escucha a NEMEQUI"; }
     if (b2) { b2.setAttribute("aria-pressed", String(on)); b2.setAttribute("aria-label", on ? "Detener la voz de NEMEQUI" : "Escuchar el saludo de NEMEQUI"); }
   }
-  function alternarVoz() {
+  function alternarSaludo() {
     safe(function () {
       var a = vozAudio(), v = $("#nq-video");
       if (!a.paused) { a.pause(); a.currentTime = 0; vozEstado(); return; }
@@ -434,10 +482,27 @@
     $("#nq-b-faq").addEventListener("click", function () { var f = $("#nq-faq"); if (f.hidden) abrirFaq(); else cerrarFaq(true); });
     $("#nq-faq-x").addEventListener("click", function () { cerrarFaq(true); });
     $("#nq-b-voz").addEventListener("click", alternarVoz);
-    var mic = $("#nq-mic"); if (!RECON) mic.hidden = true; else mic.addEventListener("click", dictar);
+
+    var sel = $("#nq-voz-sel"), vel = $("#nq-voz-vel"), velv = $("#nq-voz-velv");
+    function llenarVoces() {
+      if (!sel) return;
+      var vs = vocesEs(), act = safe(function () { return localStorage.getItem(K_VOZ); }) || "";
+      sel.innerHTML = '<option value="">Automática (la mejor disponible)</option>' + vs.map(function (v) { return '<option value="' + esc(v.voiceURI) + '"' + (v.voiceURI === act ? " selected" : "") + ">" + esc(v.name + " (" + v.lang + ")") + "</option>"; }).join("");
+      if (!vs.length) sel.innerHTML = '<option value="">No hay voces en español en este dispositivo</option>';
+    }
+    if (sel) {
+      llenarVoces();
+      safe(function () { speechSynthesis.addEventListener("voiceschanged", llenarVoces); });
+      sel.addEventListener("change", function () { safe(function () { sel.value ? localStorage.setItem(K_VOZ, sel.value) : localStorage.removeItem(K_VOZ); }); hablar("Hola, soy NEMEQUI. Así sueno al responderte.", true); });
+      vel.value = String(velocidad()); velv.textContent = velocidad().toFixed(2).replace(/0$/, "") + "×";
+      vel.addEventListener("input", function () { velv.textContent = parseFloat(vel.value).toFixed(2).replace(/0$/, "") + "×"; safe(function () { localStorage.setItem(K_VEL, vel.value); }); });
+      $("#nq-voz-prb").addEventListener("click", function () { hablar("Hola, soy NEMEQUI. Así sueno al responderte.", true); });
+    }
+    var mic = $("#nq-mic"); mic.addEventListener("click", dictar); if (!RECON) { mic.classList.add("off"); mic.setAttribute("aria-label", "Preguntar con la voz (no disponible en este navegador)"); }
+    ["click", "touchend", "keydown"].forEach(function (ev) { S.panel.addEventListener(ev, desbloquear, true); });
     if (!W.speechSynthesis) $("#nq-b-voz").hidden = true;
     $("#nq-b-lim").addEventListener("click", function () {
-      GEN++; $$(".nq-typing").forEach(function (x) { if (x.parentNode) x.parentNode.removeChild(x); }); S.hist = []; S.ctx.mem = {}; safe(function () { speechSynthesis.cancel(); }); S.hablando = null; pararDictado(); guardarHist(); cerrarFaq(); pintarLog(); pintarChips(contextuales(), "ctx"); anunciar("Conversación limpiada"); $("#nq-in").focus();
+      GEN++; $$(".nq-typing").forEach(function (x) { if (x.parentNode) x.parentNode.removeChild(x); }); S.hist = []; S.ctx.mem = {}; callar(); pararDictado(); guardarHist(); cerrarFaq(); pintarLog(); pintarChips(contextuales(), "ctx"); anunciar("Conversación limpiada"); $("#nq-in").focus();
     });
     var f = $("#nq-form"), inp = $("#nq-in");
     f.addEventListener("submit", function (e) { e.preventDefault(); enviar(inp.value); });
@@ -473,14 +538,14 @@
     $("#nq-wel-chat").addEventListener("click", videoAChat);
     S.wel.addEventListener("click", function (e) { if (e.target === S.wel) videoAChat(); });
     v.addEventListener("play", pararVoz);
-    var bs = $("#nq-b-saludo"); if (bs) bs.addEventListener("click", alternarVoz);
+    var bs = $("#nq-b-saludo"); if (bs) bs.addEventListener("click", alternarSaludo);
     doc.addEventListener("keydown", function (e) {
       if (S.bienvenida) { if (e.key === "Escape") { e.preventDefault(); videoAChat(); } else if (e.key === "Tab") atrapar(e, $(".nq-wel", S.wel)); return; }
       if (S.abierto) { if (e.key === "Escape") { e.preventDefault(); cerrar(); } else if (e.key === "Tab") atrapar(e, S.panel); }
     });
     W.addEventListener("hashchange", function () { setTimeout(function () { actualizarContexto(); if (S.abierto && S.chips === "ctx") pintarChips(contextuales(), "ctx"); }, 160); });
     W.addEventListener("resize", function () { if (S.abierto) { S.panel.setAttribute("aria-modal", String(movil())); fondoInerte(movil()); } });
-    W.addEventListener("pagehide", function () { safe(function () { speechSynthesis.cancel(); }); pararDictado(); });
+    W.addEventListener("pagehide", function () { callar(); pararDictado(); });
   }
 
   /* =========================================================================================
