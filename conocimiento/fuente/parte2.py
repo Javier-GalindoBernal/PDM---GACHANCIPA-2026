@@ -28,7 +28,7 @@ I("pagina_alertas", C, "¿Qué hay en la página de alertas?|para qué sirve ale
   "Alertas lista las metas rezagadas, las metas en avance con menor indicador (con un umbral que puedes ajustar) y las no programadas. Orienta la gestión; no califica a ninguna dependencia.",
   "Alertas|#/alertas", "que_es_rezagada,rezagadas_lista")
 I("pagina_compartidas", C, "¿Qué hay en metas compartidas y calidad de dato?|para qué sirve la página de metas compartidas|qué es calidad de dato|qué muestra la sección de calidad de dato|qué contiene compartidas",
-  "Metas compartidas y calidad de dato muestra las metas que reportan varias secretarías, la meta en verificación, el arrastre de {{ant}} y otras observaciones de dato. Son aclaraciones de lectura, no reproches.",
+  "Metas compartidas y calidad de dato muestra las metas que reportan varias secretarías, el arrastre de {{ant}} y otras observaciones de dato. Son aclaraciones de lectura, no reproches.",
   "Metas compartidas|#/compartidas", "meta_compartida,arrastre")
 I("pagina_informes", C, "¿Qué hay en la página de informes?|para qué sirve informes|qué informes puedo descargar|qué contiene la sección de informes|qué documentos hay disponibles",
   "Informes permite descargar, en Word y PDF, el informe general por año y el informe de seguimiento de cada secretaría, con el tamaño de cada archivo.",

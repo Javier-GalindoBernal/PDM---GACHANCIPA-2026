@@ -120,7 +120,7 @@ POR_PAGINA = {
     "meta": ["como_se_calcula", "colores_semaforo", "meta_compartida", "etiquetas_metas", "arrastre"],
     "logros": ["meta_certificable", "t4_pendiente", "certificables_datos", "cumplida_vs_certificable"],
     "alertas": ["que_es_rezagada", "rezagadas_lista", "por_que_no_penaliza", "no_programadas_lista", "lim_causas"],
-    "compartidas": ["meta_compartida", "registros_vs_unicas", "arrastre", "verificacion_meta", "mayor_100"],
+    "compartidas": ["meta_compartida", "registros_vs_unicas", "arrastre", "mayor_100"],
     "informes": ["descargar_informes", "informes_anio", "word_vs_pdf", "informe_general_dl"],
     "metodologia": ["como_se_calcula", "calculo_institucional", "umbrales", "glosario", "huellas", "fuentes_datos"],
     "defecto": ["que_es_portal", "resumen_general", "colores_semaforo", "como_se_calcula", "que_puedes_hacer"],

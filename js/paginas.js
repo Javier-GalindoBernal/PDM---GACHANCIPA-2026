@@ -91,8 +91,8 @@
     return m.s === "no_programada" ? "" : '<span class="mbar" aria-hidden="true"><i class="k-' + U.SEM[m.s].k + '" style="width:' + Math.max(2, Math.min(Math.max(m.ind, 0), 100)) + '%"></i></span>';
   }
   var MARCA = {
-    compartida: "Meta compartida", verificacion: "En verificación con la secretaría", arrastre: "Sin programación 2026 al corte (arrastre 2025)",
-    sobreejecucion: "Ejecución superior a lo programado", fraccionaria: "Escala del Plan Indicativo en verificación", ajuste25: "2025 tomado como 100 % (cumplida en 2026)"
+    compartida: "Meta compartida", arrastre: "Sin programación 2026 al corte (arrastre 2025)",
+    sobreejecucion: "Ejecución superior a lo programado", ajuste25: "2025 tomado como 100 % (cumplida en 2026)"
   };
   function marcasHtml(m) {
     return m.mk && m.mk.length ? "<div>" + m.mk.map(function (k) { return '<span class="tag">' + h(MARCA[k] || k) + "</span>"; }).join("") + "</div>" : "";
@@ -447,7 +447,6 @@
       "<div><dt>Programado acumulado</dt><dd>" + U.n(m.pa) + "</dd></div><div><dt>Ejecutado acumulado</dt><dd>" + U.n(m.ea) + "</dd></div><div><dt>Indicador de avance</dt><dd>" + (m.s === "no_programada" ? "—" : U.p(m.ind)) + "</dd></div>" +
       "<div><dt>Programado posterior al corte (" + CORTE.vigencia + ")</dt><dd>" + U.n(m.pp) + "</dd></div></dl>" +
       '<p class="mini mt">Fuente: reporte de la ' + h(s.nombre) + ", corte " + h(CORTE.texto) + " y Plan Indicativo.</p></section>";
-    if (m.mk.indexOf("verificacion") >= 0) html += '<p class="nota mt"><b>Dato en verificación.</b> La escala de programación entre vigencias de esta meta se verifica con la secretaría antes de interpretar su indicador.</p>';
     if (m.mk.indexOf("arrastre") >= 0) html += '<p class="nota mt"><b>Lectura de la meta.</b> ' + h(notaArrastre(m)) + "</p>";
     if (otras.length) html += '<section class="card mt"><h2>Meta compartida</h2><p class="sub">Esta meta también figura en otras secretarías; cada una reporta su propio avance.</p><div class="tw"><table><caption class="sr">Valores de la meta compartida por secretaría</caption><thead><tr><th scope="col">Secretaría</th><th scope="col">Estado</th><th scope="col" class="n">Indicador</th></tr></thead><tbody>' +
       comp.registros.map(function (r) { return "<tr><th scope='row'>" + (r.carpeta === m.car ? "<b>" + secChip(r.carpeta, h(secCorto(r.carpeta)) + " (esta)", 24) + "</b>" : '<a href="#/meta/' + r.carpeta + "/" + encodeURIComponent(m.cod) + '">' + secChip(r.carpeta, h(secCorto(r.carpeta)), 24) + "</a>") + "</th><td>" + U.chip(r.semaforo) + '</td><td class="n">' + U.p(r.indicador) + "</td></tr>"; }).join("") + "</tbody></table></div></section>";
@@ -525,21 +524,15 @@
         c.registros.map(function (r) { return "<tr><th scope='row'><a href='#/meta/" + r.carpeta + "/" + encodeURIComponent(c.codigo) + "'>" + secChip(r.carpeta, h(secCorto(r.carpeta)), 24) + "</a></th><td>" + U.chip(r.semaforo) + "</td><td class='n'>" + U.p(r.indicador) + "</td><td class='n'>" + U.p(r.avance_2025) + "</td><td class='n'>" + U.p(r.avance_2026) + "</td><td class='n'>" + U.n(r.prog_2026_corte) + "</td><td class='n'>" + U.n(r.ejec_2026_corte) + "</td></tr>"; }).join("") +
         "</tbody></table></div>" + (c.difiere ? '<p class="mini mt">Cada secretaría reporta el avance de su propia parte; la diferencia entre valores se verifica con las secretarías para confirmar si corresponde a aportes distintos.</p>' : "") + "</details>";
     }).join("");
-    var ver = Q.verificacion.map(function (v) {
-      var m = metaBy[v.carpeta + "|" + v.codigo];
-      return '<p class="nota"><b>Meta <a href="' + (m ? hrefMeta(m) : "#/metas") + '">' + h(v.codigo) + "</a> (" + h(secCorto(v.carpeta)) + ").</b> " + h(m ? m.m : "") + " Los valores programados de 2025 y de 2026 al corte vienen en escalas distintas (programado 2025: " + U.n(v.prog_2025) + "; programado 2026 al corte: " + U.n(v.prog_2026_corte) + "). Se verifica con la secretaría la escala de programación antes de interpretar el indicador.</p>";
-    }).join("");
     var arr = Q.arrastre.map(function (a) { var m = metaBy[a.carpeta + "|" + a.codigo]; return m ? Object.assign({}, m, { _t: TIPO[a.tipo] || a.tipo }) : null; }).filter(Boolean);
     var html = '<p class="muted">Aclaraciones sobre cómo se leen algunas metas. Son observaciones de calidad del dato que se resuelven con las secretarías; no restan mérito a la gestión.</p>' +
       '<div class="grid g3 mt">' + kpi(Q.registros, "Registros de meta", "una fila por secretaría responsable") + kpi(Q.unicas, "Metas únicas", "por código de meta") + kpi(D.compartidas.length, "Metas compartidas", "figuran en más de una secretaría") + "</div>" +
       '<section class="mt2"><h2>Metas compartidas</h2><p class="muted">Cuando una meta es responsabilidad de más de una secretaría aparece una vez por cada una; por eso los registros (' + Q.registros + ") son más que las metas únicas (" + Q.unicas + "). Despliegue cada meta para ver los valores por secretaría.</p><div class='grid' style='gap:10px'>" + comp + "</div></section>" +
-      '<section class="mt2"><h2>Meta en verificación</h2>' + ver + "</section>" +
       '<section class="mt2"><h2>Arrastre de 2025 (' + arr.length + ')</h2><p class="muted">Metas sin programación ' + CORTE.vigencia + ' al corte. Algunas se cumplieron con lo registrado en ' + CORTE.anterior + ' y su programación restante está en ' + h(CORTE.posteriores) + '; otras no tienen programación posterior y su resultado corresponde a lo registrado en ' + CORTE.anterior + ', o registran ejecución sin programación. La columna «Lectura» indica cada caso; se listan para que su lectura sea transparente.</p>' +
       '<div class="tw"><table><caption class="sr">Metas con arrastre de 2025</caption><thead><tr><th scope="col">Código</th><th scope="col">Meta</th><th scope="col">Secretaría</th><th scope="col">Lectura</th><th scope="col" class="n">Indicador</th><th scope="col">Estado</th></tr></thead><tbody>' +
       arr.map(function (m) { return '<tr><td><a class="cod" href="' + hrefMeta(m) + '">' + h(m.cod) + '</a></td><td class="cell-meta">' + h(m.m) + "</td><td>" + secChip(m.car, h(secCorto(m.car)), 26) + "</td><td>" + h(m._t) + '</td><td class="n">' + U.p(m.ind) + "</td><td>" + U.chip(m.s) + "</td></tr>"; }).join("") + "</tbody></table></div></section>" +
       '<section class="mt2"><h2>Otras observaciones de dato</h2><ul>' +
       "<li><b>Ejecución superior a lo programado (" + Q.sobreejecucion.length + "):</b> " + Q.sobreejecucion.map(function (s) { return '<a href="#/meta/' + s.carpeta + "/" + encodeURIComponent(s.codigo) + '">meta ' + h(s.codigo) + "</a> (" + h(secCorto(s.carpeta)) + ")"; }).join(", ") + ". Se verifica con la secretaría que el ejecutado corresponda al período.</li>" +
-      "<li><b>Valores fraccionarios en el Plan Indicativo (" + Q.fraccionarios.length + "):</b> metas " + Q.fraccionarios.map(function (f) { return h(f.codigo); }).join(" y ") + ". Se confirma la escala de registro con la secretaría.</li>" +
       "<li><b>Metas sin programación en 2025:</b> " + Q.prog_2025_cero + " metas no tienen programación en la vigencia " + CORTE.anterior + "; su avance de ese año no se calcula.</li>" +
       (Q.omitidas.length ? "<li><b>Registros sin código (" + Q.omitidas.length + "):</b> una fila de " + h(secCorto(Q.omitidas[0].carpeta)) + " no trae código de meta y no se incluye en el conteo; se aclara con la secretaría.</li>" : "") + "</ul></section>";
     return { title: "Metas compartidas y calidad de dato", crumbs: [["Inicio", "#/resumen"], ["Metas compartidas y calidad de dato", null]], html: html };

@@ -572,7 +572,7 @@
     };
 
     function marcasTxt(m) {
-      var MARCA = { compartida: "meta compartida", verificacion: "en verificación con la secretaría", arrastre: "sin programación " + CORTE.vigencia + " al corte (arrastre " + CORTE.anterior + ")", sobreejecucion: "ejecución superior a lo programado", ajuste25: "2025 tomado como 100 % por estar cumplida en 2026", fraccionaria: "escala del Plan Indicativo en verificación" };
+      var MARCA = { compartida: "meta compartida", arrastre: "sin programación " + CORTE.vigencia + " al corte (arrastre " + CORTE.anterior + ")", sobreejecucion: "ejecución superior a lo programado", ajuste25: "2025 tomado como 100 % por estar cumplida en 2026" };
       return (m.mk || []).map(function (k) { return MARCA[k] || k; });
     }
     function detalleMeta(m) {
@@ -730,12 +730,6 @@
       var A = D.calidad.arrastre, t = {}; A.forEach(function (x) { t[x.tipo] = (t[x.tipo] || 0) + 1; });
       return resp("Hay " + A.length + " metas con marca de arrastre de " + CORTE.anterior + " (sin programación " + CORTE.vigencia + " al corte): " + (t.cumplida_por_2025 || 0) + " cumplidas con lo registrado en " + CORTE.anterior + ", " + (t.rezago_heredado || 0) + " con avance heredado de ese año y " + (t.ejecucion_sin_programacion || 0) + " con ejecución registrada sin programación. La marca es para dar transparencia a su lectura.",
         { datos: { total: A.length, cumplida_por_2025: t.cumplida_por_2025 || 0, rezago_heredado: t.rezago_heredado || 0, ejecucion_sin_programacion: t.ejecucion_sin_programacion || 0 }, enlaces: [{ texto: "Metas compartidas y calidad de dato", hash: "#/compartidas" }], sugerencias: ["¿Qué es el arrastre de 2025?"] });
-    };
-    H.verificacion = function () {
-      var V = D.calidad.verificacion, F = D.calidad.fraccionarios;
-      if (!V.length) return resp("No hay metas en verificación por escala en este corte.", { datos: { total: 0 } });
-      return resp("Hay " + V.length + " meta en verificación por escala: la meta " + V[0].codigo + " de " + secCorto(V[0].carpeta) + " (programado " + CORTE.anterior + " = " + nf(V[0].prog_2025) + " frente a " + nf(V[0].prog_2026_corte) + " en " + CORTE.vigencia + " al corte). Además, " + F.length + " metas del Plan Indicativo tienen valores fraccionarios (" + F.map(function (f) { return f.codigo; }).join(" y ") + "). Se confirman con la secretaría.",
-        { datos: { total: V.length, codigo: V[0].codigo, fraccionarias: F.length }, enlaces: [{ texto: "Metas compartidas y calidad de dato", hash: "#/compartidas" }], sugerencias: ["¿Qué significa «en verificación con la secretaría»?"] });
     };
     H.mas_metas = function (q) {
       if (q.estados.length) return H.extremo_estado(q);

@@ -177,12 +177,6 @@ I("media_simple", C, "¿Qué es la media simple?|promedio simple qué es|por qu�
 I("no_es_calificacion", C, "¿El portal califica a las secretarías?|esto es un ranking de culpables|las cifras evalúan personas|este tablero es una evaluación|qué pasa si mi secretaría sale baja|el ranking mide quién trabaja mejor|se pueden comparar las secretarías",
   "No. El portal orienta la gestión: muestra el avance frente a lo programado para acompañar a las secretarías y aclarar cronogramas. Cada secretaría responde por metas distintas y de distinta magnitud, así que un orden por indicador no mide la calidad de su trabajo.",
   "", "para_que_sirve,lim_causas")
-I("verificacion_meta", C, "¿Qué significa «en verificación con la secretaría»?|meta en verificación qué es|qué es la escala mixta|por qué una meta está en verificación|qué es un dato en verificación|qué pasa con una meta con escala distinta",
-  "Es una meta cuyos valores programados vienen en escalas distintas entre vigencias (hoy {{n.verif}}, la meta {{verif.cod}} de {{verif.sec}}). Se confirma la escala con la secretaría antes de interpretar su indicador.",
-  "Metas compartidas y calidad de dato|#/compartidas", "verificacion_datos,fraccionarios")
-I("fraccionarios", C, "¿Qué significan los valores fraccionarios del Plan Indicativo?|por qué hay valores como 0.5|escala del plan indicativo en verificación|metas con decimales en el plan|por qué hay fracciones en la programación",
-  "Algunas metas del Plan Indicativo traen valores en escalas distintas (por ejemplo fracciones frente a porcentajes). Son {{n.fracc}} metas, marcadas como «Escala del Plan Indicativo en verificación», y se confirman con la secretaría.",
-  "Metas compartidas y calidad de dato|#/compartidas", "verificacion_meta,etiquetas_metas")
 I("guion_en_tabla", C, "¿Por qué sale un guion en la tabla?|por qué algunas metas no tienen avance 2025|qué significa el guion|qué significa el signo — en la tabla|por qué hay guiones en los porcentajes|por qué una celda está vacía",
   "Un guion indica que no hay valor para calcular: las metas sin programación en {{ant}} (son {{n.sin2025}}) no tienen avance de ese año, y las no programadas no tienen indicador.",
   "", "que_es_no_programada,vigencias")
@@ -198,8 +192,8 @@ I("tablero_una_pagina", C, "¿Qué es el tablero de control de una sola página?
 I("como_leer_graficos", C, "¿Cómo leo los gráficos?|cómo se lee el mapa de calor|qué muestran las barras|qué es el anillo del semáforo|qué es el mapa de calor|qué muestra el gráfico de barras|cómo interpreto los gráficos",
   "Anillo del semáforo: proporción de metas por estado. Barras: indicador por secretaría o por eje. Barras agrupadas: avance {{ant}} frente a {{vig}} al corte. Mapa de calor: número de metas por eje y estado. Casi todos se pueden abrir con un clic.",
   "Resumen ejecutivo|#/resumen", "clic_graficos,tabla_del_grafico")
-I("etiquetas_metas", C, "¿Qué son las etiquetas junto a las metas?|qué significan los tags|qué son las marcas junto a las metas|etiquetas de arrastre compartida verificación|qué significa la etiqueta amarilla de una meta",
-  "Junto a algunas metas aparecen etiquetas de lectura: «Meta compartida», «En verificación con la secretaría», «Sin programación 2026 al corte (arrastre 2025)», «Ejecución superior a lo programado» y «Escala del Plan Indicativo en verificación». No restan mérito; aclaran cómo leer el dato.",
+I("etiquetas_metas", C, "¿Qué son las etiquetas junto a las metas?|qué significan los tags|qué son las marcas junto a las metas|etiquetas de arrastre y compartida|qué significa la etiqueta amarilla de una meta",
+  "Junto a algunas metas aparecen etiquetas de lectura: «Meta compartida», «Sin programación 2026 al corte (arrastre 2025)» y «Ejecución superior a lo programado». No restan mérito; aclaran cómo leer el dato.",
   "Metas compartidas y calidad de dato|#/compartidas", "arrastre,meta_compartida,mayor_100")
 I("que_es_vigencia_posterior", C, "¿Qué es la programación posterior al corte?|qué es programado posterior 2026|qué significa programación posterior|por qué hay programación después del corte|qué es lo programado para el cuarto trimestre|qué es la programación de T4|qué es lo que viene después del corte",
   "Es lo que está programado para {{corte.posteriores}}, después del corte. No entra en el indicador actual: se medirá cuando se actualice el corte.",

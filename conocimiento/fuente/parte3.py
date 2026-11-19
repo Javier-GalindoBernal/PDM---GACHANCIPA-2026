@@ -85,8 +85,6 @@ I("sobreejecucion_datos", C, "¿Cuáles metas superan el 100%?|qué metas tienen
   H="sobre")
 I("arrastre_datos", C, "¿Cuáles metas tienen arrastre?|cuántas metas de arrastre hay|metas sin programación 2026 al corte|qué metas vienen de 2025|dime las metas con arrastre de 2025|cuántas metas tienen la marca de arrastre",
   H="arrastre")
-I("verificacion_datos", C, "¿Qué meta está en verificación?|hay metas en verificación|cuál es la meta con escala mixta|metas con datos por aclarar|qué metas se están verificando con la secretaría|cuál meta tiene escala distinta",
-  H="verificacion")
 I("mas_metas", C, "¿Qué secretaría tiene más metas?|qué eje tiene más metas|cuál tiene menos metas|quién tiene mayor número de metas|qué secretaría tiene menos metas|cuál eje concentra más metas",
   H="mas_metas")
 I("sin_rezago", C, "¿Qué secretarías no tienen metas rezagadas?|qué ejes no tienen rezagadas|dónde no hay metas en rojo|cuáles están libres de rezago|qué secretarías no tienen ninguna meta rezagada|qué ejes no tienen metas rezagadas",

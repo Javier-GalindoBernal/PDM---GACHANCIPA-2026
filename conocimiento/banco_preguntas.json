@@ -603,7 +603,6 @@
    "meta_compartida",
    "registros_vs_unicas",
    "arrastre",
-   "verificacion_meta",
    "mayor_100"
   ],
   "informes": [
@@ -2072,59 +2071,6 @@
    "req": null
   },
   {
-   "id": "verificacion_meta",
-   "categoria": "comprender",
-   "tipo": "info",
-   "formulaciones": [
-    "¿Qué significa «en verificación con la secretaría»?",
-    "meta en verificación qué es",
-    "qué es la escala mixta",
-    "por qué una meta está en verificación",
-    "qué es un dato en verificación",
-    "qué pasa con una meta con escala distinta"
-   ],
-   "respuesta": "Es una meta cuyos valores programados vienen en escalas distintas entre vigencias (hoy {{n.verif}}, la meta {{verif.cod}} de {{verif.sec}}). Se confirma la escala con la secretaría antes de interpretar su indicador.",
-   "enlaces": [
-    {
-     "texto": "Metas compartidas y calidad de dato",
-     "hash": "#/compartidas"
-    }
-   ],
-   "sugerencias": [
-    "verificacion_datos",
-    "fraccionarios"
-   ],
-   "handler": null,
-   "acciones": [],
-   "req": null
-  },
-  {
-   "id": "fraccionarios",
-   "categoria": "comprender",
-   "tipo": "info",
-   "formulaciones": [
-    "¿Qué significan los valores fraccionarios del Plan Indicativo?",
-    "por qué hay valores como 0.5",
-    "escala del plan indicativo en verificación",
-    "metas con decimales en el plan",
-    "por qué hay fracciones en la programación"
-   ],
-   "respuesta": "Algunas metas del Plan Indicativo traen valores en escalas distintas (por ejemplo fracciones frente a porcentajes). Son {{n.fracc}} metas, marcadas como «Escala del Plan Indicativo en verificación», y se confirman con la secretaría.",
-   "enlaces": [
-    {
-     "texto": "Metas compartidas y calidad de dato",
-     "hash": "#/compartidas"
-    }
-   ],
-   "sugerencias": [
-    "verificacion_meta",
-    "etiquetas_metas"
-   ],
-   "handler": null,
-   "acciones": [],
-   "req": null
-  },
-  {
    "id": "guion_en_tabla",
    "categoria": "comprender",
    "tipo": "info",
@@ -2265,10 +2211,10 @@
     "¿Qué son las etiquetas junto a las metas?",
     "qué significan los tags",
     "qué son las marcas junto a las metas",
-    "etiquetas de arrastre compartida verificación",
+    "etiquetas de arrastre y compartida",
     "qué significa la etiqueta amarilla de una meta"
    ],
-   "respuesta": "Junto a algunas metas aparecen etiquetas de lectura: «Meta compartida», «En verificación con la secretaría», «Sin programación 2026 al corte (arrastre 2025)», «Ejecución superior a lo programado» y «Escala del Plan Indicativo en verificación». No restan mérito; aclaran cómo leer el dato.",
+   "respuesta": "Junto a algunas metas aparecen etiquetas de lectura: «Meta compartida», «Sin programación 2026 al corte (arrastre 2025)» y «Ejecución superior a lo programado». No restan mérito; aclaran cómo leer el dato.",
    "enlaces": [
     {
      "texto": "Metas compartidas y calidad de dato",
@@ -2536,7 +2482,7 @@
     "qué muestra la sección de calidad de dato",
     "qué contiene compartidas"
    ],
-   "respuesta": "Metas compartidas y calidad de dato muestra las metas que reportan varias secretarías, la meta en verificación, el arrastre de {{ant}} y otras observaciones de dato. Son aclaraciones de lectura, no reproches.",
+   "respuesta": "Metas compartidas y calidad de dato muestra las metas que reportan varias secretarías, el arrastre de {{ant}} y otras observaciones de dato. Son aclaraciones de lectura, no reproches.",
    "enlaces": [
     {
      "texto": "Metas compartidas",
@@ -4453,25 +4399,6 @@
    "enlaces": [],
    "sugerencias": [],
    "handler": "arrastre",
-   "acciones": [],
-   "req": null
-  },
-  {
-   "id": "verificacion_datos",
-   "categoria": "datos",
-   "tipo": "datos",
-   "formulaciones": [
-    "¿Qué meta está en verificación?",
-    "hay metas en verificación",
-    "cuál es la meta con escala mixta",
-    "metas con datos por aclarar",
-    "qué metas se están verificando con la secretaría",
-    "cuál meta tiene escala distinta"
-   ],
-   "respuesta": "",
-   "enlaces": [],
-   "sugerencias": [],
-   "handler": "verificacion",
    "acciones": [],
    "req": null
   },
