@@ -11,6 +11,7 @@
   function $$(s, r) { return Array.prototype.slice.call((r || doc).querySelectorAll(s)); }
   function reducido() { return !!(W.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches); }
   function movil() { return W.innerWidth <= 720; }
+  var RECON = W.SpeechRecognition || W.webkitSpeechRecognition || null;
   function ic(n) { return '<svg class="ic" aria-hidden="true"><use href="#i-' + n + '"/></svg>'; }
 
   var AVATAR = "assets/nemequi_avatar.jpg", POSTER = "assets/nemequi_poster.jpg", VIDEO = "assets/nemequi.mp4", VOZ = "assets/nemequi_voz.m4a", VOZ_MP3 = "assets/nemequi_voz.mp3";
@@ -124,8 +125,10 @@
       '<div class="nq-f"><div id="nq-chips" class="nq-chips" role="group" aria-label="Preguntas sugeridas"></div>' +
       '<form id="nq-form" class="nq-form" autocomplete="off"><label class="sr" for="nq-in">Escribe tu pregunta para NEMEQUI</label>' +
       '<textarea id="nq-in" rows="1" maxlength="400" placeholder="Escribe tu pregunta…" enterkeyhint="send"></textarea>' +
+      '<button type="button" class="nq-mic" id="nq-mic" aria-pressed="false" aria-label="Preguntar con la voz" title="Preguntar con la voz">' + ic("mic") + "</button>" +
       '<button type="submit" class="nq-send" aria-label="Enviar la pregunta">' + ic("send") + "</button></form>" +
-      '<p class="nq-note">NEMEQUI responde con los datos oficiales del corte ' + esc(W.PDM.corte.texto) + ". No emite juicios sobre las secretarías.</p></div>";
+      '<p id="nq-mic-st" class="sr" role="status" aria-live="polite"></p>' +
+      '<p class="nq-note">NEMEQUI responde con los datos oficiales del corte ' + esc(W.PDM.corte.texto) + ". No emite juicios sobre las secretarías." + (RECON ? " Para preguntar hablando, pulsa el micrófono; la transcripción la hace el reconocimiento de voz de tu navegador." : "") + "</p></div>";
     doc.body.appendChild(panel);
 
     var wel = doc.createElement("div");
@@ -157,7 +160,7 @@
     });
     if (m.filtro) bt.push('<button type="button" class="nq-ac" data-a="filtro">' + ic("filter") + "Aplicar filtro: " + esc(nombresFiltro(m.filtro)) + "</button>");
     if (bt.length) h += '<div class="nq-acts">' + bt.join("") + "</div>";
-    h += '<div class="nq-tools"><button type="button" class="nq-cp" data-a="copiar" aria-label="Copiar esta respuesta" title="Copiar respuesta">' + ic("copy") + "<span>Copiar</span></button></div></div></div>";
+    h += '<div class="nq-tools"><button type="button" class="nq-cp" data-a="copiar" aria-label="Copiar esta respuesta" title="Copiar respuesta">' + ic("copy") + "<span>Copiar</span></button>" + (W.speechSynthesis ? '<button type="button" class="nq-cp" data-a="escuchar" aria-label="Escuchar esta respuesta en voz alta" title="Escuchar respuesta">' + ic("speaker") + "<span>Escuchar</span></button>" : "") + "</div></div></div>";
     return h;
   }
   function pintarLog() {
@@ -210,6 +213,7 @@
     texto = String(texto || "").replace(/\s+/g, " ").trim(); if (!texto) return;
     var inp = $("#nq-in"); if (inp) { inp.value = ""; ajustar(inp); }
     cerrarFaq();
+    var porVoz = S.vozTemp; S.vozTemp = false;
     agregar({ r: "u", t: texto });
     var m = responder(texto);
     pintarChips([], "ctx");
@@ -223,7 +227,7 @@
       if (gen !== GEN) return;
       agregar(m);
       pintarChips(m.sug && m.sug.length ? m.sug : contextuales(), m.sug && m.sug.length ? "resp" : "ctx");
-      hablar(m.t);
+      hablar(m.t, porVoz);
     }, espera);
   }
 
@@ -234,14 +238,73 @@
     for (j = 0; j < vs.length; j++) if (/^es/i.test(vs[j].lang || "")) return vs[j];
     return null;
   }
-  function hablar(t) {
-    if (!S.voz || !W.speechSynthesis) return;
+  function limpiarParaVoz(t) {
+    return String(t).replace(/[«»]/g, "").replace(/\s+/g, " ").replace(/\bT([1-4])\b/g, "trimestre $1").replace(/\bPDM\b/g, "P D M").trim();
+  }
+  function hablar(t, forzar, fin) {
+    if ((!S.voz && !forzar) || !W.speechSynthesis) return;
     safe(function () {
       speechSynthesis.cancel();
-      var u = new SpeechSynthesisUtterance(String(t).replace(/[«»]/g, ""));
+      var u = new SpeechSynthesisUtterance(limpiarParaVoz(t));
       var v = elegirVoz(); u.lang = v ? v.lang : "es-CO"; if (v) u.voice = v; u.rate = 1;
+      S.hablando = String(t);
+      u.onend = u.onerror = function () { S.hablando = null; marcarEscucha(); if (fin) fin(); };
       speechSynthesis.speak(u);
+      marcarEscucha();
     });
+  }
+  function marcarEscucha() {
+    $$('.nq-cp[data-a="escuchar"]').forEach(function (b) {
+      var m = S.hist[+b.closest(".nq-m").getAttribute("data-i")] || {}, on = S.hablando && S.hablando === String(m.t);
+      b.classList.toggle("on", !!on);
+      b.querySelector("span").textContent = on ? "Detener" : "Escuchar";
+      b.setAttribute("aria-label", on ? "Detener la lectura en voz alta" : "Escuchar esta respuesta en voz alta");
+    });
+  }
+  function escucharMensaje(t) {
+    if (!W.speechSynthesis) return;
+    if (S.hablando && S.hablando === String(t)) { safe(function () { speechSynthesis.cancel(); }); S.hablando = null; marcarEscucha(); return; }
+    hablar(t, true);
+  }
+  /* ------------------------- dictado (preguntar con la voz) ------------------------- */
+  function estadoMic(msg) { var s = $("#nq-mic-st"); if (s) s.textContent = msg || ""; if (msg) anunciar(msg); }
+  function pararDictado() { if (S.rec) { var r = S.rec; S.rec = null; safe(function () { r.abort(); }); } ponerMic(false); }
+  function ponerMic(on) {
+    var b = $("#nq-mic"); if (!b) return;
+    b.classList.toggle("on", on); b.setAttribute("aria-pressed", String(on));
+    b.setAttribute("aria-label", on ? "Detener la escucha" : "Preguntar con la voz");
+    b.title = on ? "Detener la escucha" : "Preguntar con la voz";
+    var u = b.querySelector("use"); if (u) u.setAttribute("href", on ? "#i-stop" : "#i-mic");
+  }
+  function dictar() {
+    if (!RECON) return;
+    if (S.rec) { pararDictado(); return; }
+    safe(function () { speechSynthesis.cancel(); }); S.hablando = null; marcarEscucha();
+    var rec, inp = $("#nq-in"), final = "", interino = "", fallo = false;
+    try { rec = new RECON(); } catch (e) { estadoMic("El dictado no está disponible en este navegador."); return; }
+    rec.lang = "es-CO"; rec.interimResults = true; rec.continuous = false; rec.maxAlternatives = 1;
+    S.rec = rec; ponerMic(true); estadoMic("Te escucho. Haz tu pregunta.");
+    rec.onresult = function (e) {
+      interino = "";
+      for (var i = e.resultIndex; i < e.results.length; i++) {
+        var tr = e.results[i][0].transcript;
+        if (e.results[i].isFinal) final += tr; else interino += tr;
+      }
+      inp.value = (final + " " + interino).replace(/\s+/g, " ").trim(); ajustar(inp);
+    };
+    rec.onerror = function (e) {
+      fallo = true;
+      var m = { "not-allowed": "No tengo permiso para usar el micrófono. Permítelo en el navegador y vuelve a intentarlo.", "service-not-allowed": "El navegador no permite el dictado en esta página.", "no-speech": "No te escuché. Pulsa el micrófono y vuelve a hablar.", "audio-capture": "No encuentro un micrófono conectado.", "network": "El dictado necesita conexión a internet en este navegador.", "aborted": "" }[e.error];
+      if (m === undefined) m = "No pude entender el audio. Intenta de nuevo o escribe tu pregunta.";
+      if (m) estadoMic(m);
+    };
+    rec.onend = function () {
+      var activo = S.rec === rec; S.rec = null; ponerMic(false);
+      var t = (final || interino).replace(/\s+/g, " ").trim();
+      if (activo && !fallo && t) { estadoMic("Pregunta recibida."); S.vozTemp = true; enviar(t); }
+      else if (activo && !fallo) estadoMic("No te escuché. Pulsa el micrófono y vuelve a hablar.");
+    };
+    try { rec.start(); } catch (e) { S.rec = null; ponerMic(false); estadoMic("No pude iniciar el micrófono."); }
   }
   function alternarVoz() {
     S.voz = !S.voz; var b = $("#nq-b-voz");
@@ -287,7 +350,7 @@
     if (!S.abierto) return;
     S.abierto = false; S.panel.hidden = true; fondoInerte(false);
     S.fab.setAttribute("aria-expanded", "false"); doc.body.classList.remove("nq-open");
-    safe(function () { speechSynthesis.cancel(); });
+    safe(function () { speechSynthesis.cancel(); }); S.hablando = null; pararDictado();
     if (!sinFoco) { var d = (S.ant && doc.contains(S.ant) && S.ant !== doc.body) ? S.ant : S.fab; if (d.offsetParent === null && d !== S.fab) d = S.fab; d.focus(); }
   }
   function abrirBienvenida() {
@@ -371,9 +434,10 @@
     $("#nq-b-faq").addEventListener("click", function () { var f = $("#nq-faq"); if (f.hidden) abrirFaq(); else cerrarFaq(true); });
     $("#nq-faq-x").addEventListener("click", function () { cerrarFaq(true); });
     $("#nq-b-voz").addEventListener("click", alternarVoz);
+    var mic = $("#nq-mic"); if (!RECON) mic.hidden = true; else mic.addEventListener("click", dictar);
     if (!W.speechSynthesis) $("#nq-b-voz").hidden = true;
     $("#nq-b-lim").addEventListener("click", function () {
-      GEN++; $$(".nq-typing").forEach(function (x) { if (x.parentNode) x.parentNode.removeChild(x); }); S.hist = []; S.ctx.mem = {}; safe(function () { speechSynthesis.cancel(); }); guardarHist(); cerrarFaq(); pintarLog(); pintarChips(contextuales(), "ctx"); anunciar("Conversación limpiada"); $("#nq-in").focus();
+      GEN++; $$(".nq-typing").forEach(function (x) { if (x.parentNode) x.parentNode.removeChild(x); }); S.hist = []; S.ctx.mem = {}; safe(function () { speechSynthesis.cancel(); }); S.hablando = null; pararDictado(); guardarHist(); cerrarFaq(); pintarLog(); pintarChips(contextuales(), "ctx"); anunciar("Conversación limpiada"); $("#nq-in").focus();
     });
     var f = $("#nq-form"), inp = $("#nq-in");
     f.addEventListener("submit", function (e) { e.preventDefault(); enviar(inp.value); });
@@ -391,6 +455,7 @@
       var a = e.target.closest("[data-a]"); if (!a) return;
       var k = a.getAttribute("data-a"), msg = S.hist[+a.closest(".nq-m").getAttribute("data-i")] || {};
       if (k === "copiar") copiar(msg.t || "", a);
+      else if (k === "escuchar") escucharMensaje(msg.t || "");
       else if (k === "imprimir") { if (movil()) cerrar(true); setTimeout(function () { W.print(); }, 120); }
       else if (k === "limpiar") { safe(function () { W.Filtros.limpiar(); }); refrescar(); anunciar("Filtros limpiados"); }
       else if (k === "filtro" && msg.filtro) {
@@ -415,7 +480,7 @@
     });
     W.addEventListener("hashchange", function () { setTimeout(function () { actualizarContexto(); if (S.abierto && S.chips === "ctx") pintarChips(contextuales(), "ctx"); }, 160); });
     W.addEventListener("resize", function () { if (S.abierto) { S.panel.setAttribute("aria-modal", String(movil())); fondoInerte(movil()); } });
-    W.addEventListener("pagehide", function () { safe(function () { speechSynthesis.cancel(); }); });
+    W.addEventListener("pagehide", function () { safe(function () { speechSynthesis.cancel(); }); pararDictado(); });
   }
 
   /* =========================================================================================
@@ -479,6 +544,8 @@
     cerrar: function () { cerrar(); },
     preguntar: function (q, desde) { if (S.fab) abrir({ pregunta: q, desde: desde && desde.nodeType ? desde : null }); },
     bienvenida: function () { if (S.fab) abrirBienvenida(); },
+    preguntarPorVoz: function (q) { if (S.fab) { S.vozTemp = true; abrir({ desde: null }); enviar(q); } },
+    dictadoDisponible: function () { return !!RECON; },
     catalogo: catalogo, ayuda: function () { return safe(ayuda); },
     listo: function () { return !!S.fab; }
   };

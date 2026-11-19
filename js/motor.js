@@ -572,7 +572,7 @@
     };
 
     function marcasTxt(m) {
-      var MARCA = { compartida: "meta compartida", arrastre: "sin programación " + CORTE.vigencia + " al corte (arrastre " + CORTE.anterior + ")", sobreejecucion: "ejecución superior a lo programado", ajuste25: "2025 tomado como 100 % por estar cumplida en 2026" };
+      var MARCA = { compartida: "meta compartida", arrastre: "sin programación " + CORTE.vigencia + " al corte (arrastre " + CORTE.anterior + ")", sobreejecucion: "ejecución superior a lo programado" };
       return (m.mk || []).map(function (k) { return MARCA[k] || k; });
     }
     function detalleMeta(m) {

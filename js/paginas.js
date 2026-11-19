@@ -92,7 +92,7 @@
   }
   var MARCA = {
     compartida: "Meta compartida", arrastre: "Sin programación 2026 al corte (arrastre 2025)",
-    sobreejecucion: "Ejecución superior a lo programado", ajuste25: "2025 tomado como 100 % (cumplida en 2026)"
+    sobreejecucion: "Ejecución superior a lo programado"
   };
   function marcasHtml(m) {
     return m.mk && m.mk.length ? "<div>" + m.mk.map(function (k) { return '<span class="tag">' + h(MARCA[k] || k) + "</span>"; }).join("") + "</div>" : "";

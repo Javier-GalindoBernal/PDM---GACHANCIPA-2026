@@ -178,3 +178,13 @@ body.nq-open .nq-fab{display:none}
   .nq-wel .nq-vid{width:100%;margin-bottom:10px}
   .nq-wb .nq-wa,.nq-wb .nq-wa .btn{width:100%;justify-content:center}
 }
+
+/* Audio: micrófono y lectura por respuesta */
+.nq-mic{width:44px;height:44px;border-radius:12px;border:1px solid var(--borde-ctl);background:var(--surf);color:var(--ink);display:grid;place-items:center;cursor:pointer;flex:none}
+.nq-mic:hover{background:var(--hov)}
+.nq-mic:focus-visible{outline:3px solid var(--focus);outline-offset:1px}
+.nq-mic .ic{width:20px;height:20px}
+.nq-mic.on{background:#B3261E;border-color:#B3261E;color:#fff;animation:nqmic 1.2s ease-in-out infinite}
+@keyframes nqmic{0%,100%{box-shadow:0 0 0 0 rgba(179,38,30,.45)}50%{box-shadow:0 0 0 8px rgba(179,38,30,0)}}
+.nq-cp.on{color:var(--ink);background:var(--hov)}
+@media (prefers-reduced-motion:reduce){.nq-mic.on{animation:none;box-shadow:0 0 0 3px rgba(179,38,30,.35)}}
