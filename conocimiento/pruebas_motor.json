@@ -22,9 +22,9 @@
    "pregunta": "¿Cuál es el indicador institucional?",
    "intencion": "ind_inst",
    "datos": {
-    "indicador": 76.7,
-    "avance_2025": 89.6,
-    "avance_2026": 73.1
+    "indicador": 81.7,
+    "avance_2025": 92.7,
+    "avance_2026": 76.9
    }
   },
   {
@@ -33,9 +33,9 @@
    "pregunta": "cómo va el plan de desarrollo en general",
    "intencion": "ind_inst",
    "datos": {
-    "indicador": 76.7,
-    "avance_2025": 89.6,
-    "avance_2026": 73.1
+    "indicador": 81.7,
+    "avance_2025": 92.7,
+    "avance_2026": 76.9
    }
   },
   {
@@ -44,9 +44,9 @@
    "pregunta": "dame el porcentaje de avance del PDM",
    "intencion": "ind_inst",
    "datos": {
-    "indicador": 76.7,
-    "avance_2025": 89.6,
-    "avance_2026": 73.1
+    "indicador": 81.7,
+    "avance_2025": 92.7,
+    "avance_2026": 76.9
    }
   },
   {
@@ -55,9 +55,9 @@
    "pregunta": "que tan avanzado va el plan",
    "intencion": "ind_inst",
    "datos": {
-    "indicador": 76.7,
-    "avance_2025": 89.6,
-    "avance_2026": 73.1
+    "indicador": 81.7,
+    "avance_2025": 92.7,
+    "avance_2026": 76.9
    }
   },
   {
@@ -66,9 +66,9 @@
    "pregunta": "indicador general de la alcaldía",
    "intencion": "ind_inst",
    "datos": {
-    "indicador": 76.7,
-    "avance_2025": 89.6,
-    "avance_2026": 73.1
+    "indicador": 81.7,
+    "avance_2025": 92.7,
+    "avance_2026": 76.9
    }
   },
   {
@@ -80,10 +80,10 @@
     "ind_vigencia"
    ],
    "datos": {
-    "avance_2025": 89.6
+    "avance_2025": 92.7
    },
    "contiene": [
-    "89.6%"
+    "92.7%"
    ]
   },
   {
@@ -95,10 +95,10 @@
     "ind_vigencia"
    ],
    "datos": {
-    "avance_2026": 73.1
+    "avance_2026": 76.9
    },
    "contiene": [
-    "73.1%"
+    "76.9%"
    ]
   },
   {
@@ -146,9 +146,9 @@
    "pregunta": "¿Cuál es el indicador de Desarrollo Institucional?",
    "intencion": "ind_sec",
    "datos": {
-    "indicador": 58.3,
-    "avance_2025": 52.5,
-    "avance_2026": 63.7,
+    "indicador": 73.8,
+    "avance_2025": 80.0,
+    "avance_2026": 68.2,
     "metas": 2
    }
   },
@@ -161,9 +161,9 @@
     "ficha_sec"
    ],
    "datos": {
-    "indicador": 58.3,
-    "avance_2025": 52.5,
-    "avance_2026": 63.7,
+    "indicador": 73.8,
+    "avance_2025": 80.0,
+    "avance_2026": 68.2,
     "metas": 2
    }
   },
@@ -176,7 +176,7 @@
     "ficha_sec"
    ],
    "datos": {
-    "indicador": 58.3
+    "indicador": 73.8
    }
   },
   {
@@ -341,9 +341,9 @@
    "pregunta": "¿Cuál es el indicador de la Secretaría de Hacienda?",
    "intencion": "ind_sec",
    "datos": {
-    "indicador": 70.0,
+    "indicador": 100.0,
     "avance_2025": 100.0,
-    "avance_2026": 70.0,
+    "avance_2026": 100.0,
     "metas": 2
    }
   },
@@ -356,9 +356,9 @@
     "ficha_sec"
    ],
    "datos": {
-    "indicador": 70.0,
+    "indicador": 100.0,
     "avance_2025": 100.0,
-    "avance_2026": 70.0,
+    "avance_2026": 100.0,
     "metas": 2
    }
   },
@@ -371,7 +371,7 @@
     "ficha_sec"
    ],
    "datos": {
-    "indicador": 70.0
+    "indicador": 100.0
    }
   },
   {
@@ -658,9 +658,9 @@
    "pregunta": "¿Cuál es el indicador del eje 9?",
    "intencion": "ind_eje",
    "datos": {
-    "indicador": 67.8,
-    "avance_2025": 84.1,
-    "avance_2026": 62.5,
+    "indicador": 72.2,
+    "avance_2025": 89.1,
+    "avance_2026": 65.3,
     "metas": 16,
     "programadas": 14
    }
@@ -674,7 +674,7 @@
     "ficha_eje"
    ],
    "datos": {
-    "indicador": 67.8
+    "indicador": 72.2
    }
   },
   {
@@ -708,7 +708,7 @@
    "pregunta": "¿Cuántas metas están cumplidas?",
    "intencion": "conteo_cumplidas",
    "datos": {
-    "cumplida": 80
+    "cumplida": 82
    }
   },
   {
@@ -723,7 +723,7 @@
     "conteo_estados"
    ],
    "datos": {
-    "cumplida": 80
+    "cumplida": 82
    }
   },
   {
@@ -732,7 +732,7 @@
    "pregunta": "¿Cuántas metas están en avance?",
    "intencion": "conteo_en_avance",
    "datos": {
-    "en_avance": 119
+    "en_avance": 117
    }
   },
   {
@@ -747,7 +747,7 @@
     "conteo_estados"
    ],
    "datos": {
-    "en_avance": 119
+    "en_avance": 117
    }
   },
   {
@@ -804,8 +804,8 @@
    "pregunta": "¿Cuántas metas hay en cada estado?",
    "intencion": "conteo_estados",
    "datos": {
-    "cumplida": 80,
-    "en_avance": 119,
+    "cumplida": 82,
+    "en_avance": 117,
     "rezagada": 4,
     "no_programada": 16,
     "total": 219
@@ -854,7 +854,7 @@
     "conteo_estados"
    ],
    "datos": {
-    "cumplida": 0,
+    "cumplida": 1,
     "total": 2
    }
   },
@@ -1025,7 +1025,7 @@
     "conteo_estados"
    ],
    "datos": {
-    "en_avance": 1
+    "en_avance": 0
    }
   },
   {
@@ -1230,7 +1230,7 @@
     "conteo_estados"
    ],
    "datos": {
-    "cumplida": 3,
+    "cumplida": 5,
     "total": 16
    }
   },
@@ -1598,7 +1598,7 @@
    "pregunta": "¿Qué secretaría tiene el mayor indicador?",
    "intencion": "mayor_sec",
    "datos": {
-    "indicador": 90.2
+    "indicador": 100.0
    }
   },
   {
@@ -1609,7 +1609,7 @@
     "mayor_sec"
    ],
    "datos": {
-    "indicador": 90.2
+    "indicador": 100.0
    }
   },
   {
@@ -1618,7 +1618,7 @@
    "pregunta": "¿Qué secretaría tiene el menor indicador?",
    "intencion": "menor_sec",
    "datos": {
-    "indicador": 58.3
+    "indicador": 63.5
    }
   },
   {
@@ -1629,7 +1629,7 @@
     "menor_sec"
    ],
    "datos": {
-    "indicador": 58.3
+    "indicador": 63.5
    }
   },
   {
@@ -1659,8 +1659,8 @@
    "pregunta": "¿Qué eje tiene el menor indicador?",
    "intencion": "menor_eje",
    "datos": {
-    "indicador": 67.8,
-    "eje": 9
+    "indicador": 71.4,
+    "eje": 6
    }
   },
   {
@@ -1671,7 +1671,7 @@
     "menor_eje"
    ],
    "datos": {
-    "eje": 9
+    "eje": 6
    }
   },
   {
@@ -1681,15 +1681,15 @@
    "intencion": "ranking_sec",
    "datos": {
     "orden": [
+     100.0,
      90.2,
      87.4,
      85.8,
      83.8,
      77.9,
+     73.8,
      73.2,
-     70.0,
-     63.5,
-     58.3
+     63.5
     ]
    },
    "orden_clave": "indicador"
@@ -1703,15 +1703,15 @@
    ],
    "datos": {
     "orden": [
+     100.0,
      90.2,
      87.4,
      85.8,
      83.8,
      77.9,
+     73.8,
      73.2,
-     70.0,
-     63.5,
-     58.3
+     63.5
     ]
    },
    "orden_clave": "indicador"
@@ -1731,8 +1731,8 @@
      86.1,
      84.9,
      84.8,
-     71.4,
-     67.8
+     72.2,
+     71.4
     ]
    },
    "orden_clave": "indicador"
@@ -1754,8 +1754,8 @@
      86.1,
      84.9,
      84.8,
-     71.4,
-     67.8
+     72.2,
+     71.4
     ]
    },
    "orden_clave": "indicador"
@@ -1968,24 +1968,24 @@
    "pregunta": "¿Cuáles son las metas cumplidas?",
    "intencion": "cumplidas_lista",
    "datos": {
-    "total": 80
+    "total": 82
    }
   },
   {
    "id": "C150",
    "grupo": "datos",
-   "pregunta": "información de la meta 191",
+   "pregunta": "¿cómo va la meta 109?",
    "intencion_alt": [
     "meta_detalle"
    ],
    "datos": {
-    "codigo": "191",
+    "codigo": "109",
     "estado": "cumplida",
-    "eje": 8,
+    "eje": 4,
     "existe": true,
     "indicador": 100.0,
-    "programado_acumulado": 200.0,
-    "ejecutado_acumulado": 200.0
+    "programado_acumulado": 125.0,
+    "ejecutado_acumulado": 125.0
    }
   },
   {
@@ -2008,14 +2008,14 @@
   {
    "id": "C152",
    "grupo": "datos",
-   "pregunta": "estado de la meta 202",
+   "pregunta": "Detalle de la meta 116",
    "intencion_alt": [
     "meta_detalle"
    ],
    "datos": {
-    "codigo": "202",
+    "codigo": "116",
     "estado": "cumplida",
-    "eje": 9,
+    "eje": 4,
     "existe": true,
     "indicador": 100.0,
     "programado_acumulado": 200.0,
@@ -2024,6 +2024,23 @@
   },
   {
    "id": "C153",
+   "grupo": "datos",
+   "pregunta": "estado de la meta 94",
+   "intencion_alt": [
+    "meta_detalle"
+   ],
+   "datos": {
+    "codigo": "94",
+    "estado": "cumplida",
+    "eje": 3,
+    "existe": true,
+    "indicador": 100.0,
+    "programado_acumulado": 200.0,
+    "ejecutado_acumulado": 200.0
+   }
+  },
+  {
+   "id": "C154",
    "grupo": "datos",
    "pregunta": "información de la meta 159",
    "intencion_alt": [
@@ -2040,16 +2057,16 @@
    }
   },
   {
-   "id": "C154",
+   "id": "C155",
    "grupo": "datos",
-   "pregunta": "Detalle de la meta 124",
+   "pregunta": "Detalle de la meta 176",
    "intencion_alt": [
     "meta_detalle"
    ],
    "datos": {
-    "codigo": "124",
+    "codigo": "176",
     "estado": "cumplida",
-    "eje": 5,
+    "eje": 7,
     "existe": true,
     "indicador": 100.0,
     "programado_acumulado": 200.0,
@@ -2057,31 +2074,14 @@
    }
   },
   {
-   "id": "C155",
-   "grupo": "datos",
-   "pregunta": "estado de la meta 174",
-   "intencion_alt": [
-    "meta_detalle"
-   ],
-   "datos": {
-    "codigo": "174",
-    "estado": "cumplida",
-    "eje": 6,
-    "existe": true,
-    "indicador": 100.0,
-    "programado_acumulado": 100.0,
-    "ejecutado_acumulado": 100.0
-   }
-  },
-  {
    "id": "C156",
    "grupo": "datos",
-   "pregunta": "¿cómo va la meta 61?",
+   "pregunta": "información de la meta 79",
    "intencion_alt": [
     "meta_detalle"
    ],
    "datos": {
-    "codigo": "61",
+    "codigo": "79",
     "estado": "cumplida",
     "eje": 2,
     "existe": true,
@@ -2093,14 +2093,14 @@
   {
    "id": "C157",
    "grupo": "datos",
-   "pregunta": "¿cómo va la meta 209?",
+   "pregunta": "¿cómo va la meta 129?",
    "intencion_alt": [
     "meta_detalle"
    ],
    "datos": {
-    "codigo": "209",
+    "codigo": "129",
     "estado": "cumplida",
-    "eje": 9,
+    "eje": 5,
     "existe": true,
     "indicador": 100.0,
     "programado_acumulado": 200.0,
@@ -2127,6 +2127,23 @@
   {
    "id": "C159",
    "grupo": "datos",
+   "pregunta": "información de la meta 127",
+   "intencion_alt": [
+    "meta_detalle"
+   ],
+   "datos": {
+    "codigo": "127",
+    "estado": "cumplida",
+    "eje": 5,
+    "existe": true,
+    "indicador": 100.0,
+    "programado_acumulado": 200.0,
+    "ejecutado_acumulado": 200.0
+   }
+  },
+  {
+   "id": "C160",
+   "grupo": "datos",
    "pregunta": "información de la meta 71",
    "intencion_alt": [
     "meta_detalle"
@@ -2142,65 +2159,116 @@
    }
   },
   {
-   "id": "C160",
-   "grupo": "datos",
-   "pregunta": "estado de la meta 70",
-   "intencion_alt": [
-    "meta_detalle"
-   ],
-   "datos": {
-    "codigo": "70",
-    "estado": "cumplida",
-    "eje": 2,
-    "existe": true,
-    "indicador": 100.0,
-    "programado_acumulado": 200.0,
-    "ejecutado_acumulado": 200.0
-   }
-  },
-  {
    "id": "C161",
    "grupo": "datos",
-   "pregunta": "información de la meta 107",
+   "pregunta": "estado de la meta 174",
    "intencion_alt": [
     "meta_detalle"
    ],
    "datos": {
-    "codigo": "107",
+    "codigo": "174",
     "estado": "cumplida",
-    "eje": 3,
+    "eje": 6,
     "existe": true,
     "indicador": 100.0,
-    "programado_acumulado": 200.0,
-    "ejecutado_acumulado": 200.0
+    "programado_acumulado": 100.0,
+    "ejecutado_acumulado": 100.0
    }
   },
   {
    "id": "C162",
    "grupo": "datos",
-   "pregunta": "estado de la meta 138",
+   "pregunta": "Detalle de la meta 132",
    "intencion_alt": [
     "meta_detalle"
    ],
    "datos": {
-    "codigo": "138",
+    "codigo": "132",
     "estado": "en_avance",
     "eje": 6,
     "existe": true,
-    "indicador": 78.9,
-    "programado_acumulado": 175.0,
-    "ejecutado_acumulado": 138.0
+    "indicador": 25.0,
+    "programado_acumulado": 100.0,
+    "ejecutado_acumulado": 25.0
    }
   },
   {
    "id": "C163",
    "grupo": "datos",
-   "pregunta": "información de la meta 131",
+   "pregunta": "Detalle de la meta 36",
    "intencion_alt": [
     "meta_detalle"
    ],
    "datos": {
-    "codigo": "131",
+    "codigo": "36",
+    "estado": "en_avance",
+    "eje": 2,
+    "existe": true,
+    "indicador": 92.5,
+    "programado_acumulado": 200.0,
+    "ejecutado_acumulado": 185.0
+   }
+  },
+  {
+   "id": "C164",
+   "grupo": "datos",
+   "pregunta": "estado de la meta 54",
+   "intencion_alt": [
+    "meta_detalle"
+   ],
+   "datos": {
+    "codigo": "54",
+    "estado": "en_avance",
+    "eje": 2,
+    "existe": true,
+    "indicador": 82.5,
+    "programado_acumulado": 200.0,
+    "ejecutado_acumulado": 165.0
+   }
+  },
+  {
+   "id": "C165",
+   "grupo": "datos",
+   "pregunta": "Detalle de la meta 68",
+   "intencion_alt": [
+    "meta_detalle"
+   ],
+   "datos": {
+    "codigo": "68",
+    "estado": "en_avance",
+    "eje": 2,
+    "existe": true,
+    "indicador": 75.0,
+    "programado_acumulado": 200.0,
+    "ejecutado_acumulado": 150.0
+   }
+  },
+  {
+   "id": "C166",
+   "grupo": "datos",
+   "pregunta": "información de la meta 75",
+   "intencion_alt": [
+    "meta_detalle"
+   ],
+   "datos": {
+    "codigo": "75",
+    "estado": "en_avance",
+    "eje": 2,
+    "existe": true,
+    "indicador": 79.0,
+    "programado_acumulado": 200.0,
+    "ejecutado_acumulado": 158.0
+   }
+  },
+  {
+   "id": "C167",
+   "grupo": "datos",
+   "pregunta": "estado de la meta 154",
+   "intencion_alt": [
+    "meta_detalle"
+   ],
+   "datos": {
+    "codigo": "154",
     "estado": "en_avance",
     "eje": 6,
     "existe": true,
@@ -2210,7 +2278,7 @@
    }
   },
   {
-   "id": "C164",
+   "id": "C168",
    "grupo": "datos",
    "pregunta": "información de la meta 55",
    "intencion_alt": [
@@ -2224,74 +2292,6 @@
     "indicador": 65.0,
     "programado_acumulado": 200.0,
     "ejecutado_acumulado": 130.0
-   }
-  },
-  {
-   "id": "C165",
-   "grupo": "datos",
-   "pregunta": "información de la meta 147",
-   "intencion_alt": [
-    "meta_detalle"
-   ],
-   "datos": {
-    "codigo": "147",
-    "estado": "en_avance",
-    "eje": 6,
-    "existe": true,
-    "indicador": 20.0,
-    "programado_acumulado": 100.0,
-    "ejecutado_acumulado": 20.0
-   }
-  },
-  {
-   "id": "C166",
-   "grupo": "datos",
-   "pregunta": "¿cómo va la meta 93?",
-   "intencion_alt": [
-    "meta_detalle"
-   ],
-   "datos": {
-    "codigo": "93",
-    "estado": "en_avance",
-    "eje": 3,
-    "existe": true,
-    "indicador": 85.0,
-    "programado_acumulado": 200.0,
-    "ejecutado_acumulado": 170.0
-   }
-  },
-  {
-   "id": "C167",
-   "grupo": "datos",
-   "pregunta": "estado de la meta 114",
-   "intencion_alt": [
-    "meta_detalle"
-   ],
-   "datos": {
-    "codigo": "114",
-    "estado": "en_avance",
-    "eje": 4,
-    "existe": true,
-    "indicador": 70.0,
-    "programado_acumulado": 200.0,
-    "ejecutado_acumulado": 140.0
-   }
-  },
-  {
-   "id": "C168",
-   "grupo": "datos",
-   "pregunta": "¿cómo va la meta 157?",
-   "intencion_alt": [
-    "meta_detalle"
-   ],
-   "datos": {
-    "codigo": "157",
-    "estado": "en_avance",
-    "eje": 6,
-    "existe": true,
-    "indicador": 82.5,
-    "programado_acumulado": 200.0,
-    "ejecutado_acumulado": 165.0
    }
   },
   {
@@ -2314,69 +2314,69 @@
   {
    "id": "C170",
    "grupo": "datos",
-   "pregunta": "estado de la meta 54",
+   "pregunta": "Detalle de la meta 92",
    "intencion_alt": [
     "meta_detalle"
    ],
    "datos": {
-    "codigo": "54",
+    "codigo": "92",
     "estado": "en_avance",
-    "eje": 2,
+    "eje": 3,
     "existe": true,
-    "indicador": 82.5,
+    "indicador": 50.0,
     "programado_acumulado": 200.0,
-    "ejecutado_acumulado": 165.0
+    "ejecutado_acumulado": 100.0
    }
   },
   {
    "id": "C171",
    "grupo": "datos",
-   "pregunta": "Detalle de la meta 88",
+   "pregunta": "información de la meta 163",
    "intencion_alt": [
     "meta_detalle"
    ],
    "datos": {
-    "codigo": "88",
+    "codigo": "163",
     "estado": "en_avance",
-    "eje": 2,
+    "eje": 6,
     "existe": true,
-    "indicador": 85.0,
-    "programado_acumulado": 200.0,
-    "ejecutado_acumulado": 170.0
+    "indicador": 50.0,
+    "programado_acumulado": 100.0,
+    "ejecutado_acumulado": 50.0
    }
   },
   {
    "id": "C172",
    "grupo": "datos",
-   "pregunta": "estado de la meta 170",
+   "pregunta": "información de la meta 123",
    "intencion_alt": [
     "meta_detalle"
    ],
    "datos": {
-    "codigo": "170",
+    "codigo": "123",
     "estado": "en_avance",
-    "eje": 6,
+    "eje": 5,
     "existe": true,
-    "indicador": 87.5,
+    "indicador": 97.5,
     "programado_acumulado": 200.0,
-    "ejecutado_acumulado": 175.0
+    "ejecutado_acumulado": 195.0
    }
   },
   {
    "id": "C173",
    "grupo": "datos",
-   "pregunta": "¿cómo va la meta 121?",
+   "pregunta": "información de la meta 119",
    "intencion_alt": [
     "meta_detalle"
    ],
    "datos": {
-    "codigo": "121",
+    "codigo": "119",
     "estado": "en_avance",
     "eje": 4,
     "existe": true,
-    "indicador": 62.0,
+    "indicador": 75.0,
     "programado_acumulado": 200.0,
-    "ejecutado_acumulado": 124.0
+    "ejecutado_acumulado": 150.0
    }
   },
   {
@@ -2743,15 +2743,15 @@
    "pregunta": "¿Qué cambió entre 2025 y 2026?",
    "intencion": "cambio_anios",
    "datos": {
-    "avance_2025": 89.6,
-    "avance_2026": 73.1,
-    "diferencia": -16.5
+    "avance_2025": 92.7,
+    "avance_2026": 76.9,
+    "diferencia": -15.8
    },
    "datos_no_texto": [
     "diferencia"
    ],
    "contiene": [
-    "16.5"
+    "15.8"
    ]
   },
   {
@@ -2844,8 +2844,8 @@
    "pregunta": "¿Qué porcentaje de metas está cumplido?",
    "intencion": "pct_estado",
    "datos": {
-    "porcentaje": 36.5,
-    "cantidad": 80
+    "porcentaje": 37.4,
+    "cantidad": 82
    }
   },
   {
@@ -2866,9 +2866,9 @@
     "comparar"
    ],
    "datos": {
-    "indicador": 70.0,
-    "institucional": 76.7,
-    "diferencia": 6.7
+    "indicador": 100.0,
+    "institucional": 81.7,
+    "diferencia": 18.3
    }
   },
   {
@@ -2881,8 +2881,8 @@
    ],
    "datos": {
     "indicador": 90.2,
-    "institucional": 76.7,
-    "diferencia": 13.5
+    "institucional": 81.7,
+    "diferencia": 8.5
    }
   },
   {
@@ -2895,8 +2895,8 @@
    ],
    "datos": {
     "indicador": 85.8,
-    "institucional": 76.7,
-    "diferencia": 9.1
+    "institucional": 81.7,
+    "diferencia": 4.1
    }
   },
   {
@@ -2905,7 +2905,7 @@
    "pregunta": "compara Gobierno con Hacienda",
    "intencion": "comparar",
    "datos": {
-    "diferencia": 15.8
+    "diferencia": 14.2
    }
   },
   {
@@ -2941,7 +2941,7 @@
    "pregunta": "qué diferencia hay entre Hacienda y Desarrollo Social",
    "intencion": "comparar",
    "datos": {
-    "diferencia": 20.2
+    "diferencia": 9.8
    }
   },
   {
@@ -2959,7 +2959,7 @@
    "pregunta": "eje 5 vs eje 9",
    "intencion": "comparar",
    "datos": {
-    "diferencia": 24.7
+    "diferencia": 20.3
    }
   },
   {
@@ -3074,7 +3074,7 @@
    "pregunta": "dame un resumen del corte",
    "intencion": "resumen_general",
    "datos": {
-    "indicador": 76.7,
+    "indicador": 81.7,
     "rezagada": 4
    }
   },
@@ -5399,7 +5399,7 @@
    "descripcion": "cifra falsa: debe corregir con el dato real",
    "adversarial": true,
    "contiene": [
-    "70.0%"
+    "100.0%"
    ],
    "no_contiene": [
     "12.3"
@@ -5444,7 +5444,7 @@
    "contiene_alguno": [
     "No puedo",
     "No coincide",
-    "76.7%"
+    "81.7%"
    ]
   },
   {
@@ -5559,7 +5559,7 @@
    "descripcion": "afirmación falsa",
    "adversarial": true,
    "contiene": [
-    "80"
+    "82"
    ],
    "no_contiene": [
     "Sí, todas"
@@ -5576,7 +5576,7 @@
    "adversarial": true,
    "tipo": "limite",
    "contiene": [
-    "70.0%",
+    "100.0%",
     "no contiene información presupuestal"
    ]
   },
@@ -5629,7 +5629,7 @@
    "adversarial": true,
    "tipo": "limite",
    "contiene": [
-    "70.0%"
+    "100.0%"
    ]
   },
   {
@@ -5744,7 +5744,7 @@
     "calculo_institucional"
    ],
    "datos": {
-    "indicador": 76.7
+    "indicador": 81.7
    }
   },
   {
@@ -5869,7 +5869,7 @@
     "ficha_sec"
    ],
    "datos": {
-    "indicador": 70.0
+    "indicador": 100.0
    }
   },
   {
@@ -6134,7 +6134,7 @@
     "menor_eje"
    ],
    "datos": {
-    "eje": 9
+    "eje": 6
    }
   },
   {
@@ -6145,7 +6145,7 @@
     "menor_sec"
    ],
    "datos": {
-    "indicador": 58.3
+    "indicador": 63.5
    }
   },
   {
@@ -6193,7 +6193,7 @@
     "comparar"
    ],
    "datos": {
-    "diferencia": 15.8
+    "diferencia": 14.2
    }
   },
   {
@@ -6204,8 +6204,8 @@
     "sec_vs_inst"
    ],
    "datos": {
-    "indicador": 70.0,
-    "institucional": 76.7
+    "indicador": 100.0,
+    "institucional": 81.7
    }
   },
   {
@@ -6300,7 +6300,7 @@
     "ind_vigencia"
    ],
    "datos": {
-    "avance_2026": 73.1
+    "avance_2026": 76.9
    }
   },
   {
@@ -6347,7 +6347,7 @@
     "¿cuántas metas en avance tiene Gobierno?"
    ],
    "datos": {
-    "en_avance": 1
+    "en_avance": 0
    }
   },
   {
@@ -6738,10 +6738,10 @@
    "grupo": "revisores",
    "pregunta": "cuál fue el avance de Secretaría de Desarrollo Institucional en 2025",
    "datos": {
-    "avance_2025": 52.5
+    "avance_2025": 80.0
    },
    "contiene": [
-    "52.5%"
+    "80.0%"
    ],
    "no_contiene": [
     "avance institucional de 2025 fue"
@@ -6752,10 +6752,10 @@
    "grupo": "revisores",
    "pregunta": "avance 2025 de Secretaría de Desarrollo Institucional",
    "datos": {
-    "avance_2025": 52.5
+    "avance_2025": 80.0
    },
    "contiene": [
-    "52.5%"
+    "80.0%"
    ],
    "no_contiene": [
     "avance institucional de 2025 fue"
@@ -6766,10 +6766,10 @@
    "grupo": "revisores",
    "pregunta": "avance de Secretaría de Desarrollo Institucional en 2025",
    "datos": {
-    "avance_2025": 52.5
+    "avance_2025": 80.0
    },
    "contiene": [
-    "52.5%"
+    "80.0%"
    ],
    "no_contiene": [
     "avance institucional de 2025 fue"
@@ -6780,10 +6780,10 @@
    "grupo": "revisores",
    "pregunta": "avance 2026 de Secretaría de Desarrollo Institucional",
    "datos": {
-    "avance_2026": 63.7
+    "avance_2026": 68.2
    },
    "contiene": [
-    "63.7%"
+    "68.2%"
    ]
   },
   {
@@ -7045,10 +7045,10 @@
    "grupo": "revisores",
    "pregunta": "avance 2026 de Hacienda",
    "datos": {
-    "avance_2026": 70.0
+    "avance_2026": 100.0
    },
    "contiene": [
-    "70.0%"
+    "100.0%"
    ]
   },
   {
@@ -7174,10 +7174,10 @@
    "pregunta": "compara hacienda y social",
    "intencion": "comparar",
    "datos": {
-    "diferencia": 20.2
+    "diferencia": 9.8
    },
    "contiene": [
-    "70.0%",
+    "100.0%",
     "90.2%"
    ]
   },
@@ -7487,7 +7487,7 @@
    "pregunta": "cuantas metas cumplidas hay",
    "intencion": "conteo_cumplidas",
    "datos": {
-    "cumplida": 80
+    "cumplida": 82
    },
    "no_contiene": [
     "Estados oficiales",
@@ -7513,7 +7513,7 @@
    "pregunta": "cuántas metas en avance hay",
    "intencion": "conteo_en_avance",
    "datos": {
-    "en_avance": 119
+    "en_avance": 117
    },
    "no_contiene": [
     "Estados oficiales",
@@ -7663,8 +7663,8 @@
    "pregunta": "cuál es el eje más rezagado",
    "intencion": "menor_eje",
    "datos": {
-    "eje": 9,
-    "indicador": 67.8
+    "eje": 6,
+    "indicador": 71.4
    },
    "no_contiene": [
     "indicador más alto es Eje 5"
@@ -7676,7 +7676,7 @@
    "pregunta": "cuál secretaría va peor",
    "intencion": "menor_sec",
    "datos": {
-    "indicador": 58.3
+    "indicador": 63.5
    },
    "no_contiene": [
     "metas más bajas"
