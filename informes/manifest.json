@@ -1,7 +1,7 @@
 {
  "corte": "2026-10-30",
  "vigencia": 2026,
- "generado": "2026-11-19T13:43:46",
+ "generado": "2026-11-19T13:55:43",
  "secretarias": [
   {
    "carpeta": "secretaria-desarrollo-agropecuario",
@@ -18,7 +18,7 @@
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Desarrollo_Agropecuario_2026.pdf",
      "kb": 292,
-     "huella": "1c21ecba"
+     "huella": "0054e9e0"
     }
    }
   },
@@ -32,12 +32,12 @@
     "docx": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Desarrollo_Institucional_2026.docx",
      "kb": 14,
-     "huella": "557fb5ed"
+     "huella": "b843db8f"
     },
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Desarrollo_Institucional_2026.pdf",
-     "kb": 116,
-     "huella": "5e6606fd"
+     "kb": 115,
+     "huella": "40cd363c"
     }
    }
   },
@@ -56,7 +56,7 @@
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Desarrollo_Social_2026.pdf",
      "kb": 306,
-     "huella": "2de3c643"
+     "huella": "9fc93955"
     }
    }
   },
@@ -75,7 +75,7 @@
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Educacion_y_Cultura_2026.pdf",
      "kb": 338,
-     "huella": "cea0d501"
+     "huella": "07014bde"
     }
    }
   },
@@ -94,7 +94,7 @@
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Secretaria_General_2026.pdf",
      "kb": 194,
-     "huella": "6a936632"
+     "huella": "d774a9d0"
     }
    }
   },
@@ -113,7 +113,7 @@
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Gobierno_2026.pdf",
      "kb": 272,
-     "huella": "ec2613bb"
+     "huella": "7bc8914c"
     }
    }
   },
@@ -127,12 +127,12 @@
     "docx": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Hacienda_2026.docx",
      "kb": 14,
-     "huella": "c3439ab0"
+     "huella": "49d44677"
     },
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Hacienda_2026.pdf",
      "kb": 116,
-     "huella": "290751e3"
+     "huella": "444344eb"
     }
    }
   },
@@ -151,7 +151,7 @@
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Obras_Publicas_2026.pdf",
      "kb": 226,
-     "huella": "7c9e1b3d"
+     "huella": "786d16e7"
     }
    }
   },
@@ -170,7 +170,7 @@
     "pdf": {
      "ruta": "informes/secretarias/Informe_Seguimiento_Planeacion_y_Servicios_Publicos_2026.pdf",
      "kb": 283,
-     "huella": "45e71e7f"
+     "huella": "695f3649"
     }
    }
   }
@@ -187,12 +187,12 @@
       "docx": {
        "ruta": "informes/general/Informe_de_Gestion_2026.docx",
        "kb": 1893,
-       "huella": "9a51aa87"
+       "huella": "f1f15b1b"
       },
       "pdf": {
        "ruta": "informes/general/Informe_de_Gestion_2026.pdf",
-       "kb": 1126,
-       "huella": "ad3f34dd"
+       "kb": 1124,
+       "huella": "930683d8"
       }
      }
     },
@@ -202,13 +202,13 @@
      "archivos": {
       "docx": {
        "ruta": "informes/general/Informe_Consolidado_General_PDM_corte_2026-10-30.docx",
-       "kb": 247,
-       "huella": "3df3a0b7"
+       "kb": 246,
+       "huella": "35715b42"
       },
       "pdf": {
        "ruta": "informes/general/Informe_Consolidado_General_PDM_corte_2026-10-30.pdf",
-       "kb": 962,
-       "huella": "c04ff484"
+       "kb": 961,
+       "huella": "562881fd"
       }
      }
     }
